@@ -21,6 +21,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import plane_illustrations as pi            # same prompt text as the generator
 
+REPAINT_LINE = ("Image 1 is the APPROVED AIRFRAME for this aircraft type. Keep its shape, proportions, number of wings, "
+                "engines and tail surfaces, pose and woodblock line style EXACTLY as drawn. Change ONLY the paint scheme.")
 STYLE_REF_LINE = ("Image 1 is the STYLE reference: match its style, line weight, palette, level of detail and cream "
                   "ground exactly, but do NOT copy its aircraft type or livery.")
 
@@ -61,7 +63,7 @@ def main():
         out_airlines.append(entry)
 
     pack = {"region": region, "checked": data.get("checked", ""), "about": data.get("about", ""),
-            "style_ref_line": STYLE_REF_LINE, "not_included": data.get("not_included", ""), "airlines": out_airlines}
+            "style_ref_line": STYLE_REF_LINE, "repaint_line": REPAINT_LINE, "not_included": data.get("not_included", ""), "airlines": out_airlines}
     out = ROOT / "liveries"
     out.mkdir(exist_ok=True)
     (out / f"{region}_prompts.json").write_text(json.dumps(pack, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -69,7 +71,7 @@ def main():
     tpl = ROOT / "tools" / "livery_checklist_template.html"
     if tpl.exists():        # interactive checklist page: the pack embedded as JSON
         blob = json.dumps(pack, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\!--")
-        (out / f"{region}_checklist.html").write_text(tpl.read_text(encoding="utf-8").replace("__DATA__", blob),
+        (out / f"{region}_checklist.html").write_text(tpl.read_text(encoding="utf-8").replace("__TITLE__", f"{region} Livery Checklist").replace("__STORE__", "nz-livery-done").replace("__HOW__", "Copy a prompt, paste it into Gemini (attach the approved base airframe and switch on repaint mode), save the image under the file name shown in <code>planes/raw/</code>, tick the box. When you have a batch, run <code>python plane_illustrations.py --cutout-only</code>.").replace("__DATA__", blob),
                                                       encoding="utf-8")
 
     cl = [f"# {region} airline liveries: checklist", "",

@@ -1,4 +1,4 @@
-<title>NZ Livery Checklist</title>
+<title>__TITLE__</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* Layout: a work list, one airline per section, one row per aircraft type, two images per row (side, from below). */
@@ -54,14 +54,15 @@ button.ok{background:transparent;color:var(--ok);border-color:var(--ok)}
 </style>
 <header><div class="wrap">
   <div class="kicker">Aerial Visitors &middot; New Zealand</div>
-  <h1>Livery Checklist</h1>
+  <h1>__TITLE__</h1>
   <div class="prog"><span><b id="done">0</b> of <b id="total">0</b> images painted</span><span id="sync"></span></div>
   <div class="bar"><i id="fill" style="width:0"></i></div>
   <div class="opts">
     <label><input type="checkbox" id="useref"> Add the style-reference line to copied prompts</label>
+    <label id="rpl" hidden><input type="checkbox" id="userepaint"> Repaint mode: add the line for an attached approved airframe</label>
     <label><input type="checkbox" id="hidedone"> Hide finished rows</label>
   </div>
-  <p class="how">Copy a prompt, paste it into Gemini, save the image under the file name shown (in <code>planes/raw/</code>), tick the box. When you have a batch, run <code>python plane_illustrations.py --cutout-only</code>.</p>
+  <p class="how">__HOW__</p>
 </div></header>
 <main class="wrap">
   <div id="fb" hidden><p>Your browser blocked copying. The prompt is selected below: copy it from here.</p><textarea id="fbtext" rows="9" readonly></textarea></div>
@@ -73,7 +74,7 @@ button.ok{background:transparent;color:var(--ok);border-color:var(--ok)}
 const PACK = JSON.parse(document.getElementById("pack").textContent);
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
-const LS = "nz-livery-done";
+const LS = "__STORE__";
 let done = new Set(), col = null;
 
 // ---- build the list once; later updates only toggle classes
@@ -94,6 +95,7 @@ $("list").innerHTML = PACK.airlines.map((al) => {
 }).join("");
 $("total").textContent = total;
 $("note").textContent = PACK.not_included || "";
+if (PACK.repaint_line) $("rpl").hidden = false;
 
 // prompts by id
 const PROMPTS = {};
@@ -130,6 +132,7 @@ document.addEventListener("change", (e) => {
 async function copyPrompt(id, btn) {
   let text = PROMPTS[id] || "";
   if ($("useref").checked) text += "\n\n" + PACK.style_ref_line;
+  if (PACK.repaint_line && $("userepaint").checked) text += "\n\n" + PACK.repaint_line;
   try { await navigator.clipboard.writeText(text); $("fb").hidden = true;
     btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy prompt"; btn.classList.remove("ok"); }, 1800); }
   catch (e) { $("fb").hidden = false; const t = $("fbtext"); t.value = text; t.focus(); t.select(); $("fb").scrollIntoView({block: "nearest"}); }

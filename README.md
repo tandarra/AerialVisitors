@@ -102,3 +102,7 @@ and style guidelines this project adapts. Non-commercial use only, with attribut
 - `python tools/build_livery_prompts.py` writes `liveries/NZ_prompts.json`, `NZ_prompts.md`, `NZ_checklist.md` and an interactive `NZ_checklist.html`: every prompt (side profile and from below) to paste into the Gemini app, plus a self-ticking checklist. Save each image as the file name shown in `planes/raw/`, then run `python plane_illustrations.py --cutout-only`.
 - With an API key: `python plane_illustrations.py --fleet liveries/nz.json` paints the whole list; `--sighted-liveries` paints the airline and type pairs your own feed has logged (this covers international carriers).
 - `--real-liveries` asks for the airline's real colours, name and logo. Airline names and logos are trademarks: keep these images for personal, non-commercial use.
+
+### Base airframes first
+
+`python tools/build_airframe_prompts.py` writes one anatomy-checked prompt pair per physical type (`liveries/nz_airframes.json`: engine and blade counts, wing and tail layout, gear, length and span). Approve those, then paint liveries with the approved image attached as the reference (the livery checklist has a repaint toggle for this).

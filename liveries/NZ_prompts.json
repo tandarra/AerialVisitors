@@ -3,6 +3,7 @@
  "checked": "2026-10-28",
  "about": "New Zealand-based commercial airlines and the aircraft types they fly, for painting each airline's real livery on each type. Edit freely: add an airline or type and re-run tools/build_livery_prompts.py. 'key' becomes the file suffix (a320-anz.webp). Counts are approximate; sources are listed per airline.",
  "style_ref_line": "Image 1 is the STYLE reference: match its style, line weight, palette, level of detail and cream ground exactly, but do NOT copy its aircraft type or livery.",
+ "repaint_line": "Image 1 is the APPROVED AIRFRAME for this aircraft type. Keep its shape, proportions, number of wings, engines and tail surfaces, pose and woodblock line style EXACTLY as drawn. Change ONLY the paint scheme.",
  "not_included": "Fleets not verified, so left out: Parcelair (Freightways, 2 Boeing 737 freighters per Wikipedia, undated), Texel Air, Sunair, Golden Bay Air, Air Safaris, Glenorchy Air, Air Kaikoura, Air Napier, Salt Air and other small Cessna / GippsAero GA8 operators. International airlines flying into New Zealand are covered by 'plane_illustrations.py --sightings', which finds the airline and type of everything actually seen overhead.",
  "airlines": [
   {
