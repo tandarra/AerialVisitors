@@ -119,7 +119,7 @@ python tools\aerial_run.py                  # 72 images, about US$2.50
 - Stop any time and run it again: finished images are skipped. `--stage airframes` paints and pushes only the plain airframes so you can review them before the liveries.
 - To run it hidden in the background: `Start-Process python -ArgumentList 'tools\aerial_run.py' -WindowStyle Hidden` and watch `run.log`.
 
-The atlas (`atlas.html`) has a world map, a checklist of aircraft types per country, and an **Airlines** tab per country: catalogued fleets with their liveries, plus every registered operator that has no fleet list yet. Add a country by writing `liveries/<cc>.json` like `liveries/nz.json`, then `python tools\aerial_run.py --fleet liveries/<cc>.json`.
+The atlas (`atlas.html`) has a world map, a checklist of aircraft types per country, and an **Airlines** tab per country: catalogued fleets with their liveries, plus every registered operator that has no fleet list yet. The Airlines tab has an **alliance filter** (Star Alliance, oneworld, SkyTeam, not aligned) driven by `liveries/alliances.json`; in the world view it lists each alliance's members by country, so you can see which main airlines still need a fleet list. Add a country by writing `liveries/<cc>.json` like `liveries/nz.json`, then `python tools\aerial_run.py --fleet liveries/<cc>.json`.
 
 ### Putting the atlas online
 

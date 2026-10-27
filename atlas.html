@@ -67,6 +67,12 @@ h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bott
 .ops{grid-column:1/-1;columns:3 240px;column-gap:24px;font-size:14px;line-height:1.5}
 .ops div{break-inside:avoid;border-bottom:1px dotted var(--line);padding:2px 0}.ops small{font:11px 'Courier New',monospace;color:var(--mute)}
 .h2{grid-column:1/-1;margin:8px 0 0;font:12px 'Courier New',monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.ally{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 16px}
+.ally[hidden]{display:none}
+.ally label{font:12px 'Courier New',monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin-right:4px}
+.bdg{font:10px 'Courier New',monospace;border:1px solid var(--ink2);padding:0 5px;margin-left:5px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.bdg.star{background:#e9eef7;color:#243b66}.bdg.oneworld{background:#f7e9e6;color:#7a2a1f}.bdg.skyteam{background:#e6f1f6;color:#1d5470}
+.cty{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 4px}.cty>div{font-size:14px;border:1px solid var(--line);padding:3px 8px;background:var(--paper)}
 .toplink{float:right;font:12px 'Courier New',monospace;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--ink)}
 .err{padding:40px;text-align:center;font:italic 18px Georgia,serif;color:var(--miss)}
 </style>
@@ -103,6 +109,7 @@ h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bott
     <button data-f="part">Partial</button><button data-f="miss">Missing</button>
     <input id="q" placeholder="Search name or ICAO code&hellip;">
   </div>
+  <div class="ally" id="ally" hidden></div>
   <div class="grid" id="grid"></div>
 
   <div class="rank"><h3>Registers</h3>
@@ -120,7 +127,8 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<"
 const slug = (c) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 const getJSON = async (u) => { const r = await fetch(u, {cache: "no-cache"}); if (!r.ok) throw new Error(`${u}: ${r.status}`); return r.json(); };
 const PAINTABLE = "LSAHGT";
-let view = "types", CAT = null, OPS = null, drawToken = 0;
+let view = "types", CAT = null, OPS = null, ALL = null, ally = "all", drawToken = 0;
+const ALLY_BY = {};   // ICAO airline code -> [alliance keys]
 let W, painted = {}, byCode = {}, byIso = {}, sel = null, filter = "all", query = "", topN = 50, airlinersOnly = false;
 
 const isAirliner = (t) => t[2].length === 3 && t[2][0] === "L" && "234".includes(t[2][1]) && "JT".includes(t[2][2]) && "MH".includes(t[3]);
@@ -144,17 +152,46 @@ const ramp = (f) => { const a = [226, 218, 199], b = [77, 122, 86]; // land -> g
 
 const loadCat = async () => (CAT ??= await getJSON("planes/catalogue.json").catch(() => ({countries: {}})));
 const loadOps = async () => (OPS ??= await getJSON("planes/operators.json").catch(() => ({})));
+const loadAll = async () => { if (!ALL) { ALL = await getJSON("liveries/alliances.json").catch(() => ({alliances: []}));
+  ALL.alliances.forEach((a) => [...a.members, ...a.affiliates].forEach((m) => (ALLY_BY[m[0]] ||= []).push(a.key))); } return ALL; };
+const badges = (code) => (ALLY_BY[code] || []).map((k) => `<span class="bdg ${k}">${esc(ALL.alliances.find((a) => a.key === k).short)}</span>`).join("");
+const inAlly = (code) => ally === "all" ? true : ally === "none" ? !(ALLY_BY[code] || []).length : (ALLY_BY[code] || []).includes(ally);
+const icaoOf = (al) => (al.icao || al.key || "").toUpperCase();
+function drawAllyBar() {
+  const bar = $("ally"); bar.hidden = view !== "airlines";
+  if (view !== "airlines") return;
+  bar.innerHTML = `<label>Alliance</label>` + [["all", "All"], ...ALL.alliances.map((a) => [a.key, a.name]), ["none", "Not aligned"]]
+    .map(([k, n]) => `<button data-ally="${k}" class="${ally === k ? "on" : ""}">${esc(n)}</button>`).join("");
+}
 const markSel = () => document.querySelectorAll("#land path").forEach((p) => p.classList.toggle("sel", sel && p.dataset.code === sel.code));
 const airlineScore = (al) => { const n = al.fleet.length * 2, ok = al.fleet.reduce((a, f) => a + f.files.length, 0); return {n, ok}; };
 
 // Airlines view: catalogued airlines (fleet known, with their liveries) then every registered operator of the country.
 async function drawAirlines() {
-  const token = ++drawToken, cat = await loadCat(), ops = await loadOps();
+  const token = ++drawToken, cat = await loadCat(), ops = await loadOps(); await loadAll();
   if (token !== drawToken) return;
+  drawAllyBar();
   $("pick").hidden = false; $("filters").hidden = false;
   document.querySelectorAll("#filters button").forEach((b) => (b.hidden = true));
   $("paintnext").hidden = true;
   const q = query.toLowerCase();
+  if (!sel && ally !== "all") {      // world view through an alliance: its members grouped by country
+    const groups = {}, picked = ALL.alliances.filter((a) => ally === "none" || a.key === ally);
+    const codes = ally === "none" ? Object.keys(ops).filter((k) => inAlly(k)).slice(0, 0) : picked.flatMap((a) => a.members.map((m) => m[0]));
+    const catAl = {}; Object.entries(cat.countries).forEach(([cc, c]) => c.airlines.forEach((al) => (catAl[icaoOf(al)] = {al, c})));
+    [...new Set(codes)].forEach((k) => { const v = ops[k]; if (!v) return; (groups[v[1]] ||= []).push(k); });
+    const names = Object.keys(groups).sort();
+    let ok = 0, tot = 0;
+    const html = names.map((n) => { const reg = W.countries.find((c) => c.name === n);
+      return `<div class="al"${reg ? ` style="cursor:pointer" data-code="${reg.code}"` : ""}><h4>${esc(n)}<span>${groups[n].length} member${groups[n].length === 1 ? "" : "s"}</span></h4>
+        <div class="cty">${groups[n].map((k) => { const hit = catAl[k], s = hit ? airlineScore(hit.al) : {ok: 0, n: 0}; tot++; if (s.n && s.ok === s.n) ok++;
+          return `<div>${esc(ops[k][0])}${badges(k)} <small class="${s.n ? (s.ok === s.n ? "ok" : "part") : "miss"}">${s.n ? s.ok + "/" + s.n : "no fleet list"}</small></div>`; }).join("")}</div></div>`; }).join("");
+    $("pname").textContent = "World";
+    $("pmeta").textContent = `${picked.map((a) => a.name).join(", ") || "Not aligned"}: ${tot} airlines in ${names.length} countries · ${ok} with every livery painted`;
+    $("pbdone").style.width = (tot ? ok / tot * 100 : 0) + "%"; $("pbhalf").style.width = (tot ? ok / tot * 100 : 0) + "%";
+    $("grid").innerHTML = html || `<div class="err" style="grid-column:1/-1">Airlines outside an alliance are listed per country: pick a country.</div>`;
+    markSel(); return;
+  }
   if (!sel) {
     const rows = Object.entries(cat.countries).map(([code, c]) => { const t = c.airlines.reduce((a, al) => { const s = airlineScore(al); return [a[0] + s.ok, a[1] + s.n]; }, [0, 0]);
       return {code, c, ok: t[0], n: t[1]}; }).sort((a, b) => b.ok - a.ok);
@@ -164,16 +201,17 @@ async function drawAirlines() {
       : `<div class="err" style="grid-column:1/-1">No airline liveries painted yet.</div>`;
     markSel(); return;
   }
-  const cc = cat.countries[sel.code], airlines = cc ? cc.airlines : [];
+  const cc = cat.countries[sel.code], airlines = (cc ? cc.airlines : []).filter((al) => inAlly(icaoOf(al)));
   const tot = airlines.reduce((a, al) => { const s = airlineScore(al); return [a[0] + s.ok, a[1] + s.n]; }, [0, 0]);
   const have = airlines.map((a) => a.name.toLowerCase());
-  const others = Object.entries(ops).filter(([, v]) => v[1] === sel.name && !have.some((h) => h.includes(v[0].toLowerCase()) || v[0].toLowerCase().includes(h)))
-    .filter(([k, v]) => !q || (v[0] + " " + k + " " + v[2]).toLowerCase().includes(q));
+  const others = Object.entries(ops).filter(([k, v]) => v[1] === sel.name && !have.some((h) => h.includes(v[0].toLowerCase()) || v[0].toLowerCase().includes(h)) && inAlly(k))
+    .filter(([k, v]) => !q || (v[0] + " " + k + " " + v[2]).toLowerCase().includes(q))
+    .sort((a, b) => !!(ALLY_BY[b[0]] || []).length - !!(ALLY_BY[a[0]] || []).length);
   $("pname").textContent = sel.name;
   $("pmeta").textContent = `${airlines.length} airlines catalogued · ${tot[0]}/${tot[1]} livery images · ${others.length.toLocaleString()} other registered operators`;
   $("pbdone").style.width = (tot[1] ? tot[0] / tot[1] * 100 : 0) + "%"; $("pbhalf").style.width = (tot[1] ? tot[0] / tot[1] * 100 : 0) + "%";
   const card = (al) => { const s = airlineScore(al);
-    return `<div class="al"><h4>${esc(al.name)}<span>${esc(al.kind || "")}${al.base ? " · " + esc(al.base) : ""} · ${s.ok}/${s.n} images</span></h4>
+    return `<div class="al"><h4><b>${esc(al.name)}</b>${badges(icaoOf(al))}<span>${esc(al.kind || "")}${al.base ? " · " + esc(al.base) : ""} · ${s.ok}/${s.n} images</span></h4>
       <div class="bar"><i style="width:${s.n ? s.ok / s.n * 100 : 0}%"></i></div>
       ${al.fleet.filter((f) => !q || (f.label + " " + f.type + " " + al.name).toLowerCase().includes(q)).map((f) => `<div class="fr"><div><div class="n">${esc(f.label || f.type)}</div>
         <div class="s">${esc(f.type)}${f.count ? " · " + f.count + " flying" : ""}${f.note ? " · " + esc(f.note) : ""}</div>
@@ -182,12 +220,13 @@ async function drawAirlines() {
   const shownAl = airlines.filter((al) => !q || (al.name + " " + al.fleet.map((f) => f.label + f.type).join(" ")).toLowerCase().includes(q));
   $("grid").innerHTML = (shownAl.length ? shownAl.map(card).join("") : airlines.length ? "" : `<div class="h2">No airline fleets catalogued for ${esc(sel.name)} yet.</div>`)
     + (others.length ? `<div class="h2">Other registered operators, no fleet list yet (${others.length.toLocaleString()})</div><div class="ops">${others.slice(0, 300).map(([k, v]) =>
-      `<div>${esc(v[0])} <small>${esc(k)}${v[2] ? " · " + esc(v[2]) : ""}</small></div>`).join("")}</div>${others.length > 300 ? `<div class="h2">Showing 300: search to narrow down.</div>` : ""}` : "");
+      `<div>${esc(v[0])}${badges(k)} <small>${esc(k)}${v[2] ? " · " + esc(v[2]) : ""}</small></div>`).join("")}</div>${others.length > 300 ? `<div class="h2">Showing 300: search to narrow down.</div>` : ""}` : "");
   markSel();
 }
 
 function drawGrid() {
   if (view === "airlines") return void drawAirlines();
+  $("ally").hidden = true;
   document.querySelectorAll("#filters button").forEach((b) => (b.hidden = false)); $("paintnext").hidden = false;
   const rows = sel ? checklist(sel) : worldList(), s = score(rows);
   $("pick").hidden = false; $("filters").hidden = false;
@@ -227,6 +266,7 @@ $("airl").onclick = (e) => { airlinersOnly = !airlinersOnly; e.target.classList.
 $("world").onclick = () => choose(null);
 const setView = (v) => { view = v; $("vtypes").classList.toggle("on", v === "types"); $("vair").classList.toggle("on", v === "airlines"); drawGrid(); };
 $("vtypes").onclick = () => setView("types"); $("vair").onclick = () => setView("airlines");
+$("ally").onclick = (e) => { const b = e.target.closest("[data-ally]"); if (b) { ally = b.dataset.ally; drawGrid(); } };
 $("grid").onclick = (e) => { const c = e.target.closest(".al[data-code]"); if (c) choose(c.dataset.code); };
 $("q").oninput = (e) => { query = e.target.value; drawGrid(); };
 document.querySelectorAll("#filters button").forEach((b) => b.onclick = () => {
