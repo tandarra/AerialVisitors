@@ -52,6 +52,27 @@ def prompt(a, pose):
             f"on a 1:1 canvas.")
 
 
+def auto_spec(code, info):
+    """Anatomy for a type with no hand-written spec, from its ICAO description (e.g. L2J = landplane, 2 engines, jet).
+    Less exact than a curated spec: check the first image against the real aircraft before building liveries on it."""
+    name, desc = info[0], info[1]
+    if len(desc) < 3 or desc[0] not in "LSA" or not desc[1].isdigit() or int(desc[1]) < 1:
+        return None                                   # helicopters, gyros, balloons, drones: needs a hand-written spec
+    n, kind = int(desc[1]), desc[2]
+    word = {"J": "turbofan jet engine", "T": "turboprop engine, each with a propeller", "P": "piston engine, each with a propeller",
+            "E": "electric motor, each with a propeller", "R": "rocket motor"}.get(kind, "engine")
+    anat = [f"EXACTLY {n} {word}{'s' if n > 1 else ''}, placed where the real {name} has {'them' if n > 1 else 'it'}.",
+            "Exactly two wings (left and right) with the real aircraft's wing position (high, mid or low), sweep, taper and struts.",
+            "The real aircraft's tail layout: exactly one vertical fin unless the real type has more, and the correct horizontal stabilisers.",
+            "Fuselage length against wingspan and overall proportions exactly as the real aircraft."]
+    return {"type": code, "name": name, "gear": "fixed" if kind == "P" and n == 1 else "retracted", "airlines": "",
+            "check": f"{n} {word.split(' each')[0]}{'s' if n > 1 else ''} · 2 wings · tail and proportions as the real {name}", "anatomy": anat, "auto": True}
+
+
+def spec_for(code, curated, types):
+    return curated.get(code) or (auto_spec(code, types[code]) if code in types else None)
+
+
 def main():
     src = ROOT / "liveries" / "nz_airframes.json"
     data = json.loads(src.read_text(encoding="utf-8"))

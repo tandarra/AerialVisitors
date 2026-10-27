@@ -1,0 +1,471 @@
+﻿ICAO type,Name,File name,Side profile,From below,Status
+ULAC,Ultralight aircraft,ulac,,,Missing
+C172,CESSNA 172 Skyhawk,c172,,,Missing
+GLID,Glider,glid,,,Missing
+AS50,AEROSPATIALE AS-350 Ecureuil,as50,,,Missing
+R44,ROBINSON R-44 Raven,r44,,,Missing
+P28A,PIPER PA-28-140/150/160/180,p28a,,,Missing
+B06,BELL 206 JetRanger,b06,,,Missing
+GLIM,Motorglider,glim,,,Missing
+H500,HUGHES 500,h500,,,Missing
+C152,CESSNA 152,c152,,,Missing
+C180,CESSNA  180 Skywagon,c180,,,Missing
+C182,CESSNA 182 Skylane,c182,,,Missing
+C185,CESSNA 185 Skywagon,c185,,,Missing
+R22,ROBINSON R-22 Mariner,r22,,,Missing
+PA18,PIPER PA-18 Super Cub,pa18,,,Missing
+H269,HUGHES Sky Knight,h269,,,Missing
+COY2,RANS Coyote 2,coy2,,,Missing
+GYRO,Autogyro,gyro,,,Missing
+DH82,DE HAVILLAND DH-82 Tiger Moth,dh82,,,Missing
+G2CA,GUIMBAL G-2 Cabri,g2ca,,,Missing
+C150,CESSNA 150,c150,,,Missing
+PA38,PIPER PA-38 Tomahawk,pa38,,,Missing
+P208,TECNAM P-2008,p208,,,Missing
+C206,CESSNA  206 Stationair,c206,,,Missing
+EC30,AIRBUS HELICOPTERS EC-130,ec30,,,Missing
+ECHO,TECNAM P-92 Echo,echo,,,Missing
+SVNH,AEROTEC Savannah,svnh,,,Missing
+CH60,ZENAIR CH-600 Zodiac,ch60,,,Missing
+BK17,EUROCOPTER BK117 C-1/2,bk17,,,Missing
+C208,CESSNA 208 Caravan,c208,,,Missing
+FU24,FLETCHER FU-24,fu24,,,Missing
+AT76,ATR-72-600,at76,,,Missing
+RV7,VANS RV-7,rv7,,,Missing
+CRES,PACIFIC AEROSPACE Cresco,cres,,,Missing
+SIRA,TECNAM P-2002 Sierra,sira,,,Missing
+PNR3,ALPI Pioneer 330,pnr3,,,Missing
+D11,JODEL D-11x/12x,d11,,,Missing
+RV6,VANS RV-6,rv6,,,Missing
+CH70,ZENAIR CH-701 Stol,ch70,,,Missing
+P750,PACIFIC AEROSPACE P-750 XStol,p750,,,Missing
+YK52,YAKOVLEV Yak-52,yk52,,,Missing
+A320,AIRBUS A-320,a320,,,Missing
+DH8C,DE HAVILLAND DHC-8-300 Dash 8,dh8c,,,Missing
+MD52,MCDONNELL-DOUGLAS MD-520N,md52,,,Missing
+CRER,RANS Courier,crer,,,Missing
+GA8,GIPPSAERO GA-8 Airvan,ga8,,,Missing
+PNR2,ALPI Pioneer 200,pnr2,,,Missing
+WAIX,SONEX Waiex,waix,,,Missing
+EC45,AIRBUS HELICOPTERS EC-145,ec45,,,Missing
+EC20,AIRBUS HELICOPTERS EC-120,ec20,,,Missing
+RV12,VANS RV-12,rv12,,,Missing
+PA34,PIPER PA-34 Seneca,pa34,,,Missing
+DA40,DIAMOND DA-40 Club Star,da40,,,Missing
+GOLF,TECNAM P-96 Golf,golf,,,Missing
+BE20,BEECH 200 Super King Air,be20,,,Missing
+T6,NORTH AMERICAN T-6 Texan,t6,,,Missing
+AS55,AEROSPATIALE AS-355 Ecureuil 2,as55,,,Missing
+R200,ROBIN Alpha,r200,,,Missing
+AP22,AEROPRACT A-22,ap22,,,Missing
+B789,BOEING 787-9 Dreamliner,b789,,,Missing
+C177,CESSNA  177 Cardinal,c177,,,Missing
+PA31,PIPER PA-31-300/310/325/350/425,pa31,,,Missing
+DA42,DIAMOND DA-42 Guardian,da42,,,Missing
+DHC1,DE HAVILLAND DHC-1 Chipmunk,dhc1,,,Missing
+CT4,PACIFIC AEROSPACE CT-4 Airtrainer,ct4,,,Missing
+MT,ROTORSPORT MTOSport,mt,,,Missing
+J1,AUSTER J-1,j1,,,Missing
+PA22,PIPER PA-22,pa22,,,Missing
+TOUR,MILLICER Airtourer,tour,,,Missing
+T206,CESSNA T206 Turbo Stationair,t206,,,Missing
+P28R,PIPER PA-28R-180/200/201,p28r,,,Missing
+EXEC,ROTORWAY Exec,exec,,,Missing
+SR22,CIRRUS SR-22,sr22,,,Missing
+B734,BOEING 737-400,b734,,,Missing
+NG5,BRM AERO NG-5/6 Bristell,ng5,,,Missing
+M5,MAULE M-5,m5,,,Missing
+EUPA,Europa,eupa,,,Missing
+CRUZ,CSA PS-28 Cruiser,cruz,,,Missing
+A21N,AIRBUS A-321neo,a21n,,,Missing
+PA32,PIPER PA-32,pa32,,,Missing
+PA27,PIPER PA-23-250 Aztec,pa27,,,Missing
+UH1,BELL UH-1 Huey,uh1,,,Missing
+CJ6,NANCHANG CJ-6,cj6,,,Missing
+BABY,CANADIAN HOME ROTORS Baby Belle,baby,,,Missing
+T51,TITAN T-51 Mustang,t51,,,Missing
+TEX2,BEECHCRAFT T-6 Texan 2,tex2,,,Missing
+PA25,PIPER PA-25 Pawnee,pa25,,,Missing
+RV4,VANS RV-4,rv4,,,Missing
+FOX,KITFOX,fox,,,Missing
+ST75,STEARMAN Kaydet,st75,,,Missing
+RBEL,MURPHY Rebel,rbel,,,Missing
+WT9,AEROSPOOL WT-9 Dynamic,wt9,,,Missing
+B77W,BOEING 777-300ER,b77w,,,Missing
+J3,PIPER J-3 Cub,j3,,,Missing
+RALL,SOCATA Rallye,rall,,,Missing
+P28B,PIPER PA-28-201T/235/236,p28b,,,Missing
+M20P,MOONEY M-20,m20p,,,Missing
+GY20,CAB GY-20 Minicab,gy20,,,Missing
+AA5,AMERICAN AA-5 Tiger,aa5,,,Missing
+DR1,FOKKER Dr-1,dr1,,,Missing
+PTS1,PITTS S-1 Special,pts1,,,Missing
+SONX,SONEX AIRCRAFT Sonex,sonx,,,Missing
+JAB4,JABIRU J200-450,jab4,,,Missing
+AT5T,AIR TRACTOR AT-504,at5t,,,Missing
+SSTL,JUST JA30 SuperSTOL,sstl,,,Missing
+JUNR,BOLKOW BO-208 Junior,junr,,,Missing
+P68,PARTENAVIA P-68 Observer,p68,,,Missing
+B738,BOEING 737-800,b738,,,Missing
+KR2,RAND KR-2,kr2,,,Missing
+GA20,GIPPSLAND GA-200 Fatman,ga20,,,Missing
+RV8,VANS RV-8,rv8,,,Missing
+M7,MAULE M-7,m7,,,Missing
+SAVG,ZLIN AVIATION Savage,savg,,,Missing
+CDUS,AUTOGYRO Calidus,cdus,,,Missing
+CLON,AUTOGYRO Cavalon,clon,,,Missing
+NH90,NHI NH-90,nh90,,,Missing
+DHC2,DE HAVILLAND DHC-2 Beaver,dhc2,,,Missing
+D31,ROLLASON D-31 Turbulent,d31,,,Missing
+CJ1,CORBY CJ-1 Starlet,cj1,,,Missing
+BE76,BEECH 76 Duchess,be76,,,Missing
+C82R,CESSNA R182 Skylane RG,c82r,,,Missing
+PELI,FLYER Pelican,peli,,,Missing
+GLST,GLASAIR SH-4 GlaStar,glst,,,Missing
+B429,BELL 429 GlobalRanger,b429,,,Missing
+A109,AGUSTA AW-109 Grand,a109,,,Missing
+H2,KAMAN Seasprite,h2,,,Missing
+AUS5,AUSTER AOP5,aus5,,,Missing
+C170,CESSNA 170,c170,,,Missing
+AA1,AMERICAN AA-1,aa1,,,Missing
+BT36,BEECH B36TC Bonanza,bt36,,,Missing
+PTS2,PITTS S-2 Special,pts2,,,Missing
+C72R,CESSNA 172R Cutlass RG,c72r,,,Missing
+BN2P,BRITTEN-NORMAN BN-2 Islander,bn2p,,,Missing
+GLAS,Glasair,glas,,,Missing
+PULS,Pulsar,puls,,,Missing
+AT3T,AIR TRACTOR AT-302/402,at3t,,,Missing
+JABI,Jabiru J120,jabi,,,Missing
+CAMP,GREGA GN-1 Aircamper,camp,,,Missing
+HR20,ROBIN HR-200,hr20,,,Missing
+TERR,FOXCON Terrier,terr,,,Missing
+SKRA,BEST OFF Sky Ranger,skra,,,Missing
+JAB2,JABIRU J160/170,jab2,,,Missing
+BRAV,TECNAM P-2004 Bravo,brav,,,Missing
+SASP,SUPERMARINE AIRCRAFT Spitfire Mk25/26,sasp,,,Missing
+MM24,MAGNI M-24 Orion,mm24,,,Missing
+CTAH,RAINBOW SKYREACH Cheetah,ctah,,,Missing
+B350,BEECHCRAFT Super King Air 350,b350,,,Missing
+AP32,AEROPRACT A-32,ap32,,,Missing
+A20N,AIRBUS A-320neo,a20n,,,Missing
+P3,LOCKHEED P-3 Orion,p3,,,Missing
+PA24,PIPER PA-24 Comanche,pa24,,,Missing
+VP2,EVANS Volksplane,vp2,,,Missing
+STST,CFM Star Streak,stst,,,Missing
+PC6T,PILATUS PC-6 Turbo-Porter,pc6t,,,Missing
+UH12,HILLER UH-12,uh12,,,Missing
+O1,CESSNA 305/341 Bird Dog,o1,,,Missing
+DV20,DIAMOND DA-20,dv20,,,Missing
+NPOR,REDFERN Nieuport 24,npor,,,Missing
+SREY,PROGRESSIVE AERODYNE SeaRey,srey,,,Missing
+B47G,BELL 47G,b47g,,,Missing
+TL20,TL ULTRALIGHT TL-2000 Sting,tl20,,,Missing
+L39,LET L-39 Albatros,l39,,,Missing
+TMOT,FISHER R-80 Tiger Moth,tmot,,,Missing
+SRAI,GREAT PLAINS Sonerai,srai,,,Missing
+D7,FOKKER D-7 Replica,d7,,,Missing
+TEXA,FLY SYNTHESIS Texan,texa,,,Missing
+FDCT,FLIGHT DESIGN CT,fdct,,,Missing
+HIGH,JUST JA20 Highlander,high,,,Missing
+SF34,SAAB 340,sf34,,,Missing
+R66,ROBINSON R-66,r66,,,Missing
+PA11,PIPER PA-11 Cub Special,pa11,,,Missing
+MD60,MCDONNELL-DOUGLAS MD-600N,md60,,,Missing
+C130,LOCKHEED C-130 Hercules,c130,,,Missing
+C30J,LOCKHEED MARTIN C-130J Super Hercules,c30j,,,Missing
+CH7A,BELLANCA 7 Champion,ch7a,,,Missing
+BE23,BEECH 23 Sundowner,be23,,,Missing
+C77R,CESSNA 177RG Cardinal RG,c77r,,,Missing
+T18,THORP Tiger,t18,,,Missing
+C210,CESSNA 201 Centurion,c210,,,Missing
+DOVE,DE HAVILLAND DH-104 Dove,dove,,,Missing
+F8L,AEROMERE F-8L Falco,f8l,,,Missing
+MIMU,BUSHBY Midget Mustang,mimu,,,Missing
+SW4,SWEARINGEN Metro,sw4,,,Missing
+LNC2,LANCAIR 200-320,lnc2,,,Missing
+PA44,PIPER PA-44 Seminole,pa44,,,Missing
+TB20,SOCATA TB-20 Trinidad,tb20,,,Missing
+PZ04,PZL-OKECIE PZL-104 Wilga,pz04,,,Missing
+RS12,RANS S-12 Super Airaile,rs12,,,Missing
+SAKO,RANS S-10 Sakota,sako,,,Missing
+RAF2,ROTARY AIR FORCE RAF-2000,raf2,,,Missing
+TRDO,TITAN Tornado SS,trdo,,,Missing
+STRM,SG AVIATION Storm,strm,,,Missing
+MM16,MAGNI M-16 Tandem Trainer,mm16,,,Missing
+BE9L,BEECH 90 King Air,be9l,,,Missing
+STCH,FLY SYNTHESIS Storch,stch,,,Missing
+PISI,PIPSTREL Sinus,pisi,,,Missing
+C510,CESSNA 510 Citation Mustang,c510,,,Missing
+RV9,VANS RV-9,rv9,,,Missing
+B105,EUROCOPTER BO-105,b105,,,Missing
+HUSK,CHRISTEN Husky,husk,,,Missing
+P06T,TECNAM P-2006T,p06t,,,Missing
+PC12,PILATUS PC-12,pc12,,,Missing
+B505,BELL 505 JetRanger X,b505,,,Missing
+S76,SIKORSKY S-76 Spirit,s76,,,Missing
+P8,BOEING P-8 Poseidon,p8,,,Missing
+DH83,DE HAVILLAND DH-83 Fox Moth,dh83,,,Missing
+DC3,DOUGLAS DC-3 Dakota,dc3,,,Missing
+CH7B,BELLANCA 7 Citabria,ch7b,,,Missing
+IFUR,ISAACS Fury,ifur,,,Missing
+BE35,BEECH 35 Bonanza,be35,,,Missing
+C402,CESSNA 402 Businessliner,c402,,,Missing
+SA02,K&S SA-102.5 Cavalier,sa02,,,Missing
+P32R,PIPER PA-32R-300/301/301T,p32r,,,Missing
+VEZE,RUTAN VariEze,veze,,,Missing
+P28U,PIPER PA-28RT-201T Turbo,p28u,,,Missing
+TAMP,SOCATA TB-9 Tampico,tamp,,,Missing
+DRIF,AUSTFLIGHT Drifter,drif,,,Missing
+CH20,ZENAIR CH-200 Zenith,ch20,,,Missing
+FH11,FAIRCHILD FH-1100,fh11,,,Missing
+RV3,VANS RV-3,rv3,,,Missing
+T28,NORTH AMERICAN T-28,t28,,,Missing
+CVLT,CANADAIR Cosmopolitan,cvlt,,,Missing
+P46T,PIPER PA-46-500TP,p46t,,,Missing
+PA46,PIPER PA-46-310/350,pa46,,,Missing
+SPIT,SUPERMARINE Spitfire,spit,,,Missing
+TOBA,SOCATA Tobago,toba,,,Missing
+KIS4,TRI-R KIS TR-4,kis4,,,Missing
+S108,STINSON 108 Voyager,s108,,,Missing
+G164,GRUMMAN G-164 Ag-Cat,g164,,,Missing
+JS31,BRITISH AEROSPACE Jetstream T.Mk.3,js31,,,Missing
+JS32,BRITISH AEROSPACE Jetstream Super 31,js32,,,Missing
+AT75,ATR-72-500,at75,,,Missing
+DR40,ROBIN DR-400,dr40,,,Missing
+MCR1,COLOMBAN Ban-Bi,mcr1,,,Missing
+KTOO,AMAX Karatoo,ktoo,,,Missing
+PPRO,HUNTING P-56 Provost,ppro,,,Missing
+HROC,HARMON Rocket,hroc,,,Missing
+YAK3,YAKOVLEV Yak-3,yak3,,,Missing
+L29,AERO L-29 Delfin,l29,,,Missing
+BL8,BELLANCA 8 Decathlon,bl8,,,Missing
+RV10,VANS RV-10,rv10,,,Missing
+A139,AGUSTA AW-139,a139,,,Missing
+EVSS,EVEKTOR SportStar,evss,,,Missing
+TL30,TL ULTRALIGHT TL-3000 Sirius,tl30,,,Missing
+B733,BOEING 737-300,b733,,,Missing
+C162,CESSNA 162 Skycatcher,c162,,,Missing
+B427,BELL 427,b427,,,Missing
+SPUP,SOPWITH Pup Replica,spup,,,Missing
+PIAT,PIPISTREL Alpha Trainer,piat,,,Missing
+WACF,WACO F,wacf,,,Missing
+EFOX,AEROPRO Eurofox,efox,,,Missing
+CH75,ZENAIR CH-750 Cruzer,ch75,,,Missing
+ASTO,TECNAM Astore,asto,,,Missing
+BEAR,AVIPRO RB-4 Bearhawk,bear,,,Missing
+A169,AGUSTA AW-169,a169,,,Missing
+RV14,VANS RV-14,rv14,,,Missing
+AT6T,AIR TRACTOR AT-602,at6t,,,Missing
+ERCO,AIR PRODUCTS F-1 Aircoupe,erco,,,Missing
+PROC,PERCIVAL Proctor,proc,,,Missing
+ADVE,AUSTER J-5 Adventurer,adve,,,Missing
+AIGT,AUSTER J-5 Aiglet Trainer,aigt,,,Missing
+TAYA,TAYLORCRAFT A,taya,,,Missing
+AIRD,BEAGLE A-109 Airedale,aird,,,Missing
+PUP,BEAGLE Pup,pup,,,Missing
+C337,CESSNA 337 Super Skymaster,c337,,,Missing
+PA30,PIPER PA-30 Twin Comanche,pa30,,,Missing
+MJ5,JURCA MJ-5 Sirocco,mj5,,,Missing
+C120,CESSNA 120,c120,,,Missing
+LGEZ,RUTAN Long-EZ,lgez,,,Missing
+TAIL,WITTMAN Tailwind,tail,,,Missing
+P51,NORTH AMERICAN P-51 Mustang,p51,,,Missing
+QIC2,QUICKIE Q2,qic2,,,Missing
+NOMA,GAF N22/24 Nomad,noma,,,Missing
+G44,GRUMMAN G-44 Widgeon,g44,,,Missing
+SF2,VIKING SF-2 Cygnet,sf2,,,Missing
+N3,NOSTALGAIR N-3 Super Pup,n3,,,Missing
+FB1A,BOWERS Fly Baby 1A,fb1a,,,Missing
+VAMP,DE HAVILLAND DH-100/115 Vampire,vamp,,,Missing
+AEST,AEROSTAR 600,aest,,,Missing
+AVID,AVID Flyer,avid,,,Missing
+SKAR,III Sky Arrow,skar,,,Missing
+P40,CURTISS P-40 Kittyhawk,p40,,,Missing
+BE58,BEECH 58 Baron,be58,,,Missing
+BD5,BEDE BD-5B/D/G,bd5,,,Missing
+P28S,PIPER PA-28R-201T,p28s,,,Missing
+MC10,COLOMBAN Cricri,mc10,,,Missing
+DAKH,FISHER Dakota Hawk,dakh,,,Missing
+BE33,BEECH 33 Bonanza,be33,,,Missing
+STOR,STORCH AVIATION Super Storch,stor,,,Missing
+RW26,RAGWING RW-26 Special 2,rw26,,,Missing
+DIMO,DIAMOND H-36 Dimona,dimo,,,Missing
+BE36,BEECH 36 Bonanza,be36,,,Missing
+YK55,YAKOVLEV Yak-55,yk55,,,Missing
+R300,ROBIN R-3000/3100/3120/3140,r300,,,Missing
+MU2,MITSUBISHI MU-2 Marquise,mu2,,,Missing
+TTWO,PARKER Teenie Two,ttwo,,,Missing
+SE5A,RAF SE-5A Replica,se5a,,,Missing
+P210,CESSNA P210 Centurion,p210,,,Missing
+SCOU,WESTLAND Scout,scou,,,Missing
+D8,FOKKER D-8 Replica,d8,,,Missing
+C195,CESSNA 195,c195,,,Missing
+RODS,RIHN One Design,rods,,,Missing
+MI34,MIL Mi-34,mi34,,,Missing
+BE40,BEECH 400 Beechjet,be40,,,Missing
+LA25,LAKE LA-250,la25,,,Missing
+C680,CESSNA 680 Citation Sovereign,c680,,,Missing
+PIVI,PIPSTREL Virus,pivi,,,Missing
+CC11,CUB CRAFTERS CC-11 Carbon Cub,cc11,,,Missing
+EN28,ENSTROM F-28,en28,,,Missing
+C25A,CESSNA 525A Citation CJ2,c25a,,,Missing
+C560,CESSNA 560 Citation Ultra,c560,,,Missing
+ZA6,AEROKOPTER ZA-6 Sanka,za6,,,Missing
+VL3,AVEKO Flamingo,vl3,,,Missing
+K100,DAHER Kodiak 100,k100,,,Missing
+B752,BOEING 757-200,b752,,,Missing
+KFIS,ANDERSON Kingfisher,kfis,,,Missing
+LA4,LAKE LA-4/200,la4,,,Missing
+VJ22,VOLMER Sportsman,vj22,,,Missing
+DH60,DE HAVILLAND DH-60 Moth,dh60,,,Missing
+J2,PIPER J-2 Cub,j2,,,Missing
+DH94,DE HAVILLAND DH-94 Moth Minor,dh94,,,Missing
+DH89,DE HAVILLAND Dragon Rapide,dh89,,,Missing
+SPST,REARWIN Sportster,spst,,,Missing
+AUJ4,AUSTER J-4 Archer,auj4,,,Missing
+ACAR,AUSTER J-5 Autocar,acar,,,Missing
+ALPI,AUSTER J-5R Alpine,alpi,,,Missing
+AUS9,AUSTER AOP9,aus9,,,Missing
+CP30,PIEL Emeraude,cp30,,,Missing
+AC68,AERO Commander 680,ac68,,,Missing
+M4,MAULE M-4,m4,,,Missing
+C320,CESSNA 320 Skyknight,c320,,,Missing
+CP32,PIEL Super Emeraude,cp32,,,Missing
+CH30,ZENAIR CH-300 Tri-Zenith,ch30,,,Missing
+BE24,BEECH 24 Sierra,be24,,,Missing
+SE5R,REPLICA PLANS SE-5A Replica,se5r,,,Missing
+AGSH,AERO GARE Sea Hawker,agsh,,,Missing
+C421,CESSNA 421 Executive Commuter,c421,,,Missing
+DR10,CENTRE EST Ambassadeur,dr10,,,Missing
+CA65,CVJETKOVIC CA-65 Skyfly,ca65,,,Missing
+FALC,AMERICAN AIRCRAFT Falcon XP,falc,,,Missing
+PL2,PAZMANY PL-2,pl2,,,Missing
+GY80,DAHER-SOCATA GY-80 Horizon,gy80,,,Missing
+C207,CESSNA 207 Turbo Stationair,c207,,,Missing
+CH10,ZENAIR CH-100 Mono-Zenith,ch10,,,Missing
+BE18,BEECH 18 Expetitor,be18,,,Missing
+WFOC,WAR Focke-Wulf 190,wfoc,,,Missing
+P337,CESSNA P337 Skymaster,p337,,,Missing
+A37,Cessna 318 Dragonfly,a37,,,Missing
+TBM,GRUMMAN G-40 Avenger,tbm,,,Missing
+PETR,EDRA Super Petrel,petr,,,Missing
+GA7,DAHER-SOCATA TB-360 Tangara,ga7,,,Missing
+CMDE,AIR COMMAND Commander Elite,cmde,,,Missing
+CA25,COMMONWEALTH CA-25 Winjeel,ca25,,,Missing
+B222,BELL 222,b222,,,Missing
+SCAM,AEROSPORT Scamp,scam,,,Missing
+C175,CESSNA 175 Skylark,c175,,,Missing
+AC11,NORTH AMERICAN ROCKWELL Commander 112/114,ac11,,,Missing
+MAME,BLUE YONDER Merlin,mame,,,Missing
+T210,CESSNA T210 Turbo Centurion,t210,,,Missing
+PT22,RYAN PT-22 Recruit,pt22,,,Missing
+DH84,DE HAVILLAND DH-84 Dragon,dh84,,,Missing
+DH90,DE HAVILLAND DH-90 Dragonfly,dh90,,,Missing
+G202,AKROTECH G-202,g202,,,Missing
+RYST,RYAN PT-20,ryst,,,Missing
+HORZ,FISHER Horizon,horz,,,Missing
+AC90,NORTH AMERICAN ROCKWELL Turbo Commander 690/840,ac90,,,Missing
+HUNT,HAWKER Hunter,hunt,,,Missing
+C441,CESSNA 441 Conquest,c441,,,Missing
+BOLT,STEEN Skybolt,bolt,,,Missing
+EAGX,EAGLE AIRCRAFT Eagle X-TS,eagx,,,Missing
+F406,CESSNA F406 Caravan 2,f406,,,Missing
+HLD4,HALBERSTADT D-4 Replica,hld4,,,Missing
+EP9,LANCASHIRE EP-9 Prospector,ep9,,,Missing
+Z50,ZLIN Z-50,z50,,,Missing
+C205,CESSNA  205,c205,,,Missing
+IMPU,IMPULSE Xturn,impu,,,Missing
+MESS,MILES Messenger,mess,,,Missing
+BDOG,BRITISH AEROSPACE SA-3 Bulldog,bdog,,,Missing
+COUR,HELIO Courier,cour,,,Missing
+DHC3,DE HAVILLAND DHC-3 Otter,dhc3,,,Missing
+CB1,HATZ CB-1 Classic,cb1,,,Missing
+BRB2,BRANTLY B-2,brb2,,,Missing
+R100,ROBIN Aiglon,r100,,,Missing
+SIDE,SMYTH Sidewinder,side,,,Missing
+M6,MAULE M-6,m6,,,Missing
+D4,AUSTER D-4,d4,,,Missing
+C310,CESSNA 310,c310,,,Missing
+CORS,CHANCE VOUGHT F4U Corsair,cors,,,Missing
+Y18T,YAKOVLEV Yak-18T,y18t,,,Missing
+MD3R,FLYITALIA MD-3 Rider ,md3r,,,Missing
+BFIT,BRISTOL F-2B Fighter Replica,bfit,,,Missing
+FINC,FLEET Finch,finc,,,Missing
+STRI,SOPWITH Triplane,stri,,,Missing
+SA10,STOLP SA-100 Starduster,sa10,,,Missing
+XNON,CELIER Xenon,xnon,,,Missing
+G3,REMOS Mirage,g3,,,Missing
+C404,CESSNA 404 Titan,c404,,,Missing
+D6,AUSTER D-6,d6,,,Missing
+B209,MBB BO-209 Monsun,b209,,,Missing
+I16,POLIKARPOV I-16,i16,,,Missing
+A119,AGUSTA AW-119 Koala,a119,,,Missing
+SR20,CIRRUS SR-20,sr20,,,Missing
+FK9,B&F TECHNIK FK-9,fk9,,,Missing
+FK14,B&F TECHNIK FK-14 Polaris,fk14,,,Missing
+MJ8,JURCA MJ-8 1-Nine-0,mj8,,,Missing
+PTMS,PITTS S-12 Super Stinker,ptms,,,Missing
+G200,AKROTECH G-200,g200,,,Missing
+CAD2,DELISLE Cadi,cad2,,,Missing
+ASO5,ASSO AEREI 5 Champion,aso5,,,Missing
+MCR4,DYNAERO MCR-2/4,mcr4,,,Missing
+B212,BELL 212,b212,,,Missing
+FW90,FOCKE-WULF Fw-190 Replica,fw90,,,Missing
+JPRO,BAC P-84 Jet Provost,jpro,,,Missing
+MAGC,IBIS Magic,magc,,,Missing
+COUG,ACRO SPORT Cougar,coug,,,Missing
+BLKS,AIRCRAFT SPRUCE Baby Lakes,blks,,,Missing
+LAMA,AEROSPATIALE SA-315 Lama,lama,,,Missing
+BE77,BEECH 77 Skipper,be77,,,Missing
+VNOM,DE HAVILLAND DH-112 Venom,vnom,,,Missing
+SD4,TOMARK Viper,sd4,,,Missing
+UF13,URBAN UFM-13 Lambada,uf13,,,Missing
+LNCE,LANCAIR ES,lnce,,,Missing
+STRK,BAC Strikemaster,strk,,,Missing
+CHR1,ELMWOOD CA-05 Christavia Mk1,chr1,,,Missing
+CH80,ZENAIR CH-801 Stol,ch80,,,Missing
+CH65,ZENAIR CH-650 Zodiac,ch65,,,Missing
+CH7,HELI-SPORT CH-7 Kompress,ch7,,,Missing
+SLG2,AIRPLANE FACTORY Sling 2,slg2,,,Missing
+HN70,NICOLLIER Menestrel 2,hn70,,,Missing
+BL11,BLERIOT 11 Replica,bl11,,,Missing
+MXS,MXR MXS,mxs,,,Missing
+EXPL,MCDONNELL-DOUGLAS MD-900 Explorer,expl,,,Missing
+M9,MAULE M-9,m9,,,Missing
+BL17,BELLANCA 17 Viking,bl17,,,Missing
+FA24,FAIRCHILD F-24 Argus,fa24,,,Missing
+PNTH,SPORT PERFORMANCE Panther,pnth,,,Missing
+LJ60,LEARJET 60,lj60,,,Missing
+JRO,DTA J-RO,jro,,,Missing
+F2TH,DASSAULT Falcon 2000,f2th,,,Missing
+BU33,BUCKER Bu-133 Jungmeister,bu33,,,Missing
+C25B,CESSNA 525B Citation CJ3,c25b,,,Missing
+MR35,MURPHY SR-3500 Super Rebel,mr35,,,Missing
+PAY4,PIPER PA-42-1000 Cheyenne 400,pay4,,,Missing
+PA14,PIPER PA-14 Family Cruiser,pa14,,,Missing
+EN48,ENSTROM TH-28,en48,,,Missing
+PO2,POLIKARPOV Po-2,po2,,,Missing
+BUSH,RAINBOW SKYREACH BushCat,bush,,,Missing
+CDW1,CHILTON DW-1,cdw1,,,Missing
+H60,SIKORSKY UH-60 Black Hawk,h60,,,Missing
+QUIC,Quickie,quic,,,Missing
+CL60,BOMBARDIER CL-600 Challenger,cl60,,,Missing
+AS32,AEROSPATIALE AS-332 Super Puma,as32,,,Missing
+PIAE,PIPISTREL Alpha Electro,piae,,,Missing
+XNOS,SONEX Xenos,xnos,,,Missing
+PL9,PAZMANY PL-9 Stork,pl9,,,Missing
+E300,EXTRA EA-300/330/350,e300,,,Missing
+FBA2,FOUND FB-2 Bush Hawk,fba2,,,Missing
+E50P,EMBRAER EMB-500 Phenom 100,e50p,,,Missing
+TEAL,THURSTON Teal,teal,,,Missing
+SLG4,AIRPLANE FACTORY Sling 4,slg4,,,Missing
+S92,SIKORSKY S-92 Helibus,s92,,,Missing
+EC55,AIRBUS HELICOPTERS EC-155,ec55,,,Missing
+LN27,FALCOMPOSITE LN-27 Furio,ln27,,,Missing
+RS21,RANS S-21 Outbound,rs21,,,Missing
+PC24,PILATUS PC-24,pc24,,,Missing
+DA62,DIAMOND DA-62,da62,,,Missing
+AS65,AEROSPATIALE AS-365 Dauphin 2,as65,,,Missing
+MOSQ,DE HAVILLAND DH-98 Mosquito,mosq,,,Missing
+VL3T,JMB AIRCRAFT VL-3 Evolution Turbine,vl3t,,,Missing
+H160,AIRBUS HELICOPTERS H-160,h160,,,Missing

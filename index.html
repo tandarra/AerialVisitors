@@ -64,21 +64,22 @@ footer{padding:18px clamp(16px,4vw,56px) 26px;font:12px var(--mono);letter-spaci
   </div>
 </main>
 <footer>
-  <span>Woodblock paintings of every ICAO aircraft type: <a href="atlas.html">the Aerial Atlas</a></span>
+  <span>Woodblock paintings of aircraft and airline liveries: <a href="atlas.html">the Aerial Atlas</a></span>
   <span>Live positions from the free <a href="https://adsb.lol">adsb.lol</a> network</span>
 </footer>
 <script>
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 const slug = (c) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-let types = {}, operators = {}, painted = {}, liveRows = [];
+let types = {}, operators = {}, painted = {}, liveRows = [], byIcao = {};   // byIcao: airline ICAO code -> {dir, types: {type: files}}
 
 const getJSON = async (u) => { const r = await fetch(u, {cache: "no-cache"}); if (!r.ok) throw new Error(u + " " + r.status); return r.json(); };
 
 // Pick the painting: the airline's own colours if there is one, else the plain type.
 function pictures(code, opr) {
-  const s = slug(code), o = opr ? `${s}-${slug(opr)}` : null;
-  return painted[o] || painted[s] || [];
+  const s = slug(code), al = opr && byIcao[opr], own = al && al.types[s];
+  if (own && own.length) return own.map((f) => `liveries/${al.dir}/${f}`);      // planes/liveries/<country>/<airline>/<type>.webp
+  return painted[s] || [];                                                       // else the master airframe for the type
 }
 function operatorOf(call) {
   const m = /^([A-Z]{3})\d/.exec((call || "").toUpperCase());
@@ -127,9 +128,13 @@ async function poll() {
 }
 
 (async () => {
-  const [t, o, p, s] = await Promise.allSettled([getJSON("planes/types.json"), getJSON("planes/operators.json"),
-    getJSON("planes/painted.json"), getJSON("planes/seen.json")]);
+  const [t, o, p, s, c] = await Promise.allSettled([getJSON("planes/types.json"), getJSON("planes/operators.json"),
+    getJSON("planes/painted.json"), getJSON("planes/seen.json"), getJSON("planes/catalogue.json")]);
   types = t.value || {}; operators = o.value || {}; painted = p.value || {};
+  Object.values((c.value || {}).countries || {}).forEach((ct) => ct.airlines.forEach((al) => {
+    const ty = {}; al.fleet.forEach((f) => { if (f.files.length) ty[slug(f.type)] = f.files; });
+    (al.icao && al.icao.length ? al.icao : /^[a-z]{3}$/i.test(al.key) ? [al.key] : []).forEach((x) => (byIcao[x.toUpperCase()] = {dir: `${ct.slug}/${al.slug}`, types: ty}));
+  }));
   if (s.value && s.value.types) {
     const rows = Object.entries(s.value.types).sort((a, b) => b[1].n - a[1].n).slice(0, 24);
     if (rows.length) {

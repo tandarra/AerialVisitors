@@ -1,193 +1,202 @@
 {
-  "region": "NZ",
-  "checked": "2026-10-28",
-  "about": "New Zealand-based commercial airlines and the aircraft types they fly, for painting each airline's real livery on each type. Edit freely: add an airline or type and re-run tools/build_livery_prompts.py. 'key' becomes the file suffix (a320-anz.webp). Counts are approximate; sources are listed per airline.",
-  "airlines": [
+ "region": "NZ",
+ "checked": "2026-10-28",
+ "about": "New Zealand-based commercial airlines and the aircraft types they fly, for painting each airline's real livery on each type. Edit freely: add an airline or type and re-run tools/build_livery_prompts.py. 'key' becomes the file suffix (a320-anz.webp). Counts are approximate; sources are listed per airline.",
+ "airlines": [
+  {
+   "key": "anz",
+   "icao": [
+    "ANZ",
+    "NZA",
+    "NZM",
+    "RLK"
+   ],
+   "name": "Air New Zealand",
+   "kind": "Scheduled, domestic and international",
+   "base": "Auckland",
+   "fleet": [
     {
-      "key": "anz",
-      "name": "Air New Zealand",
-      "kind": "Scheduled, domestic and international",
-      "base": "Auckland",
-      "fleet": [
-        {
-          "type": "A320",
-          "count": 17,
-          "note": "domestic A320ceo",
-          "label": "Airbus A320-200"
-        },
-        {
-          "type": "A20N",
-          "count": 6,
-          "note": "A320neo",
-          "label": "Airbus A320neo"
-        },
-        {
-          "type": "A21N",
-          "count": 14,
-          "note": "A321neo, domestic and international",
-          "label": "Airbus A321neo"
-        },
-        {
-          "type": "AT76",
-          "count": 31,
-          "note": "ATR 72-600, regional (ex Mount Cook)",
-          "label": "ATR 72-600"
-        },
-        {
-          "type": "DH8C",
-          "count": 23,
-          "note": "Dash 8 Q300, regional (ex Air Nelson)",
-          "label": "De Havilland Canada Dash 8 Q300"
-        },
-        {
-          "type": "B789",
-          "count": 14,
-          "note": "787-9 Dreamliner",
-          "label": "Boeing 787-9 Dreamliner"
-        },
-        {
-          "type": "B77W",
-          "count": 10,
-          "note": "777-300ER, includes 3 ex-Cathay Pacific dry leases; retiring in the 2030s",
-          "label": "Boeing 777-300ER"
-        }
-      ],
-      "pending": [
-        {
-          "type": "B78X",
-          "count": 5,
-          "note": "787-10 on order, not yet delivered",
-          "label": "Boeing 787-10 Dreamliner"
-        }
-      ],
-      "source": "https://en.wikipedia.org/wiki/Air_New_Zealand_fleet (data as of Aug 2025)"
+     "type": "A320",
+     "count": 17,
+     "note": "domestic A320ceo",
+     "label": "Airbus A320-200"
     },
     {
-      "key": "cva",
-      "name": "Air Chathams",
-      "kind": "Scheduled, Chatham Islands and Auckland, Wellington, Christchurch",
-      "base": "Chatham Islands",
-      "fleet": [
-        {
-          "type": "AT75",
-          "count": 2,
-          "note": "ATR 72-500",
-          "label": "ATR 72-500"
-        },
-        {
-          "type": "SF34",
-          "count": 6,
-          "note": "Saab 340A and 340B",
-          "label": "Saab 340"
-        },
-        {
-          "type": "C206",
-          "count": 1,
-          "note": "Chatham Island to Pitt Island",
-          "label": "Cessna 206 Stationair"
-        }
-      ],
-      "source": "https://en.wikipedia.org/wiki/Air_Chathams (Convair 580 retired 2021, Metro III 2024, DC-3 2025)"
+     "type": "A20N",
+     "count": 6,
+     "note": "A320neo",
+     "label": "Airbus A320neo"
     },
     {
-      "key": "originair",
-      "name": "Originair",
-      "kind": "Scheduled, Nelson and Wellington",
-      "base": "Nelson",
-      "fleet": [
-        {
-          "type": "JS31",
-          "count": 1,
-          "note": "BAe Jetstream 31",
-          "label": "British Aerospace Jetstream 31"
-        },
-        {
-          "type": "JS32",
-          "count": 2,
-          "note": "BAe Jetstream 32",
-          "label": "British Aerospace Jetstream 32"
-        }
-      ],
-      "source": "https://en.wikipedia.org/wiki/Originair; Flightradar24 turboprop article (2026)"
+     "type": "A21N",
+     "count": 14,
+     "note": "A321neo, domestic and international",
+     "label": "Airbus A321neo"
     },
     {
-      "key": "sounds",
-      "name": "Sounds Air",
-      "kind": "Scheduled, Marlborough Sounds, Wellington, Nelson, Taupo",
-      "base": "Picton",
-      "fleet": [
-        {
-          "type": "C208",
-          "count": 4,
-          "note": "Cessna 208 Caravan and stretched 208B Grand Caravan; PC-12s being sold (announced July 2025)",
-          "label": "Cessna 208 Caravan"
-        }
-      ],
-      "source": "https://en.wikipedia.org/wiki/Sounds_Air (as of Sept 2025)"
+     "type": "AT76",
+     "count": 31,
+     "note": "ATR 72-600, regional (ex Mount Cook)",
+     "label": "ATR 72-600"
     },
     {
-      "key": "barrier",
-      "name": "Barrier Air",
-      "kind": "Scheduled, Auckland, Great Barrier Island, Whangarei",
-      "base": "Auckland",
-      "fleet": [
-        {
-          "type": "C208",
-          "count": null,
-          "note": "Cessna Grand Caravan; fleet count not published",
-          "label": "Cessna 208B Grand Caravan"
-        }
-      ],
-      "source": "https://barrierair.kiwi/about-us/fleet"
+     "type": "DH8C",
+     "count": 23,
+     "note": "Dash 8 Q300, regional (ex Air Nelson)",
+     "label": "De Havilland Canada Dash 8 Q300"
     },
     {
-      "key": "sif",
-      "name": "Stewart Island Flights",
-      "kind": "Scheduled, Invercargill and Stewart Island",
-      "base": "Invercargill",
-      "fleet": [
-        {
-          "type": "BN2P",
-          "count": 2,
-          "note": "Britten-Norman Islander",
-          "label": "Britten-Norman Islander"
-        },
-        {
-          "type": "C185",
-          "count": 1,
-          "note": "Cessna 185 Skywagon",
-          "label": "Cessna 185 Skywagon"
-        },
-        {
-          "type": "PA32",
-          "count": 1,
-          "note": "Piper Cherokee Six",
-          "label": "Piper PA-32 Cherokee Six"
-        }
-      ],
-      "source": "https://en.wikipedia.org/wiki/Stewart_Island_Flights (as of Jan 2024)"
+     "type": "B789",
+     "count": 14,
+     "note": "787-9 Dreamliner",
+     "label": "Boeing 787-9 Dreamliner"
     },
     {
-      "key": "awk",
-      "name": "Airwork",
-      "kind": "Freight, overnight parcels",
-      "base": "Auckland",
-      "fleet": [
-        {
-          "type": "B733",
-          "count": 1,
-          "note": "737-300SF",
-          "label": "Boeing 737-300 freighter (no passenger windows)"
-        },
-        {
-          "type": "B734",
-          "count": 5,
-          "note": "737-400SF",
-          "label": "Boeing 737-400 freighter (no passenger windows)"
-        }
-      ],
-      "source": "https://en.wikipedia.org/wiki/Airwork (Aug 2025; Airwork Holdings went into receivership July 2025, sale reported pending)"
+     "type": "B77W",
+     "count": 10,
+     "note": "777-300ER, includes 3 ex-Cathay Pacific dry leases; retiring in the 2030s",
+     "label": "Boeing 777-300ER"
     }
-  ],
-  "not_included": "Fleets not verified, so left out: Parcelair (Freightways, 2 Boeing 737 freighters per Wikipedia, undated), Texel Air, Sunair, Golden Bay Air, Air Safaris, Glenorchy Air, Air Kaikoura, Air Napier, Salt Air and other small Cessna / GippsAero GA8 operators. International airlines flying into New Zealand are covered by 'plane_illustrations.py --sightings', which finds the airline and type of everything actually seen overhead."
+   ],
+   "pending": [
+    {
+     "type": "B78X",
+     "count": 5,
+     "note": "787-10 on order, not yet delivered",
+     "label": "Boeing 787-10 Dreamliner"
+    }
+   ],
+   "source": "https://en.wikipedia.org/wiki/Air_New_Zealand_fleet (data as of Aug 2025)"
+  },
+  {
+   "key": "cva",
+   "name": "Air Chathams",
+   "kind": "Scheduled, Chatham Islands and Auckland, Wellington, Christchurch",
+   "base": "Chatham Islands",
+   "fleet": [
+    {
+     "type": "AT75",
+     "count": 2,
+     "note": "ATR 72-500",
+     "label": "ATR 72-500"
+    },
+    {
+     "type": "SF34",
+     "count": 6,
+     "note": "Saab 340A and 340B",
+     "label": "Saab 340"
+    },
+    {
+     "type": "C206",
+     "count": 1,
+     "note": "Chatham Island to Pitt Island",
+     "label": "Cessna 206 Stationair"
+    }
+   ],
+   "source": "https://en.wikipedia.org/wiki/Air_Chathams (Convair 580 retired 2021, Metro III 2024, DC-3 2025)"
+  },
+  {
+   "key": "originair",
+   "name": "Originair",
+   "kind": "Scheduled, Nelson and Wellington",
+   "base": "Nelson",
+   "fleet": [
+    {
+     "type": "JS31",
+     "count": 1,
+     "note": "BAe Jetstream 31",
+     "label": "British Aerospace Jetstream 31"
+    },
+    {
+     "type": "JS32",
+     "count": 2,
+     "note": "BAe Jetstream 32",
+     "label": "British Aerospace Jetstream 32"
+    }
+   ],
+   "source": "https://en.wikipedia.org/wiki/Originair; Flightradar24 turboprop article (2026)"
+  },
+  {
+   "key": "sounds",
+   "name": "Sounds Air",
+   "kind": "Scheduled, Marlborough Sounds, Wellington, Nelson, Taupo",
+   "base": "Picton",
+   "fleet": [
+    {
+     "type": "C208",
+     "count": 4,
+     "note": "Cessna 208 Caravan and stretched 208B Grand Caravan; PC-12s being sold (announced July 2025)",
+     "label": "Cessna 208 Caravan"
+    }
+   ],
+   "source": "https://en.wikipedia.org/wiki/Sounds_Air (as of Sept 2025)"
+  },
+  {
+   "key": "barrier",
+   "name": "Barrier Air",
+   "kind": "Scheduled, Auckland, Great Barrier Island, Whangarei",
+   "base": "Auckland",
+   "fleet": [
+    {
+     "type": "C208",
+     "count": null,
+     "note": "Cessna Grand Caravan; fleet count not published",
+     "label": "Cessna 208B Grand Caravan"
+    }
+   ],
+   "source": "https://barrierair.kiwi/about-us/fleet"
+  },
+  {
+   "key": "sif",
+   "name": "Stewart Island Flights",
+   "kind": "Scheduled, Invercargill and Stewart Island",
+   "base": "Invercargill",
+   "fleet": [
+    {
+     "type": "BN2P",
+     "count": 2,
+     "note": "Britten-Norman Islander",
+     "label": "Britten-Norman Islander"
+    },
+    {
+     "type": "C185",
+     "count": 1,
+     "note": "Cessna 185 Skywagon",
+     "label": "Cessna 185 Skywagon"
+    },
+    {
+     "type": "PA32",
+     "count": 1,
+     "note": "Piper Cherokee Six",
+     "label": "Piper PA-32 Cherokee Six"
+    }
+   ],
+   "source": "https://en.wikipedia.org/wiki/Stewart_Island_Flights (as of Jan 2024)"
+  },
+  {
+   "key": "awk",
+   "icao": [
+    "AWK"
+   ],
+   "name": "Airwork",
+   "kind": "Freight, overnight parcels",
+   "base": "Auckland",
+   "fleet": [
+    {
+     "type": "B733",
+     "count": 1,
+     "note": "737-300SF",
+     "label": "Boeing 737-300 freighter (no passenger windows)"
+    },
+    {
+     "type": "B734",
+     "count": 5,
+     "note": "737-400SF",
+     "label": "Boeing 737-400 freighter (no passenger windows)"
+    }
+   ],
+   "source": "https://en.wikipedia.org/wiki/Airwork (Aug 2025; Airwork Holdings went into receivership July 2025, sale reported pending)"
+  }
+ ],
+ "not_included": "Fleets not verified, so left out: Parcelair (Freightways, 2 Boeing 737 freighters per Wikipedia, undated), Texel Air, Sunair, Golden Bay Air, Air Safaris, Glenorchy Air, Air Kaikoura, Air Napier, Salt Air and other small Cessna / GippsAero GA8 operators. International airlines flying into New Zealand are covered by 'plane_illustrations.py --sightings', which finds the airline and type of everything actually seen overhead."
 }

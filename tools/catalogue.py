@@ -54,9 +54,10 @@ def build():
             for f in al["fleet"]:
                 s = slug(f["type"])
                 files = [f"{s}{suf}.webp" for suf in ("", "-2") if (d / f"{s}{suf}.webp").exists()]
+                master = [f"{s}{suf}.webp" for suf in ("", "-2") if (ROOT / "planes" / f"{s}{suf}.webp").exists()]
                 fleet.append({"type": f["type"], "label": f.get("label", ""), "count": f.get("count"),
-                              "note": f.get("note", ""), "files": files})
-            c["airlines"].append({"key": al["key"], "name": al["name"], "slug": slug(al["name"]),
+                              "note": f.get("note", ""), "files": files, "master": master})
+            c["airlines"].append({"key": al["key"], "icao": al.get("icao", []), "name": al["name"], "slug": slug(al["name"]),
                                   "kind": al.get("kind", ""), "base": al.get("base", ""), "fleet": fleet})
 
     # painted folders that no fleet list mentions
@@ -70,8 +71,9 @@ def build():
             for adir in sorted(p for p in cdir.iterdir() if p.is_dir() and p.name not in known):
                 stems = sorted({re.sub(r"-2$", "", p.stem) for p in adir.glob("*.webp")})
                 fleet = [{"type": s.upper(), "label": "", "count": None, "note": "",
-                          "files": [f"{s}{suf}.webp" for suf in ("", "-2") if (adir / f"{s}{suf}.webp").exists()]} for s in stems]
-                c["airlines"].append({"key": adir.name, "name": adir.name.replace("-", " ").title(), "slug": adir.name,
+                          "files": [f"{s}{suf}.webp" for suf in ("", "-2") if (adir / f"{s}{suf}.webp").exists()],
+                          "master": [f"{s}{suf}.webp" for suf in ("", "-2") if (ROOT / "planes" / f"{s}{suf}.webp").exists()]} for s in stems]
+                c["airlines"].append({"key": adir.name, "icao": [], "name": adir.name.replace("-", " ").title(), "slug": adir.name,
                                       "kind": "", "base": "", "fleet": fleet})
 
     cat = {"updated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="minutes"), "countries": countries}

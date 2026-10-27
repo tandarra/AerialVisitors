@@ -168,7 +168,11 @@ const loadAll = async () => { if (!ALL) { ALL = await getJSON("liveries/alliance
   ALL.alliances.forEach((a) => [...a.members, ...a.affiliates].forEach((m) => (ALLY_BY[m[0]] ||= []).push(a.key))); } return ALL; };
 const badges = (code) => (ALLY_BY[code] || []).map((k) => `<span class="bdg ${k}">${esc(ALL.alliances.find((a) => a.key === k).short)}</span>`).join("");
 const inAlly = (code) => ally === "all" ? true : ally === "none" ? !(ALLY_BY[code] || []).length : (ALLY_BY[code] || []).includes(ally);
-const icaoOf = (al) => (al.icao || al.key || "").toUpperCase();
+const icaosOf = (al) => (al.icao && al.icao.length ? al.icao : /^[a-z]{3}$/i.test(al.key || "") ? [al.key] : []).map((x) => x.toUpperCase());
+const icaoOf = (al) => icaosOf(al)[0] || "";
+const alAllyKeys = (al) => [...new Set(icaosOf(al).flatMap((c) => ALLY_BY[c] || []))];
+const alBadges = (al) => alAllyKeys(al).map((k) => `<span class="bdg ${k}">${esc(ALL.alliances.find((a) => a.key === k).short)}</span>`).join("");
+const alIn = (al) => ally === "all" ? true : ally === "none" ? !alAllyKeys(al).length : alAllyKeys(al).includes(ally);
 function drawAllyBar() {
   const bar = $("ally");
   bar.innerHTML = `<label>Alliance</label>` + [["all", "All"], ...ALL.alliances.map((a) => [a.key, a.name]), ["none", "Not aligned"]]
@@ -180,14 +184,14 @@ const allyActive = () => ALLY_KEYS().includes(ally);
 // countries (by name) that have members of the chosen alliance, with how many of those airlines are fully painted
 function allyCountries() {
   const a = ALL.alliances.find((x) => x.key === ally), by = {}, done = new Set();
-  Object.values(CAT.countries).forEach((c) => c.airlines.forEach((al) => { const sc = airlineScore(al); if (sc.n && sc.ok === sc.n) done.add(icaoOf(al)); }));
+  Object.values(CAT.countries).forEach((c) => c.airlines.forEach((al) => { const sc = airlineScore(al); if (sc.n && sc.ok === sc.n) icaosOf(al).forEach((x) => done.add(x)); }));
   [...a.members, ...a.affiliates].forEach((m) => { const v = OPS[m[0]]; if (!v) return; const c = (by[v[1]] ||= {n: 0, ok: 0}); c.n++; if (done.has(m[0])) c.ok++; });
   return by;
 }
 function allyRows() {      // aircraft types flown by the chosen alliance's airlines that have a fleet list (optionally one country)
   const by = {};
   Object.entries(CAT.countries).forEach(([cc, c]) => { if (sel && cc !== sel.code) return;
-    c.airlines.forEach((al) => { if (inAlly(icaoOf(al))) al.fleet.forEach((f) => (by[f.type] ||= new Set()).add(al.name)); }); });
+    c.airlines.forEach((al) => { if (alIn(al)) al.fleet.forEach((f) => (by[f.type] ||= new Set()).add(al.name)); }); });
   return Object.entries(by).filter(([code]) => byCode[code]).map(([code, names]) => ({t: byCode[code], n: byCode[code][4] || 0, st: status(code), by: [...names]}))
     .sort((a, b) => b.by.length - a.by.length || b.n - a.n);
 }
@@ -206,7 +210,7 @@ async function drawAirlines() {
   if (!sel && ally !== "all") {      // world view through an alliance: its members grouped by country
     const groups = {}, picked = ALL.alliances.filter((a) => ally === "none" || a.key === ally);
     const codes = ally === "none" ? Object.keys(ops).filter((k) => inAlly(k)).slice(0, 0) : picked.flatMap((a) => a.members.map((m) => m[0]));
-    const catAl = {}; Object.entries(cat.countries).forEach(([cc, c]) => c.airlines.forEach((al) => (catAl[icaoOf(al)] = {al, c})));
+    const catAl = {}; Object.entries(cat.countries).forEach(([cc, c]) => c.airlines.forEach((al) => icaosOf(al).forEach((x) => (catAl[x] = {al, c}))));
     [...new Set(codes)].forEach((k) => { const v = ops[k]; if (!v) return; (groups[v[1]] ||= []).push(k); });
     const names = Object.keys(groups).sort();
     let ok = 0, tot = 0;
@@ -229,22 +233,23 @@ async function drawAirlines() {
       : `<div class="err" style="grid-column:1/-1">No airline liveries painted yet.</div>`;
     markSel(); return;
   }
-  const cc = cat.countries[sel.code], airlines = (cc ? cc.airlines : []).filter((al) => inAlly(icaoOf(al)));
+  const cc = cat.countries[sel.code], airlines = (cc ? cc.airlines : []).filter(alIn);
   const tot = airlines.reduce((a, al) => { const s = airlineScore(al); return [a[0] + s.ok, a[1] + s.n]; }, [0, 0]);
   const have = airlines.map((a) => a.name.toLowerCase());
-  const others = Object.entries(ops).filter(([k, v]) => v[1] === sel.name && !have.some((h) => h.includes(v[0].toLowerCase()) || v[0].toLowerCase().includes(h)) && inAlly(k))
+  const haveIcao = new Set(airlines.flatMap(icaosOf));
+  const others = Object.entries(ops).filter(([k, v]) => v[1] === sel.name && !haveIcao.has(k) && !have.some((h) => h.includes(v[0].toLowerCase()) || v[0].toLowerCase().includes(h)) && inAlly(k))
     .filter(([k, v]) => !q || (v[0] + " " + k + " " + v[2]).toLowerCase().includes(q))
     .sort((a, b) => !!(ALLY_BY[b[0]] || []).length - !!(ALLY_BY[a[0]] || []).length);
   $("pname").textContent = sel.name;
   $("pmeta").textContent = `${airlines.length} airlines catalogued · ${tot[0]}/${tot[1]} livery images · ${others.length.toLocaleString()} other registered operators`;
   $("pbdone").style.width = (tot[1] ? tot[0] / tot[1] * 100 : 0) + "%"; $("pbhalf").style.width = (tot[1] ? tot[0] / tot[1] * 100 : 0) + "%";
   const card = (al) => { const s = airlineScore(al);
-    return `<div class="al"><h4><b>${esc(al.name)}</b>${badges(icaoOf(al))}<span>${esc(al.kind || "")}${al.base ? " · " + esc(al.base) : ""} · ${s.ok}/${s.n} images</span></h4>
+    return `<div class="al"><h4><b>${esc(al.name)}</b>${alBadges(al)}<span>${esc(al.kind || "")}${al.base ? " · " + esc(al.base) : ""} · ${s.ok}/${s.n} images</span></h4>
       <div class="bar"><i style="width:${s.n ? s.ok / s.n * 100 : 0}%"></i></div>
       ${al.fleet.filter((f) => !q || (f.label + " " + f.type + " " + al.name).toLowerCase().includes(q)).map((f) => `<div class="fr"><div><div class="n">${esc(f.label || f.type)}</div>
         <div class="s">${esc(f.type)}${f.count ? " · " + f.count + " flying" : ""}${f.note ? " · " + esc(f.note) : ""}</div>
-        <div class="chips"><span class="${f.files.length === 2 ? "ok" : f.files.length ? "part" : "miss"}">${f.files.length === 2 ? "complete" : f.files.length ? "partial" : "not painted"}</span></div></div>
-        <div class="imgs">${f.files.length ? f.files.map((x) => `<img src="planes/liveries/${cc.slug}/${al.slug}/${x}" alt="">`).join("") : `<div class="ph">${esc(f.type)}</div>`}</div></div>`).join("")}</div>`; };
+        <div class="chips"><span class="${f.files.length === 2 ? "ok" : f.files.length ? "part" : "miss"}">${f.files.length === 2 ? "livery complete" : f.files.length ? "livery partial" : "livery not painted"}</span>${!f.files.length && f.master.length ? '<span class="part">master airframe</span>' : ""}</div></div>
+        <div class="imgs">${f.files.length ? f.files.map((x) => `<img src="planes/liveries/${cc.slug}/${al.slug}/${x}" alt="">`).join("") : f.master.length ? f.master.map((x) => `<img src="planes/${x}" alt="" style="opacity:.75">`).join("") : `<div class="ph">${esc(f.type)}</div>`}</div></div>`).join("")}</div>`; };
   const shownAl = airlines.filter((al) => !q || (al.name + " " + al.fleet.map((f) => f.label + f.type).join(" ")).toLowerCase().includes(q));
   $("grid").innerHTML = (shownAl.length ? shownAl.map(card).join("") : airlines.length ? "" : `<div class="h2">No airline fleets catalogued for ${esc(sel.name)} yet.</div>`)
     + (others.length ? `<div class="h2">Other registered operators, no fleet list yet (${others.length.toLocaleString()})</div><div class="ops">${others.slice(0, 300).map(([k, v]) =>

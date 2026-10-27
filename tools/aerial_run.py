@@ -2,12 +2,14 @@
 """
 Aerial Visitors, one command: paint -> cut out -> catalogue -> git push.
 
-  stage 1  airframes  one plain, anatomy-checked airframe per physical type, 2 poses   (liveries/nz_airframes.json)
+  stage 1  masters    one plain, anatomy-checked master airframe per aircraft type any listed airline flies, 2 poses
+                      (hand-written specs in liveries/nz_airframes.json, else built from the ICAO type description).
+                      A master is what the atlas and live page show for an airline that has no livery painted yet.
   stage 2  liveries   every airline's real livery on each type it flies, 2 poses, each repainted FROM the approved
-                      airframe image so the shape never drifts                          (liveries/nz.json)
+                      master image so the shape never drifts                            (liveries/nz.json)
   then     rembg cut-outs, planes/catalogue.json + painted.json, git commit and push (atlas updates)
 
-Originals (PNG) are saved to  <out>/_airframes/<type>.png  and  <out>/<Country>/<Airline>/<type>.png
+Originals (PNG) are saved to  <out>/_masters/<type>.png  and  <out>/<Country>/<Airline>/<type>.png
 (default out: ~/Downloads/AerialVisitors). Cut-outs go into the repo:
   planes/<type>.webp                                   (generic airframes, the species checklist)
   planes/liveries/<country>/<airline>/<type>.webp      (liveries, e.g. new-zealand/air-new-zealand/a320.webp)
@@ -16,7 +18,7 @@ Side profile = <type>.*, from below = <type>-2.*
 Safe to stop and re-run: anything already painted is skipped. Failed images are listed at the end; just run again.
 
   python tools/aerial_run.py                       # everything for New Zealand
-  python tools/aerial_run.py --stage airframes     # review the plain airframes first
+  python tools/aerial_run.py --stage masters       # review the master airframes first
   python tools/aerial_run.py --list-only           # what would be painted, and the cost
   python tools/aerial_run.py --no-push             # do not touch GitHub
   python tools/aerial_run.py --fake                # test the plumbing with placeholder images (no API, no cost)
@@ -30,6 +32,7 @@ import plane_illustrations as pi
 import build_airframe_prompts as bap
 import build_livery_prompts as blp
 import catalogue
+import build_airlines_md, build_collage, screenshots
 
 ALIAS = {"AT75": "AT76"}                        # near-identical exterior: reuse the approved airframe
 POSES = {"side": "", "below": "-2"}
@@ -82,10 +85,19 @@ def git(*args):
     return subprocess.run(["git", "-C", str(ROOT), *args], capture_output=True, text=True)
 
 
+def media():
+    for step in (build_collage.build, screenshots.build):
+        try:
+            step()
+        except Exception as e:                   # README pictures are a nicety: never fail the run over them
+            print("  skipped:", str(e)[:160])
+
+
 def sync(message, push):
     catalogue.build()
+    build_airlines_md.build()
     pi.write_painted(ROOT / "planes")
-    git("add", "planes", "liveries")
+    git("add", "planes", "liveries", "docs", "AIRLINES.md")
     if not git("status", "--porcelain").stdout.strip():
         return
     c = git("commit", "-m", message)
@@ -108,7 +120,7 @@ def main():
     ap.add_argument("--fleet", default="liveries/nz.json", help="airline fleet file (default liveries/nz.json)")
     ap.add_argument("--airframes", default="liveries/nz_airframes.json")
     ap.add_argument("--out", default=str(Path.home() / "Downloads" / "AerialVisitors"))
-    ap.add_argument("--stage", choices=["all", "airframes", "liveries"], default="all")
+    ap.add_argument("--stage", choices=["all", "masters", "airframes", "liveries"], default="all")
     ap.add_argument("--model", default="gemini-nano-banana-2.1")
     ap.add_argument("--limit", type=int, help="stop after this many new images")
     ap.add_argument("--every", type=int, default=10, help="commit and push after this many new images (default 10)")
@@ -133,26 +145,34 @@ def main():
     specs = {t["type"]: t for t in air["types"]}
 
     jobs = []          # (kind, label, png path, webp path, text, base png path or None)
-    adir = out / "_airframes"
-    for t in air["types"]:
+    adir = out / "_masters"
+    fleet_types = []
+    for al in fleet["airlines"]:
+        for f in al.get("fleet", []):
+            if f["type"] not in types:
+                sys.exit(f"{al['name']}: unknown ICAO type {f['type']}")
+            fleet_types.append(f["type"])
+    master_types = list(dict.fromkeys([ALIAS.get(c, c) for c in fleet_types] + list(specs)))
+    for code in master_types:
+        spec = bap.spec_for(code, specs, types)
+        if spec is None:
+            print(f"  no master spec for {code} ({types[code][0]}): add one to {a.airframes}"); continue
+        s = pi.slug(code)
         for pose, suf in POSES.items():
-            s = pi.slug(t["type"])
-            jobs.append(("airframe", f"{t['name']} ({pose})", adir / f"{s}{suf}.png", ROOT / "planes" / f"{s}{suf}.webp",
-                         bap.prompt(t, pose), None))
+            jobs.append(("airframe", f"MASTER {spec['name']} ({pose})", adir / f"{s}{suf}.png", ROOT / "planes" / f"{s}{suf}.webp",
+                         bap.prompt(spec, pose), None))
     for al in fleet["airlines"]:
         ldir = catalogue.livery_dir(country, al["name"])
         for f in al.get("fleet", []):
             code, s = f["type"], pi.slug(f["type"])
             base = ALIAS.get(code, code)
-            if base not in specs:
-                sys.exit(f"{al['name']}: no base airframe for {code}")
             label = f.get("label") or types[code][0]
             for pose, suf in POSES.items():
                 jobs.append(("livery", f"{al['name']}: {label} ({pose})", out / country / al["name"] / f"{s}{suf}.png",
                              ldir / f"{s}{suf}.webp", blp.prompt(code, label, al["name"], suf) + "\n\n" + blp.REPAINT_LINE,
                              adir / f"{pi.slug(base)}{suf}.png"))
     if a.stage != "all":
-        jobs = [j for j in jobs if j[0] == ("airframe" if a.stage == "airframes" else "livery")]
+        jobs = [j for j in jobs if j[0] == ("airframe" if a.stage in ("masters", "airframes") else "livery")]
     todo = [j for j in jobs if not j[2].exists()]
     print(f"{len(jobs)} images in this plan, {len(todo)} still to paint, about US${len(todo) * pi.COST_PER_IMAGE:.2f}")
     if a.list_only:
@@ -208,6 +228,9 @@ def main():
             s, d = ROOT / "planes" / f"{pi.slug(src)}{suf}.webp", ROOT / "planes" / f"{pi.slug(alias)}{suf}.webp"
             if s.exists() and not d.exists():
                 shutil.copy(s, d)
+    catalogue.build()
+    pi.write_painted(ROOT / "planes")
+    media()
     sync(f"Add illustrations ({country})", not a.no_push)
     print(f"\nPainted {done} new image(s)." + (f" {len(failed)} missing: run the same command again to retry:\n   " + "\n   ".join(failed) if failed else " Nothing missing."))
     print(f"Originals: {out}\nLog: {out / 'run.log'}")

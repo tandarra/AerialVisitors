@@ -1,0 +1,1886 @@
+{
+ "region": "NZ",
+ "frozen": "2026-10-28",
+ "types": [
+  {
+   "code": "ULAC",
+   "name": "Ultralight aircraft"
+  },
+  {
+   "code": "C172",
+   "name": "CESSNA 172 Skyhawk"
+  },
+  {
+   "code": "GLID",
+   "name": "Glider"
+  },
+  {
+   "code": "AS50",
+   "name": "AEROSPATIALE AS-350 Ecureuil"
+  },
+  {
+   "code": "R44",
+   "name": "ROBINSON R-44 Raven"
+  },
+  {
+   "code": "P28A",
+   "name": "PIPER PA-28-140/150/160/180"
+  },
+  {
+   "code": "B06",
+   "name": "BELL 206 JetRanger"
+  },
+  {
+   "code": "GLIM",
+   "name": "Motorglider"
+  },
+  {
+   "code": "H500",
+   "name": "HUGHES 500"
+  },
+  {
+   "code": "C152",
+   "name": "CESSNA 152"
+  },
+  {
+   "code": "C180",
+   "name": "CESSNA  180 Skywagon"
+  },
+  {
+   "code": "C182",
+   "name": "CESSNA 182 Skylane"
+  },
+  {
+   "code": "C185",
+   "name": "CESSNA 185 Skywagon"
+  },
+  {
+   "code": "R22",
+   "name": "ROBINSON R-22 Mariner"
+  },
+  {
+   "code": "PA18",
+   "name": "PIPER PA-18 Super Cub"
+  },
+  {
+   "code": "H269",
+   "name": "HUGHES Sky Knight"
+  },
+  {
+   "code": "COY2",
+   "name": "RANS Coyote 2"
+  },
+  {
+   "code": "GYRO",
+   "name": "Autogyro"
+  },
+  {
+   "code": "DH82",
+   "name": "DE HAVILLAND DH-82 Tiger Moth"
+  },
+  {
+   "code": "G2CA",
+   "name": "GUIMBAL G-2 Cabri"
+  },
+  {
+   "code": "C150",
+   "name": "CESSNA 150"
+  },
+  {
+   "code": "PA38",
+   "name": "PIPER PA-38 Tomahawk"
+  },
+  {
+   "code": "P208",
+   "name": "TECNAM P-2008"
+  },
+  {
+   "code": "C206",
+   "name": "CESSNA  206 Stationair"
+  },
+  {
+   "code": "EC30",
+   "name": "AIRBUS HELICOPTERS EC-130"
+  },
+  {
+   "code": "ECHO",
+   "name": "TECNAM P-92 Echo"
+  },
+  {
+   "code": "SVNH",
+   "name": "AEROTEC Savannah"
+  },
+  {
+   "code": "CH60",
+   "name": "ZENAIR CH-600 Zodiac"
+  },
+  {
+   "code": "BK17",
+   "name": "EUROCOPTER BK117 C-1/2"
+  },
+  {
+   "code": "C208",
+   "name": "CESSNA 208 Caravan"
+  },
+  {
+   "code": "FU24",
+   "name": "FLETCHER FU-24"
+  },
+  {
+   "code": "AT76",
+   "name": "ATR-72-600"
+  },
+  {
+   "code": "RV7",
+   "name": "VANS RV-7"
+  },
+  {
+   "code": "CRES",
+   "name": "PACIFIC AEROSPACE Cresco"
+  },
+  {
+   "code": "SIRA",
+   "name": "TECNAM P-2002 Sierra"
+  },
+  {
+   "code": "PNR3",
+   "name": "ALPI Pioneer 330"
+  },
+  {
+   "code": "D11",
+   "name": "JODEL D-11x/12x"
+  },
+  {
+   "code": "RV6",
+   "name": "VANS RV-6"
+  },
+  {
+   "code": "CH70",
+   "name": "ZENAIR CH-701 Stol"
+  },
+  {
+   "code": "P750",
+   "name": "PACIFIC AEROSPACE P-750 XStol"
+  },
+  {
+   "code": "YK52",
+   "name": "YAKOVLEV Yak-52"
+  },
+  {
+   "code": "A320",
+   "name": "AIRBUS A-320"
+  },
+  {
+   "code": "DH8C",
+   "name": "DE HAVILLAND DHC-8-300 Dash 8"
+  },
+  {
+   "code": "MD52",
+   "name": "MCDONNELL-DOUGLAS MD-520N"
+  },
+  {
+   "code": "CRER",
+   "name": "RANS Courier"
+  },
+  {
+   "code": "GA8",
+   "name": "GIPPSAERO GA-8 Airvan"
+  },
+  {
+   "code": "PNR2",
+   "name": "ALPI Pioneer 200"
+  },
+  {
+   "code": "WAIX",
+   "name": "SONEX Waiex"
+  },
+  {
+   "code": "EC45",
+   "name": "AIRBUS HELICOPTERS EC-145"
+  },
+  {
+   "code": "EC20",
+   "name": "AIRBUS HELICOPTERS EC-120"
+  },
+  {
+   "code": "RV12",
+   "name": "VANS RV-12"
+  },
+  {
+   "code": "PA34",
+   "name": "PIPER PA-34 Seneca"
+  },
+  {
+   "code": "DA40",
+   "name": "DIAMOND DA-40 Club Star"
+  },
+  {
+   "code": "GOLF",
+   "name": "TECNAM P-96 Golf"
+  },
+  {
+   "code": "BE20",
+   "name": "BEECH 200 Super King Air"
+  },
+  {
+   "code": "T6",
+   "name": "NORTH AMERICAN T-6 Texan"
+  },
+  {
+   "code": "AS55",
+   "name": "AEROSPATIALE AS-355 Ecureuil 2"
+  },
+  {
+   "code": "R200",
+   "name": "ROBIN Alpha"
+  },
+  {
+   "code": "AP22",
+   "name": "AEROPRACT A-22"
+  },
+  {
+   "code": "B789",
+   "name": "BOEING 787-9 Dreamliner"
+  },
+  {
+   "code": "C177",
+   "name": "CESSNA  177 Cardinal"
+  },
+  {
+   "code": "PA31",
+   "name": "PIPER PA-31-300/310/325/350/425"
+  },
+  {
+   "code": "DA42",
+   "name": "DIAMOND DA-42 Guardian"
+  },
+  {
+   "code": "DHC1",
+   "name": "DE HAVILLAND DHC-1 Chipmunk"
+  },
+  {
+   "code": "CT4",
+   "name": "PACIFIC AEROSPACE CT-4 Airtrainer"
+  },
+  {
+   "code": "MT",
+   "name": "ROTORSPORT MTOSport"
+  },
+  {
+   "code": "J1",
+   "name": "AUSTER J-1"
+  },
+  {
+   "code": "PA22",
+   "name": "PIPER PA-22"
+  },
+  {
+   "code": "TOUR",
+   "name": "MILLICER Airtourer"
+  },
+  {
+   "code": "T206",
+   "name": "CESSNA T206 Turbo Stationair"
+  },
+  {
+   "code": "P28R",
+   "name": "PIPER PA-28R-180/200/201"
+  },
+  {
+   "code": "EXEC",
+   "name": "ROTORWAY Exec"
+  },
+  {
+   "code": "SR22",
+   "name": "CIRRUS SR-22"
+  },
+  {
+   "code": "B734",
+   "name": "BOEING 737-400"
+  },
+  {
+   "code": "NG5",
+   "name": "BRM AERO NG-5/6 Bristell"
+  },
+  {
+   "code": "M5",
+   "name": "MAULE M-5"
+  },
+  {
+   "code": "EUPA",
+   "name": "Europa"
+  },
+  {
+   "code": "CRUZ",
+   "name": "CSA PS-28 Cruiser"
+  },
+  {
+   "code": "A21N",
+   "name": "AIRBUS A-321neo"
+  },
+  {
+   "code": "PA32",
+   "name": "PIPER PA-32"
+  },
+  {
+   "code": "PA27",
+   "name": "PIPER PA-23-250 Aztec"
+  },
+  {
+   "code": "UH1",
+   "name": "BELL UH-1 Huey"
+  },
+  {
+   "code": "CJ6",
+   "name": "NANCHANG CJ-6"
+  },
+  {
+   "code": "BABY",
+   "name": "CANADIAN HOME ROTORS Baby Belle"
+  },
+  {
+   "code": "T51",
+   "name": "TITAN T-51 Mustang"
+  },
+  {
+   "code": "TEX2",
+   "name": "BEECHCRAFT T-6 Texan 2"
+  },
+  {
+   "code": "PA25",
+   "name": "PIPER PA-25 Pawnee"
+  },
+  {
+   "code": "RV4",
+   "name": "VANS RV-4"
+  },
+  {
+   "code": "FOX",
+   "name": "KITFOX"
+  },
+  {
+   "code": "ST75",
+   "name": "STEARMAN Kaydet"
+  },
+  {
+   "code": "RBEL",
+   "name": "MURPHY Rebel"
+  },
+  {
+   "code": "WT9",
+   "name": "AEROSPOOL WT-9 Dynamic"
+  },
+  {
+   "code": "B77W",
+   "name": "BOEING 777-300ER"
+  },
+  {
+   "code": "J3",
+   "name": "PIPER J-3 Cub"
+  },
+  {
+   "code": "RALL",
+   "name": "SOCATA Rallye"
+  },
+  {
+   "code": "P28B",
+   "name": "PIPER PA-28-201T/235/236"
+  },
+  {
+   "code": "M20P",
+   "name": "MOONEY M-20"
+  },
+  {
+   "code": "GY20",
+   "name": "CAB GY-20 Minicab"
+  },
+  {
+   "code": "AA5",
+   "name": "AMERICAN AA-5 Tiger"
+  },
+  {
+   "code": "DR1",
+   "name": "FOKKER Dr-1"
+  },
+  {
+   "code": "PTS1",
+   "name": "PITTS S-1 Special"
+  },
+  {
+   "code": "SONX",
+   "name": "SONEX AIRCRAFT Sonex"
+  },
+  {
+   "code": "JAB4",
+   "name": "JABIRU J200-450"
+  },
+  {
+   "code": "AT5T",
+   "name": "AIR TRACTOR AT-504"
+  },
+  {
+   "code": "SSTL",
+   "name": "JUST JA30 SuperSTOL"
+  },
+  {
+   "code": "JUNR",
+   "name": "BOLKOW BO-208 Junior"
+  },
+  {
+   "code": "P68",
+   "name": "PARTENAVIA P-68 Observer"
+  },
+  {
+   "code": "B738",
+   "name": "BOEING 737-800"
+  },
+  {
+   "code": "KR2",
+   "name": "RAND KR-2"
+  },
+  {
+   "code": "GA20",
+   "name": "GIPPSLAND GA-200 Fatman"
+  },
+  {
+   "code": "RV8",
+   "name": "VANS RV-8"
+  },
+  {
+   "code": "M7",
+   "name": "MAULE M-7"
+  },
+  {
+   "code": "SAVG",
+   "name": "ZLIN AVIATION Savage"
+  },
+  {
+   "code": "CDUS",
+   "name": "AUTOGYRO Calidus"
+  },
+  {
+   "code": "CLON",
+   "name": "AUTOGYRO Cavalon"
+  },
+  {
+   "code": "NH90",
+   "name": "NHI NH-90"
+  },
+  {
+   "code": "DHC2",
+   "name": "DE HAVILLAND DHC-2 Beaver"
+  },
+  {
+   "code": "D31",
+   "name": "ROLLASON D-31 Turbulent"
+  },
+  {
+   "code": "CJ1",
+   "name": "CORBY CJ-1 Starlet"
+  },
+  {
+   "code": "BE76",
+   "name": "BEECH 76 Duchess"
+  },
+  {
+   "code": "C82R",
+   "name": "CESSNA R182 Skylane RG"
+  },
+  {
+   "code": "PELI",
+   "name": "FLYER Pelican"
+  },
+  {
+   "code": "GLST",
+   "name": "GLASAIR SH-4 GlaStar"
+  },
+  {
+   "code": "B429",
+   "name": "BELL 429 GlobalRanger"
+  },
+  {
+   "code": "A109",
+   "name": "AGUSTA AW-109 Grand"
+  },
+  {
+   "code": "H2",
+   "name": "KAMAN Seasprite"
+  },
+  {
+   "code": "AUS5",
+   "name": "AUSTER AOP5"
+  },
+  {
+   "code": "C170",
+   "name": "CESSNA 170"
+  },
+  {
+   "code": "AA1",
+   "name": "AMERICAN AA-1"
+  },
+  {
+   "code": "BT36",
+   "name": "BEECH B36TC Bonanza"
+  },
+  {
+   "code": "PTS2",
+   "name": "PITTS S-2 Special"
+  },
+  {
+   "code": "C72R",
+   "name": "CESSNA 172R Cutlass RG"
+  },
+  {
+   "code": "BN2P",
+   "name": "BRITTEN-NORMAN BN-2 Islander"
+  },
+  {
+   "code": "GLAS",
+   "name": "Glasair"
+  },
+  {
+   "code": "PULS",
+   "name": "Pulsar"
+  },
+  {
+   "code": "AT3T",
+   "name": "AIR TRACTOR AT-302/402"
+  },
+  {
+   "code": "JABI",
+   "name": "Jabiru J120"
+  },
+  {
+   "code": "CAMP",
+   "name": "GREGA GN-1 Aircamper"
+  },
+  {
+   "code": "HR20",
+   "name": "ROBIN HR-200"
+  },
+  {
+   "code": "TERR",
+   "name": "FOXCON Terrier"
+  },
+  {
+   "code": "SKRA",
+   "name": "BEST OFF Sky Ranger"
+  },
+  {
+   "code": "JAB2",
+   "name": "JABIRU J160/170"
+  },
+  {
+   "code": "BRAV",
+   "name": "TECNAM P-2004 Bravo"
+  },
+  {
+   "code": "SASP",
+   "name": "SUPERMARINE AIRCRAFT Spitfire Mk25/26"
+  },
+  {
+   "code": "MM24",
+   "name": "MAGNI M-24 Orion"
+  },
+  {
+   "code": "CTAH",
+   "name": "RAINBOW SKYREACH Cheetah"
+  },
+  {
+   "code": "B350",
+   "name": "BEECHCRAFT Super King Air 350"
+  },
+  {
+   "code": "AP32",
+   "name": "AEROPRACT A-32"
+  },
+  {
+   "code": "A20N",
+   "name": "AIRBUS A-320neo"
+  },
+  {
+   "code": "P3",
+   "name": "LOCKHEED P-3 Orion"
+  },
+  {
+   "code": "PA24",
+   "name": "PIPER PA-24 Comanche"
+  },
+  {
+   "code": "VP2",
+   "name": "EVANS Volksplane"
+  },
+  {
+   "code": "STST",
+   "name": "CFM Star Streak"
+  },
+  {
+   "code": "PC6T",
+   "name": "PILATUS PC-6 Turbo-Porter"
+  },
+  {
+   "code": "UH12",
+   "name": "HILLER UH-12"
+  },
+  {
+   "code": "O1",
+   "name": "CESSNA 305/341 Bird Dog"
+  },
+  {
+   "code": "DV20",
+   "name": "DIAMOND DA-20"
+  },
+  {
+   "code": "NPOR",
+   "name": "REDFERN Nieuport 24"
+  },
+  {
+   "code": "SREY",
+   "name": "PROGRESSIVE AERODYNE SeaRey"
+  },
+  {
+   "code": "B47G",
+   "name": "BELL 47G"
+  },
+  {
+   "code": "TL20",
+   "name": "TL ULTRALIGHT TL-2000 Sting"
+  },
+  {
+   "code": "L39",
+   "name": "LET L-39 Albatros"
+  },
+  {
+   "code": "TMOT",
+   "name": "FISHER R-80 Tiger Moth"
+  },
+  {
+   "code": "SRAI",
+   "name": "GREAT PLAINS Sonerai"
+  },
+  {
+   "code": "D7",
+   "name": "FOKKER D-7 Replica"
+  },
+  {
+   "code": "TEXA",
+   "name": "FLY SYNTHESIS Texan"
+  },
+  {
+   "code": "FDCT",
+   "name": "FLIGHT DESIGN CT"
+  },
+  {
+   "code": "HIGH",
+   "name": "JUST JA20 Highlander"
+  },
+  {
+   "code": "SF34",
+   "name": "SAAB 340"
+  },
+  {
+   "code": "R66",
+   "name": "ROBINSON R-66"
+  },
+  {
+   "code": "PA11",
+   "name": "PIPER PA-11 Cub Special"
+  },
+  {
+   "code": "MD60",
+   "name": "MCDONNELL-DOUGLAS MD-600N"
+  },
+  {
+   "code": "C130",
+   "name": "LOCKHEED C-130 Hercules"
+  },
+  {
+   "code": "C30J",
+   "name": "LOCKHEED MARTIN C-130J Super Hercules"
+  },
+  {
+   "code": "CH7A",
+   "name": "BELLANCA 7 Champion"
+  },
+  {
+   "code": "BE23",
+   "name": "BEECH 23 Sundowner"
+  },
+  {
+   "code": "C77R",
+   "name": "CESSNA 177RG Cardinal RG"
+  },
+  {
+   "code": "T18",
+   "name": "THORP Tiger"
+  },
+  {
+   "code": "C210",
+   "name": "CESSNA 201 Centurion"
+  },
+  {
+   "code": "DOVE",
+   "name": "DE HAVILLAND DH-104 Dove"
+  },
+  {
+   "code": "F8L",
+   "name": "AEROMERE F-8L Falco"
+  },
+  {
+   "code": "MIMU",
+   "name": "BUSHBY Midget Mustang"
+  },
+  {
+   "code": "SW4",
+   "name": "SWEARINGEN Metro"
+  },
+  {
+   "code": "LNC2",
+   "name": "LANCAIR 200-320"
+  },
+  {
+   "code": "PA44",
+   "name": "PIPER PA-44 Seminole"
+  },
+  {
+   "code": "TB20",
+   "name": "SOCATA TB-20 Trinidad"
+  },
+  {
+   "code": "PZ04",
+   "name": "PZL-OKECIE PZL-104 Wilga"
+  },
+  {
+   "code": "RS12",
+   "name": "RANS S-12 Super Airaile"
+  },
+  {
+   "code": "SAKO",
+   "name": "RANS S-10 Sakota"
+  },
+  {
+   "code": "RAF2",
+   "name": "ROTARY AIR FORCE RAF-2000"
+  },
+  {
+   "code": "TRDO",
+   "name": "TITAN Tornado SS"
+  },
+  {
+   "code": "STRM",
+   "name": "SG AVIATION Storm"
+  },
+  {
+   "code": "MM16",
+   "name": "MAGNI M-16 Tandem Trainer"
+  },
+  {
+   "code": "BE9L",
+   "name": "BEECH 90 King Air"
+  },
+  {
+   "code": "STCH",
+   "name": "FLY SYNTHESIS Storch"
+  },
+  {
+   "code": "PISI",
+   "name": "PIPSTREL Sinus"
+  },
+  {
+   "code": "C510",
+   "name": "CESSNA 510 Citation Mustang"
+  },
+  {
+   "code": "RV9",
+   "name": "VANS RV-9"
+  },
+  {
+   "code": "B105",
+   "name": "EUROCOPTER BO-105"
+  },
+  {
+   "code": "HUSK",
+   "name": "CHRISTEN Husky"
+  },
+  {
+   "code": "P06T",
+   "name": "TECNAM P-2006T"
+  },
+  {
+   "code": "PC12",
+   "name": "PILATUS PC-12"
+  },
+  {
+   "code": "B505",
+   "name": "BELL 505 JetRanger X"
+  },
+  {
+   "code": "S76",
+   "name": "SIKORSKY S-76 Spirit"
+  },
+  {
+   "code": "P8",
+   "name": "BOEING P-8 Poseidon"
+  },
+  {
+   "code": "DH83",
+   "name": "DE HAVILLAND DH-83 Fox Moth"
+  },
+  {
+   "code": "DC3",
+   "name": "DOUGLAS DC-3 Dakota"
+  },
+  {
+   "code": "CH7B",
+   "name": "BELLANCA 7 Citabria"
+  },
+  {
+   "code": "IFUR",
+   "name": "ISAACS Fury"
+  },
+  {
+   "code": "BE35",
+   "name": "BEECH 35 Bonanza"
+  },
+  {
+   "code": "C402",
+   "name": "CESSNA 402 Businessliner"
+  },
+  {
+   "code": "SA02",
+   "name": "K&S SA-102.5 Cavalier"
+  },
+  {
+   "code": "P32R",
+   "name": "PIPER PA-32R-300/301/301T"
+  },
+  {
+   "code": "VEZE",
+   "name": "RUTAN VariEze"
+  },
+  {
+   "code": "P28U",
+   "name": "PIPER PA-28RT-201T Turbo"
+  },
+  {
+   "code": "TAMP",
+   "name": "SOCATA TB-9 Tampico"
+  },
+  {
+   "code": "DRIF",
+   "name": "AUSTFLIGHT Drifter"
+  },
+  {
+   "code": "CH20",
+   "name": "ZENAIR CH-200 Zenith"
+  },
+  {
+   "code": "FH11",
+   "name": "FAIRCHILD FH-1100"
+  },
+  {
+   "code": "RV3",
+   "name": "VANS RV-3"
+  },
+  {
+   "code": "T28",
+   "name": "NORTH AMERICAN T-28"
+  },
+  {
+   "code": "CVLT",
+   "name": "CANADAIR Cosmopolitan"
+  },
+  {
+   "code": "P46T",
+   "name": "PIPER PA-46-500TP"
+  },
+  {
+   "code": "PA46",
+   "name": "PIPER PA-46-310/350"
+  },
+  {
+   "code": "SPIT",
+   "name": "SUPERMARINE Spitfire"
+  },
+  {
+   "code": "TOBA",
+   "name": "SOCATA Tobago"
+  },
+  {
+   "code": "KIS4",
+   "name": "TRI-R KIS TR-4"
+  },
+  {
+   "code": "S108",
+   "name": "STINSON 108 Voyager"
+  },
+  {
+   "code": "G164",
+   "name": "GRUMMAN G-164 Ag-Cat"
+  },
+  {
+   "code": "JS31",
+   "name": "BRITISH AEROSPACE Jetstream T.Mk.3"
+  },
+  {
+   "code": "JS32",
+   "name": "BRITISH AEROSPACE Jetstream Super 31"
+  },
+  {
+   "code": "AT75",
+   "name": "ATR-72-500"
+  },
+  {
+   "code": "DR40",
+   "name": "ROBIN DR-400"
+  },
+  {
+   "code": "MCR1",
+   "name": "COLOMBAN Ban-Bi"
+  },
+  {
+   "code": "KTOO",
+   "name": "AMAX Karatoo"
+  },
+  {
+   "code": "PPRO",
+   "name": "HUNTING P-56 Provost"
+  },
+  {
+   "code": "HROC",
+   "name": "HARMON Rocket"
+  },
+  {
+   "code": "YAK3",
+   "name": "YAKOVLEV Yak-3"
+  },
+  {
+   "code": "L29",
+   "name": "AERO L-29 Delfin"
+  },
+  {
+   "code": "BL8",
+   "name": "BELLANCA 8 Decathlon"
+  },
+  {
+   "code": "RV10",
+   "name": "VANS RV-10"
+  },
+  {
+   "code": "A139",
+   "name": "AGUSTA AW-139"
+  },
+  {
+   "code": "EVSS",
+   "name": "EVEKTOR SportStar"
+  },
+  {
+   "code": "TL30",
+   "name": "TL ULTRALIGHT TL-3000 Sirius"
+  },
+  {
+   "code": "B733",
+   "name": "BOEING 737-300"
+  },
+  {
+   "code": "C162",
+   "name": "CESSNA 162 Skycatcher"
+  },
+  {
+   "code": "B427",
+   "name": "BELL 427"
+  },
+  {
+   "code": "SPUP",
+   "name": "SOPWITH Pup Replica"
+  },
+  {
+   "code": "PIAT",
+   "name": "PIPISTREL Alpha Trainer"
+  },
+  {
+   "code": "WACF",
+   "name": "WACO F"
+  },
+  {
+   "code": "EFOX",
+   "name": "AEROPRO Eurofox"
+  },
+  {
+   "code": "CH75",
+   "name": "ZENAIR CH-750 Cruzer"
+  },
+  {
+   "code": "ASTO",
+   "name": "TECNAM Astore"
+  },
+  {
+   "code": "BEAR",
+   "name": "AVIPRO RB-4 Bearhawk"
+  },
+  {
+   "code": "A169",
+   "name": "AGUSTA AW-169"
+  },
+  {
+   "code": "RV14",
+   "name": "VANS RV-14"
+  },
+  {
+   "code": "AT6T",
+   "name": "AIR TRACTOR AT-602"
+  },
+  {
+   "code": "ERCO",
+   "name": "AIR PRODUCTS F-1 Aircoupe"
+  },
+  {
+   "code": "PROC",
+   "name": "PERCIVAL Proctor"
+  },
+  {
+   "code": "ADVE",
+   "name": "AUSTER J-5 Adventurer"
+  },
+  {
+   "code": "AIGT",
+   "name": "AUSTER J-5 Aiglet Trainer"
+  },
+  {
+   "code": "TAYA",
+   "name": "TAYLORCRAFT A"
+  },
+  {
+   "code": "AIRD",
+   "name": "BEAGLE A-109 Airedale"
+  },
+  {
+   "code": "PUP",
+   "name": "BEAGLE Pup"
+  },
+  {
+   "code": "C337",
+   "name": "CESSNA 337 Super Skymaster"
+  },
+  {
+   "code": "PA30",
+   "name": "PIPER PA-30 Twin Comanche"
+  },
+  {
+   "code": "MJ5",
+   "name": "JURCA MJ-5 Sirocco"
+  },
+  {
+   "code": "C120",
+   "name": "CESSNA 120"
+  },
+  {
+   "code": "LGEZ",
+   "name": "RUTAN Long-EZ"
+  },
+  {
+   "code": "TAIL",
+   "name": "WITTMAN Tailwind"
+  },
+  {
+   "code": "P51",
+   "name": "NORTH AMERICAN P-51 Mustang"
+  },
+  {
+   "code": "QIC2",
+   "name": "QUICKIE Q2"
+  },
+  {
+   "code": "NOMA",
+   "name": "GAF N22/24 Nomad"
+  },
+  {
+   "code": "G44",
+   "name": "GRUMMAN G-44 Widgeon"
+  },
+  {
+   "code": "SF2",
+   "name": "VIKING SF-2 Cygnet"
+  },
+  {
+   "code": "N3",
+   "name": "NOSTALGAIR N-3 Super Pup"
+  },
+  {
+   "code": "FB1A",
+   "name": "BOWERS Fly Baby 1A"
+  },
+  {
+   "code": "VAMP",
+   "name": "DE HAVILLAND DH-100/115 Vampire"
+  },
+  {
+   "code": "AEST",
+   "name": "AEROSTAR 600"
+  },
+  {
+   "code": "AVID",
+   "name": "AVID Flyer"
+  },
+  {
+   "code": "SKAR",
+   "name": "III Sky Arrow"
+  },
+  {
+   "code": "P40",
+   "name": "CURTISS P-40 Kittyhawk"
+  },
+  {
+   "code": "BE58",
+   "name": "BEECH 58 Baron"
+  },
+  {
+   "code": "BD5",
+   "name": "BEDE BD-5B/D/G"
+  },
+  {
+   "code": "P28S",
+   "name": "PIPER PA-28R-201T"
+  },
+  {
+   "code": "MC10",
+   "name": "COLOMBAN Cricri"
+  },
+  {
+   "code": "DAKH",
+   "name": "FISHER Dakota Hawk"
+  },
+  {
+   "code": "BE33",
+   "name": "BEECH 33 Bonanza"
+  },
+  {
+   "code": "STOR",
+   "name": "STORCH AVIATION Super Storch"
+  },
+  {
+   "code": "RW26",
+   "name": "RAGWING RW-26 Special 2"
+  },
+  {
+   "code": "DIMO",
+   "name": "DIAMOND H-36 Dimona"
+  },
+  {
+   "code": "BE36",
+   "name": "BEECH 36 Bonanza"
+  },
+  {
+   "code": "YK55",
+   "name": "YAKOVLEV Yak-55"
+  },
+  {
+   "code": "R300",
+   "name": "ROBIN R-3000/3100/3120/3140"
+  },
+  {
+   "code": "MU2",
+   "name": "MITSUBISHI MU-2 Marquise"
+  },
+  {
+   "code": "TTWO",
+   "name": "PARKER Teenie Two"
+  },
+  {
+   "code": "SE5A",
+   "name": "RAF SE-5A Replica"
+  },
+  {
+   "code": "P210",
+   "name": "CESSNA P210 Centurion"
+  },
+  {
+   "code": "SCOU",
+   "name": "WESTLAND Scout"
+  },
+  {
+   "code": "D8",
+   "name": "FOKKER D-8 Replica"
+  },
+  {
+   "code": "C195",
+   "name": "CESSNA 195"
+  },
+  {
+   "code": "RODS",
+   "name": "RIHN One Design"
+  },
+  {
+   "code": "MI34",
+   "name": "MIL Mi-34"
+  },
+  {
+   "code": "BE40",
+   "name": "BEECH 400 Beechjet"
+  },
+  {
+   "code": "LA25",
+   "name": "LAKE LA-250"
+  },
+  {
+   "code": "C680",
+   "name": "CESSNA 680 Citation Sovereign"
+  },
+  {
+   "code": "PIVI",
+   "name": "PIPSTREL Virus"
+  },
+  {
+   "code": "CC11",
+   "name": "CUB CRAFTERS CC-11 Carbon Cub"
+  },
+  {
+   "code": "EN28",
+   "name": "ENSTROM F-28"
+  },
+  {
+   "code": "C25A",
+   "name": "CESSNA 525A Citation CJ2"
+  },
+  {
+   "code": "C560",
+   "name": "CESSNA 560 Citation Ultra"
+  },
+  {
+   "code": "ZA6",
+   "name": "AEROKOPTER ZA-6 Sanka"
+  },
+  {
+   "code": "VL3",
+   "name": "AVEKO Flamingo"
+  },
+  {
+   "code": "K100",
+   "name": "DAHER Kodiak 100"
+  },
+  {
+   "code": "B752",
+   "name": "BOEING 757-200"
+  },
+  {
+   "code": "KFIS",
+   "name": "ANDERSON Kingfisher"
+  },
+  {
+   "code": "LA4",
+   "name": "LAKE LA-4/200"
+  },
+  {
+   "code": "VJ22",
+   "name": "VOLMER Sportsman"
+  },
+  {
+   "code": "DH60",
+   "name": "DE HAVILLAND DH-60 Moth"
+  },
+  {
+   "code": "J2",
+   "name": "PIPER J-2 Cub"
+  },
+  {
+   "code": "DH94",
+   "name": "DE HAVILLAND DH-94 Moth Minor"
+  },
+  {
+   "code": "DH89",
+   "name": "DE HAVILLAND Dragon Rapide"
+  },
+  {
+   "code": "SPST",
+   "name": "REARWIN Sportster"
+  },
+  {
+   "code": "AUJ4",
+   "name": "AUSTER J-4 Archer"
+  },
+  {
+   "code": "ACAR",
+   "name": "AUSTER J-5 Autocar"
+  },
+  {
+   "code": "ALPI",
+   "name": "AUSTER J-5R Alpine"
+  },
+  {
+   "code": "AUS9",
+   "name": "AUSTER AOP9"
+  },
+  {
+   "code": "CP30",
+   "name": "PIEL Emeraude"
+  },
+  {
+   "code": "AC68",
+   "name": "AERO Commander 680"
+  },
+  {
+   "code": "M4",
+   "name": "MAULE M-4"
+  },
+  {
+   "code": "C320",
+   "name": "CESSNA 320 Skyknight"
+  },
+  {
+   "code": "CP32",
+   "name": "PIEL Super Emeraude"
+  },
+  {
+   "code": "CH30",
+   "name": "ZENAIR CH-300 Tri-Zenith"
+  },
+  {
+   "code": "BE24",
+   "name": "BEECH 24 Sierra"
+  },
+  {
+   "code": "SE5R",
+   "name": "REPLICA PLANS SE-5A Replica"
+  },
+  {
+   "code": "AGSH",
+   "name": "AERO GARE Sea Hawker"
+  },
+  {
+   "code": "C421",
+   "name": "CESSNA 421 Executive Commuter"
+  },
+  {
+   "code": "DR10",
+   "name": "CENTRE EST Ambassadeur"
+  },
+  {
+   "code": "CA65",
+   "name": "CVJETKOVIC CA-65 Skyfly"
+  },
+  {
+   "code": "FALC",
+   "name": "AMERICAN AIRCRAFT Falcon XP"
+  },
+  {
+   "code": "PL2",
+   "name": "PAZMANY PL-2"
+  },
+  {
+   "code": "GY80",
+   "name": "DAHER-SOCATA GY-80 Horizon"
+  },
+  {
+   "code": "C207",
+   "name": "CESSNA 207 Turbo Stationair"
+  },
+  {
+   "code": "CH10",
+   "name": "ZENAIR CH-100 Mono-Zenith"
+  },
+  {
+   "code": "BE18",
+   "name": "BEECH 18 Expetitor"
+  },
+  {
+   "code": "WFOC",
+   "name": "WAR Focke-Wulf 190"
+  },
+  {
+   "code": "P337",
+   "name": "CESSNA P337 Skymaster"
+  },
+  {
+   "code": "A37",
+   "name": "Cessna 318 Dragonfly"
+  },
+  {
+   "code": "TBM",
+   "name": "GRUMMAN G-40 Avenger"
+  },
+  {
+   "code": "PETR",
+   "name": "EDRA Super Petrel"
+  },
+  {
+   "code": "GA7",
+   "name": "DAHER-SOCATA TB-360 Tangara"
+  },
+  {
+   "code": "CMDE",
+   "name": "AIR COMMAND Commander Elite"
+  },
+  {
+   "code": "CA25",
+   "name": "COMMONWEALTH CA-25 Winjeel"
+  },
+  {
+   "code": "B222",
+   "name": "BELL 222"
+  },
+  {
+   "code": "SCAM",
+   "name": "AEROSPORT Scamp"
+  },
+  {
+   "code": "C175",
+   "name": "CESSNA 175 Skylark"
+  },
+  {
+   "code": "AC11",
+   "name": "NORTH AMERICAN ROCKWELL Commander 112/114"
+  },
+  {
+   "code": "MAME",
+   "name": "BLUE YONDER Merlin"
+  },
+  {
+   "code": "T210",
+   "name": "CESSNA T210 Turbo Centurion"
+  },
+  {
+   "code": "PT22",
+   "name": "RYAN PT-22 Recruit"
+  },
+  {
+   "code": "DH84",
+   "name": "DE HAVILLAND DH-84 Dragon"
+  },
+  {
+   "code": "DH90",
+   "name": "DE HAVILLAND DH-90 Dragonfly"
+  },
+  {
+   "code": "G202",
+   "name": "AKROTECH G-202"
+  },
+  {
+   "code": "RYST",
+   "name": "RYAN PT-20"
+  },
+  {
+   "code": "HORZ",
+   "name": "FISHER Horizon"
+  },
+  {
+   "code": "AC90",
+   "name": "NORTH AMERICAN ROCKWELL Turbo Commander 690/840"
+  },
+  {
+   "code": "HUNT",
+   "name": "HAWKER Hunter"
+  },
+  {
+   "code": "C441",
+   "name": "CESSNA 441 Conquest"
+  },
+  {
+   "code": "BOLT",
+   "name": "STEEN Skybolt"
+  },
+  {
+   "code": "EAGX",
+   "name": "EAGLE AIRCRAFT Eagle X-TS"
+  },
+  {
+   "code": "F406",
+   "name": "CESSNA F406 Caravan 2"
+  },
+  {
+   "code": "HLD4",
+   "name": "HALBERSTADT D-4 Replica"
+  },
+  {
+   "code": "EP9",
+   "name": "LANCASHIRE EP-9 Prospector"
+  },
+  {
+   "code": "Z50",
+   "name": "ZLIN Z-50"
+  },
+  {
+   "code": "C205",
+   "name": "CESSNA  205"
+  },
+  {
+   "code": "IMPU",
+   "name": "IMPULSE Xturn"
+  },
+  {
+   "code": "MESS",
+   "name": "MILES Messenger"
+  },
+  {
+   "code": "BDOG",
+   "name": "BRITISH AEROSPACE SA-3 Bulldog"
+  },
+  {
+   "code": "COUR",
+   "name": "HELIO Courier"
+  },
+  {
+   "code": "DHC3",
+   "name": "DE HAVILLAND DHC-3 Otter"
+  },
+  {
+   "code": "CB1",
+   "name": "HATZ CB-1 Classic"
+  },
+  {
+   "code": "BRB2",
+   "name": "BRANTLY B-2"
+  },
+  {
+   "code": "R100",
+   "name": "ROBIN Aiglon"
+  },
+  {
+   "code": "SIDE",
+   "name": "SMYTH Sidewinder"
+  },
+  {
+   "code": "M6",
+   "name": "MAULE M-6"
+  },
+  {
+   "code": "D4",
+   "name": "AUSTER D-4"
+  },
+  {
+   "code": "C310",
+   "name": "CESSNA 310"
+  },
+  {
+   "code": "CORS",
+   "name": "CHANCE VOUGHT F4U Corsair"
+  },
+  {
+   "code": "Y18T",
+   "name": "YAKOVLEV Yak-18T"
+  },
+  {
+   "code": "MD3R",
+   "name": "FLYITALIA MD-3 Rider "
+  },
+  {
+   "code": "BFIT",
+   "name": "BRISTOL F-2B Fighter Replica"
+  },
+  {
+   "code": "FINC",
+   "name": "FLEET Finch"
+  },
+  {
+   "code": "STRI",
+   "name": "SOPWITH Triplane"
+  },
+  {
+   "code": "SA10",
+   "name": "STOLP SA-100 Starduster"
+  },
+  {
+   "code": "XNON",
+   "name": "CELIER Xenon"
+  },
+  {
+   "code": "G3",
+   "name": "REMOS Mirage"
+  },
+  {
+   "code": "C404",
+   "name": "CESSNA 404 Titan"
+  },
+  {
+   "code": "D6",
+   "name": "AUSTER D-6"
+  },
+  {
+   "code": "B209",
+   "name": "MBB BO-209 Monsun"
+  },
+  {
+   "code": "I16",
+   "name": "POLIKARPOV I-16"
+  },
+  {
+   "code": "A119",
+   "name": "AGUSTA AW-119 Koala"
+  },
+  {
+   "code": "SR20",
+   "name": "CIRRUS SR-20"
+  },
+  {
+   "code": "FK9",
+   "name": "B&F TECHNIK FK-9"
+  },
+  {
+   "code": "FK14",
+   "name": "B&F TECHNIK FK-14 Polaris"
+  },
+  {
+   "code": "MJ8",
+   "name": "JURCA MJ-8 1-Nine-0"
+  },
+  {
+   "code": "PTMS",
+   "name": "PITTS S-12 Super Stinker"
+  },
+  {
+   "code": "G200",
+   "name": "AKROTECH G-200"
+  },
+  {
+   "code": "CAD2",
+   "name": "DELISLE Cadi"
+  },
+  {
+   "code": "ASO5",
+   "name": "ASSO AEREI 5 Champion"
+  },
+  {
+   "code": "MCR4",
+   "name": "DYNAERO MCR-2/4"
+  },
+  {
+   "code": "B212",
+   "name": "BELL 212"
+  },
+  {
+   "code": "FW90",
+   "name": "FOCKE-WULF Fw-190 Replica"
+  },
+  {
+   "code": "JPRO",
+   "name": "BAC P-84 Jet Provost"
+  },
+  {
+   "code": "MAGC",
+   "name": "IBIS Magic"
+  },
+  {
+   "code": "COUG",
+   "name": "ACRO SPORT Cougar"
+  },
+  {
+   "code": "BLKS",
+   "name": "AIRCRAFT SPRUCE Baby Lakes"
+  },
+  {
+   "code": "LAMA",
+   "name": "AEROSPATIALE SA-315 Lama"
+  },
+  {
+   "code": "BE77",
+   "name": "BEECH 77 Skipper"
+  },
+  {
+   "code": "VNOM",
+   "name": "DE HAVILLAND DH-112 Venom"
+  },
+  {
+   "code": "SD4",
+   "name": "TOMARK Viper"
+  },
+  {
+   "code": "UF13",
+   "name": "URBAN UFM-13 Lambada"
+  },
+  {
+   "code": "LNCE",
+   "name": "LANCAIR ES"
+  },
+  {
+   "code": "STRK",
+   "name": "BAC Strikemaster"
+  },
+  {
+   "code": "CHR1",
+   "name": "ELMWOOD CA-05 Christavia Mk1"
+  },
+  {
+   "code": "CH80",
+   "name": "ZENAIR CH-801 Stol"
+  },
+  {
+   "code": "CH65",
+   "name": "ZENAIR CH-650 Zodiac"
+  },
+  {
+   "code": "CH7",
+   "name": "HELI-SPORT CH-7 Kompress"
+  },
+  {
+   "code": "SLG2",
+   "name": "AIRPLANE FACTORY Sling 2"
+  },
+  {
+   "code": "HN70",
+   "name": "NICOLLIER Menestrel 2"
+  },
+  {
+   "code": "BL11",
+   "name": "BLERIOT 11 Replica"
+  },
+  {
+   "code": "MXS",
+   "name": "MXR MXS"
+  },
+  {
+   "code": "EXPL",
+   "name": "MCDONNELL-DOUGLAS MD-900 Explorer"
+  },
+  {
+   "code": "M9",
+   "name": "MAULE M-9"
+  },
+  {
+   "code": "BL17",
+   "name": "BELLANCA 17 Viking"
+  },
+  {
+   "code": "FA24",
+   "name": "FAIRCHILD F-24 Argus"
+  },
+  {
+   "code": "PNTH",
+   "name": "SPORT PERFORMANCE Panther"
+  },
+  {
+   "code": "LJ60",
+   "name": "LEARJET 60"
+  },
+  {
+   "code": "JRO",
+   "name": "DTA J-RO"
+  },
+  {
+   "code": "F2TH",
+   "name": "DASSAULT Falcon 2000"
+  },
+  {
+   "code": "BU33",
+   "name": "BUCKER Bu-133 Jungmeister"
+  },
+  {
+   "code": "C25B",
+   "name": "CESSNA 525B Citation CJ3"
+  },
+  {
+   "code": "MR35",
+   "name": "MURPHY SR-3500 Super Rebel"
+  },
+  {
+   "code": "PAY4",
+   "name": "PIPER PA-42-1000 Cheyenne 400"
+  },
+  {
+   "code": "PA14",
+   "name": "PIPER PA-14 Family Cruiser"
+  },
+  {
+   "code": "EN48",
+   "name": "ENSTROM TH-28"
+  },
+  {
+   "code": "PO2",
+   "name": "POLIKARPOV Po-2"
+  },
+  {
+   "code": "BUSH",
+   "name": "RAINBOW SKYREACH BushCat"
+  },
+  {
+   "code": "CDW1",
+   "name": "CHILTON DW-1"
+  },
+  {
+   "code": "H60",
+   "name": "SIKORSKY UH-60 Black Hawk"
+  },
+  {
+   "code": "QUIC",
+   "name": "Quickie"
+  },
+  {
+   "code": "CL60",
+   "name": "BOMBARDIER CL-600 Challenger"
+  },
+  {
+   "code": "AS32",
+   "name": "AEROSPATIALE AS-332 Super Puma"
+  },
+  {
+   "code": "PIAE",
+   "name": "PIPISTREL Alpha Electro"
+  },
+  {
+   "code": "XNOS",
+   "name": "SONEX Xenos"
+  },
+  {
+   "code": "PL9",
+   "name": "PAZMANY PL-9 Stork"
+  },
+  {
+   "code": "E300",
+   "name": "EXTRA EA-300/330/350"
+  },
+  {
+   "code": "FBA2",
+   "name": "FOUND FB-2 Bush Hawk"
+  },
+  {
+   "code": "E50P",
+   "name": "EMBRAER EMB-500 Phenom 100"
+  },
+  {
+   "code": "TEAL",
+   "name": "THURSTON Teal"
+  },
+  {
+   "code": "SLG4",
+   "name": "AIRPLANE FACTORY Sling 4"
+  },
+  {
+   "code": "S92",
+   "name": "SIKORSKY S-92 Helibus"
+  },
+  {
+   "code": "EC55",
+   "name": "AIRBUS HELICOPTERS EC-155"
+  },
+  {
+   "code": "LN27",
+   "name": "FALCOMPOSITE LN-27 Furio"
+  },
+  {
+   "code": "RS21",
+   "name": "RANS S-21 Outbound"
+  },
+  {
+   "code": "PC24",
+   "name": "PILATUS PC-24"
+  },
+  {
+   "code": "DA62",
+   "name": "DIAMOND DA-62"
+  },
+  {
+   "code": "AS65",
+   "name": "AEROSPATIALE AS-365 Dauphin 2"
+  },
+  {
+   "code": "MOSQ",
+   "name": "DE HAVILLAND DH-98 Mosquito"
+  },
+  {
+   "code": "VL3T",
+   "name": "JMB AIRCRAFT VL-3 Evolution Turbine"
+  },
+  {
+   "code": "H160",
+   "name": "AIRBUS HELICOPTERS H-160"
+  }
+ ]
+}

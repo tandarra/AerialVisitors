@@ -206,6 +206,12 @@ def write_painted(out):
         m = re.fullmatch(r"(.+?)(-2)?", p.stem)
         pics.setdefault(m.group(1), []).append(p.name)
     (out / "painted.json").write_text(json.dumps(pics, separators=(",", ":")), encoding="utf-8")
+    # index.json: aircraft types painted so far (ICAO code -> type name), like the bird repo's index.json
+    tp = ROOT / "planes" / "types.json"
+    if tp.exists():
+        by_slug = {slug(c): (c, v[0]) for c, v in json.loads(tp.read_text(encoding="utf-8")).items()}
+        idx = {by_slug[k][0]: by_slug[k][1] for k in sorted(pics) if k in by_slug}
+        (out / "index.json").write_text(json.dumps(idx, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 # ---------------------------------------------------------------- PROGRESS
@@ -224,6 +230,10 @@ def build_progress(codes, types, out, region):
         for r in rows:
             w.writerow([r["code"], r["name"], r["slug"], "yes" if r["side"] else "", "yes" if r["below"] else "",
                         {"ok": "Complete", "part": "Partial", "miss": "Missing"}[r["status"]]])
+    ml = out / f"master_list_{region}.json"          # frozen target list for the register: written once, never overwritten
+    if not ml.exists():
+        ml.write_text(json.dumps({"region": region, "frozen": datetime.date.today().isoformat(),
+                                  "types": [{"code": r["code"], "name": r["name"]} for r in rows]}, ensure_ascii=False, indent=1), encoding="utf-8")
     n = len(rows); done = sum(r["status"] == "ok" for r in rows); part = sum(r["status"] == "part" for r in rows)
     (out / f"progress_{region}.json").write_text(json.dumps({
         "region": region, "updated": datetime.datetime.now().isoformat(timespec="minutes"),
