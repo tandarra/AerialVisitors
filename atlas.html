@@ -73,6 +73,14 @@ h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bott
 .bdg{font:10px 'Courier New',monospace;border:1px solid var(--ink2);padding:0 5px;margin-left:5px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
 .bdg.star{background:#e9eef7;color:#243b66}.bdg.oneworld{background:#f7e9e6;color:#7a2a1f}.bdg.skyteam{background:#e6f1f6;color:#1d5470}
 .cty{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 4px}.cty>div{font-size:14px;border:1px solid var(--line);padding:3px 8px;background:var(--paper)}
+.finders{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 10px}
+.fwrap{position:relative;flex:1 1 260px;max-width:420px}
+.fwrap input{width:100%;max-width:none;min-width:0}
+.dd{position:absolute;z-index:5;left:0;right:0;top:100%;background:var(--paper2);border:1px solid var(--ink);border-top:0;max-height:300px;overflow:auto;box-shadow:3px 3px 0 rgba(20,20,20,.15)}
+.dd:empty{display:none}
+.dd div{padding:7px 10px;cursor:pointer;font-size:15px;border-bottom:1px solid var(--line);display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.dd div:hover,.dd div.hi{background:#fff8ec}.dd small{font:11px 'Courier New',monospace;color:var(--mute)}
+header.top .ally{margin:0}
 .toplink{float:right;font:12px 'Courier New',monospace;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--ink)}
 .err{padding:40px;text-align:center;font:italic 18px Georgia,serif;color:var(--miss)}
 </style>
@@ -83,6 +91,11 @@ h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bott
   <h1>Aerial Atlas</h1>
   <div class="sub" id="sub">loading&hellip;</div>
   <div class="bar"><i class="half" id="bhalf" style="width:0"></i><i id="bdone" style="width:0"></i></div>
+  <div class="finders">
+    <div class="fwrap"><input id="fc" placeholder="Find a country&hellip;" autocomplete="off"><div class="dd" id="fcdd"></div></div>
+    <div class="fwrap"><input id="fa" placeholder="Find an airline&hellip;" autocomplete="off"><div class="dd" id="fadd"></div></div>
+  </div>
+  <div class="ally" id="ally"></div>
 </div></header>
 
 <div class="wrap">
@@ -90,7 +103,6 @@ h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bott
   <div class="legend"><span>0%</span><span class="ramp"></span><span id="legtxt">100% of the register painted</span>
     <span style="margin-left:auto">Click a country to open its checklist</span></div>
 
-  <div class="ally" id="ally"></div>
   <div class="ctl">
     <label>Checklist covers the top</label>
     <select id="topn"><option>25</option><option selected>50</option><option>100</option><option>250</option><option value="0">all types</option></select>
@@ -293,7 +305,7 @@ $("airl").onclick = (e) => { airlinersOnly = !airlinersOnly; e.target.classList.
 $("world").onclick = () => choose(null);
 const setView = (v) => { view = v; $("vtypes").classList.toggle("on", v === "types"); $("vair").classList.toggle("on", v === "airlines"); drawGrid(); };
 $("vtypes").onclick = () => setView("types"); $("vair").onclick = () => setView("airlines");
-$("ally").onclick = (e) => { const b = e.target.closest("[data-ally]"); if (b) { ally = b.dataset.ally; drawAllyBar(); recolor(); drawGrid(); } };
+$("ally").onclick = (e) => { const b = e.target.closest("[data-ally]"); if (b) { ally = ally === b.dataset.ally && ally !== "all" ? "all" : b.dataset.ally; drawAllyBar(); recolor(); drawGrid(); } };
 $("grid").onclick = (e) => { const c = e.target.closest(".al[data-code]"); if (c) choose(c.dataset.code); };
 $("q").oninput = (e) => { query = e.target.value; drawGrid(); };
 document.querySelectorAll("#filters button").forEach((b) => b.onclick = () => {
@@ -307,6 +319,49 @@ $("paintnext").onclick = () => {
     href: URL.createObjectURL(new Blob([text], {type: "text/plain"}))});
   a.click(); URL.revokeObjectURL(a.href);
 };
+
+// ---- finders: country and airline search with a dropdown
+function finder(input, dd, results, pick) {
+  let hi = -1, items = [];
+  const close = () => { dd.innerHTML = ""; hi = -1; };
+  const render = () => { items = results(input.value.trim()); hi = items.length ? 0 : -1;
+    dd.innerHTML = items.map((it, i) => `<div data-i="${i}" class="${i === hi ? "hi" : ""}">${it.html}</div>`).join(""); };
+  input.addEventListener("input", render); input.addEventListener("focus", () => input.value && render());
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") return close();
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); if (!items.length) return;
+      hi = (hi + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
+      [...dd.children].forEach((c, i) => c.classList.toggle("hi", i === hi)); }
+    if (e.key === "Enter" && items[hi]) { pick(items[hi]); close(); input.value = ""; } });
+  dd.addEventListener("mousedown", (e) => { const d = e.target.closest("[data-i]"); if (d) { pick(items[+d.dataset.i]); close(); input.value = ""; } });
+  document.addEventListener("click", (e) => { if (!e.target.closest(".fwrap")) close(); });
+}
+const norm = (t) => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+function findCountry(q) {
+  if (!q) return [];
+  const n = norm(q);
+  return W.countries.filter((c) => norm(c.name).includes(n) || c.code.toLowerCase() === n)
+    .sort((a, b) => !norm(a.name).startsWith(n) - !norm(b.name).startsWith(n) || a.name.localeCompare(b.name)).slice(0, 8)
+    .map((c) => ({c, html: `${esc(c.name)} <small>${c.airframes.toLocaleString()} airframes</small>`}));
+}
+function findAirline(q) {
+  if (q.length < 2) return [];
+  const n = norm(q), byName = {}; W.countries.forEach((c) => (byName[c.name] = c));
+  const out = [];
+  for (const [k, v] of Object.entries(OPS)) {
+    const hay = norm(v[0] + " " + k + " " + v[2]);
+    if (!hay.includes(n) || !byName[v[1]]) continue;
+    const rank = (norm(v[0]).startsWith(n) ? 0 : 2) - ((ALLY_BY[k] || []).length ? 1 : 0);
+    out.push({k, v, c: byName[v[1]], rank});
+  }
+  return out.sort((a, b) => a.rank - b.rank || a.v[0].localeCompare(b.v[0])).slice(0, 10)
+    .map((r) => ({...r, html: `${esc(r.v[0])}${badges(r.k)} <small>${esc(r.v[1])} · ${esc(r.k)}</small>`}));
+}
+function setupFinders() {
+  finder($("fc"), $("fcdd"), findCountry, (it) => { query = ""; $("q").value = ""; choose(it.c.code); });
+  finder($("fa"), $("fadd"), findAirline, (it) => { view = "airlines"; $("vtypes").classList.remove("on"); $("vair").classList.add("on");
+    query = it.v[0]; $("q").value = query; choose(it.c.code); });
+}
 
 (async () => {
   try {
@@ -338,6 +393,7 @@ $("paintnext").onclick = () => {
     $("sub").textContent = `${done.toLocaleString()} of ${all.length.toLocaleString()} ICAO types painted · ${W.countries.length} country registers · ${Object.keys(painted).length} paintings`;
     $("bdone").style.width = done / all.length * 100 + "%"; $("bhalf").style.width = (done + part) / all.length * 100 + "%";
     $("note").textContent = `Registers from the Mictronics aircraft database via tar1090-db; country from ICAO 24-bit address blocks. Updated ${W.updated.slice(0, 10)}.`;
+    setupFinders();
     recolor();
     loadCat().then((cat) => { const n = Object.values(cat.countries).reduce((a, c) => a + c.airlines.reduce((b, al) => b + al.fleet.reduce((d, f) => d + f.files.length, 0), 0), 0);
       if (n) $("sub").textContent += ` · ${n} airline livery paintings`; });

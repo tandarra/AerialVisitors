@@ -1,27 +1,399 @@
 {
  "checked": "2026-10-28",
  "about": "Full members of the three global airline alliances, by ICAO airline code (the same codes as planes/operators.json). 'affiliates' are regional or subsidiary carriers that fly under the alliance banner.",
- "notes": ["Asiana (AAR) leaves Star Alliance on 16 Dec 2026 and is absorbed by Korean Air (SkyTeam) on 17 Dec 2026, leaving Star Alliance with 25 members.",
-           "ITA Airways joined Star Alliance (previously SkyTeam). SAS is now in SkyTeam (previously Star Alliance)."],
- "sources": ["insideflyer.com three-alliances article (26 Jun 2026): Star 26, oneworld 17 incl. affiliates, SkyTeam 18", "Star Alliance press release 23 Jun 2026 (Asiana exit)", "airhex.com alliance rosters (ICAO codes, affiliates)"],
+ "notes": [
+  "Asiana (AAR) leaves Star Alliance on 16 Dec 2026 and is absorbed by Korean Air (SkyTeam) on 17 Dec 2026, leaving Star Alliance with 25 members.",
+  "ITA Airways joined Star Alliance (previously SkyTeam). SAS is now in SkyTeam (previously Star Alliance)."
+ ],
+ "sources": [
+  "oneworld.com/members and en.wikipedia.org/wiki/Oneworld (oneworld confirmed 2026-10-28)",
+  "Star Alliance and SkyTeam: insideflyer.com (26 Jun 2026), Star Alliance press release 23 Jun 2026 (Asiana exit), airhex.com rosters; NOT yet confirmed against staralliance.com / skyteam.com"
+ ],
  "alliances": [
-  {"key": "star", "name": "Star Alliance", "short": "Star", "members": [
-    ["AEE","Aegean Airlines"],["ACA","Air Canada"],["CCA","Air China"],["AIC","Air India"],["ANZ","Air New Zealand"],["ANA","All Nippon Airways"],
-    ["AAR","Asiana Airlines"],["AUA","Austrian Airlines"],["AVA","Avianca"],["BEL","Brussels Airlines"],["CMP","Copa Airlines"],["CTN","Croatia Airlines"],
-    ["MSR","EgyptAir"],["ETH","Ethiopian Airlines"],["EVA","EVA Air"],["ITY","ITA Airways"],["LOT","LOT Polish Airlines"],["DLH","Lufthansa"],
-    ["CSZ","Shenzhen Airlines"],["SIA","Singapore Airlines"],["SAA","South African Airways"],["SWR","Swiss"],["TAP","TAP Air Portugal"],["THA","Thai Airways"],
-    ["THY","Turkish Airlines"],["UAL","United Airlines"]], "affiliates": []},
-  {"key": "oneworld", "name": "oneworld", "short": "oneworld", "members": [
-    ["ASA","Alaska Airlines"],["AAL","American Airlines"],["BAW","British Airways"],["CPA","Cathay Pacific"],["FJI","Fiji Airways"],["FIN","Finnair"],
-    ["IBE","Iberia"],["JAL","Japan Airlines"],["MAS","Malaysia Airlines"],["OMA","Oman Air"],["QFA","Qantas"],["QTR","Qatar Airways"],
-    ["RAM","Royal Air Maroc"],["RJA","Royal Jordanian"],["ALK","SriLankan Airlines"]],
-   "affiliates": [["EFW","BA Euroflyer","BAW"],["FJA","Fiji Link","FJI"],["IBS","Iberia Express","IBE"],["ANE","Iberia Regional by Air Nostrum","IBE"],
-    ["JLJ","J-Air","JAL"],["JAC","Japan Air Commuter","JAL"],["JTA","Japan Transocean Air","JAL"],["QLK","QantasLink","QFA"],["RXP","Royal Air Maroc Express","RAM"]]},
-  {"key": "skyteam", "name": "SkyTeam", "short": "SkyTeam", "members": [
-    ["ARG","Aerolineas Argentinas"],["AMX","Aeromexico"],["AEA","Air Europa"],["AFR","Air France"],["CAL","China Airlines"],["CES","China Eastern"],
-    ["DAL","Delta Air Lines"],["GIA","Garuda Indonesia"],["KLM","KLM"],["KQA","Kenya Airways"],["KAL","Korean Air"],["MEA","Middle East Airlines"],
-    ["SAS","SAS Scandinavian Airlines"],["SVA","Saudia"],["ROT","TAROM"],["HVN","Vietnam Airlines"],["VIR","Virgin Atlantic"],["CXA","Xiamen Airlines"]],
-   "affiliates": [["SLI","Aeromexico Connect","AMX"],["HOP","Air France Hop","AFR"],["KLC","KLM Cityhopper","KLM"],["SZS","SAS Connect","SAS"],["SVS","SAS Link","SAS"],
-    ["CSH","Shanghai Airlines","CES"],["VGI","Virgin Atlantic International","VIR"]]}
+  {
+   "key": "star",
+   "name": "Star Alliance",
+   "short": "Star",
+   "members": [
+    [
+     "AEE",
+     "Aegean Airlines"
+    ],
+    [
+     "ACA",
+     "Air Canada"
+    ],
+    [
+     "CCA",
+     "Air China"
+    ],
+    [
+     "AIC",
+     "Air India"
+    ],
+    [
+     "ANZ",
+     "Air New Zealand"
+    ],
+    [
+     "ANA",
+     "All Nippon Airways"
+    ],
+    [
+     "AAR",
+     "Asiana Airlines"
+    ],
+    [
+     "AUA",
+     "Austrian Airlines"
+    ],
+    [
+     "AVA",
+     "Avianca"
+    ],
+    [
+     "BEL",
+     "Brussels Airlines"
+    ],
+    [
+     "CMP",
+     "Copa Airlines"
+    ],
+    [
+     "CTN",
+     "Croatia Airlines"
+    ],
+    [
+     "MSR",
+     "EgyptAir"
+    ],
+    [
+     "ETH",
+     "Ethiopian Airlines"
+    ],
+    [
+     "EVA",
+     "EVA Air"
+    ],
+    [
+     "ITY",
+     "ITA Airways"
+    ],
+    [
+     "LOT",
+     "LOT Polish Airlines"
+    ],
+    [
+     "DLH",
+     "Lufthansa"
+    ],
+    [
+     "CSZ",
+     "Shenzhen Airlines"
+    ],
+    [
+     "SIA",
+     "Singapore Airlines"
+    ],
+    [
+     "SAA",
+     "South African Airways"
+    ],
+    [
+     "SWR",
+     "Swiss"
+    ],
+    [
+     "TAP",
+     "TAP Air Portugal"
+    ],
+    [
+     "THA",
+     "Thai Airways"
+    ],
+    [
+     "THY",
+     "Turkish Airlines"
+    ],
+    [
+     "UAL",
+     "United Airlines"
+    ]
+   ],
+   "affiliates": []
+  },
+  {
+   "key": "oneworld",
+   "name": "oneworld",
+   "short": "oneworld",
+   "members": [
+    [
+     "ASA",
+     "Alaska Airlines"
+    ],
+    [
+     "AAL",
+     "American Airlines"
+    ],
+    [
+     "BAW",
+     "British Airways"
+    ],
+    [
+     "CPA",
+     "Cathay Pacific"
+    ],
+    [
+     "FJI",
+     "Fiji Airways"
+    ],
+    [
+     "FIN",
+     "Finnair"
+    ],
+    [
+     "IBE",
+     "Iberia"
+    ],
+    [
+     "JAL",
+     "Japan Airlines"
+    ],
+    [
+     "MAS",
+     "Malaysia Airlines"
+    ],
+    [
+     "OMA",
+     "Oman Air"
+    ],
+    [
+     "QFA",
+     "Qantas"
+    ],
+    [
+     "QTR",
+     "Qatar Airways"
+    ],
+    [
+     "RAM",
+     "Royal Air Maroc"
+    ],
+    [
+     "RJA",
+     "Royal Jordanian"
+    ],
+    [
+     "ALK",
+     "SriLankan Airlines"
+    ]
+   ],
+   "affiliates": [
+    [
+     "EFW",
+     "BA Euroflyer",
+     "BAW"
+    ],
+    [
+     "CFE",
+     "BA CityFlyer",
+     "BAW"
+    ],
+    [
+     "FJA",
+     "Fiji Link",
+     "FJI"
+    ],
+    [
+     "FCM",
+     "Nordic Regional Airlines",
+     "FIN"
+    ],
+    [
+     "IBS",
+     "Iberia Express",
+     "IBE"
+    ],
+    [
+     "ANE",
+     "Iberia Regional by Air Nostrum",
+     "IBE"
+    ],
+    [
+     "JLJ",
+     "J-Air",
+     "JAL"
+    ],
+    [
+     "JAC",
+     "Japan Air Commuter",
+     "JAL"
+    ],
+    [
+     "JTA",
+     "Japan Transocean Air",
+     "JAL"
+    ],
+    [
+     "NTH",
+     "Hokkaido Air System",
+     "JAL"
+    ],
+    [
+     "QLK",
+     "QantasLink",
+     "QFA"
+    ],
+    [
+     "QNZ",
+     "Jetconnect",
+     "QFA"
+    ],
+    [
+     "RXP",
+     "Royal Air Maroc Express",
+     "RAM"
+    ],
+    [
+     "HAL",
+     "Hawaiian Airlines",
+     "ASA"
+    ],
+    [
+     "QXE",
+     "Horizon Air",
+     "ASA"
+    ],
+    [
+     "SKW",
+     "SkyWest (Alaska flights only)",
+     "ASA"
+    ]
+   ],
+   "future": [
+    [
+     "PAL",
+     "Philippine Airlines",
+     "2027"
+    ]
+   ],
+   "note": "Confirmed 2026-10-28 against oneworld.com/members (15 full members) and Wikipedia's Oneworld table. Hawaiian Airlines joined 23 Apr 2026, listed jointly with Alaska. Philippine Airlines is announced for 2027. S7 is suspended since Apr 2022."
+  },
+  {
+   "key": "skyteam",
+   "name": "SkyTeam",
+   "short": "SkyTeam",
+   "members": [
+    [
+     "ARG",
+     "Aerolineas Argentinas"
+    ],
+    [
+     "AMX",
+     "Aeromexico"
+    ],
+    [
+     "AEA",
+     "Air Europa"
+    ],
+    [
+     "AFR",
+     "Air France"
+    ],
+    [
+     "CAL",
+     "China Airlines"
+    ],
+    [
+     "CES",
+     "China Eastern"
+    ],
+    [
+     "DAL",
+     "Delta Air Lines"
+    ],
+    [
+     "GIA",
+     "Garuda Indonesia"
+    ],
+    [
+     "KLM",
+     "KLM"
+    ],
+    [
+     "KQA",
+     "Kenya Airways"
+    ],
+    [
+     "KAL",
+     "Korean Air"
+    ],
+    [
+     "MEA",
+     "Middle East Airlines"
+    ],
+    [
+     "SAS",
+     "SAS Scandinavian Airlines"
+    ],
+    [
+     "SVA",
+     "Saudia"
+    ],
+    [
+     "ROT",
+     "TAROM"
+    ],
+    [
+     "HVN",
+     "Vietnam Airlines"
+    ],
+    [
+     "VIR",
+     "Virgin Atlantic"
+    ],
+    [
+     "CXA",
+     "Xiamen Airlines"
+    ]
+   ],
+   "affiliates": [
+    [
+     "SLI",
+     "Aeromexico Connect",
+     "AMX"
+    ],
+    [
+     "HOP",
+     "Air France Hop",
+     "AFR"
+    ],
+    [
+     "KLC",
+     "KLM Cityhopper",
+     "KLM"
+    ],
+    [
+     "SZS",
+     "SAS Connect",
+     "SAS"
+    ],
+    [
+     "SVS",
+     "SAS Link",
+     "SAS"
+    ],
+    [
+     "CSH",
+     "Shanghai Airlines",
+     "CES"
+    ],
+    [
+     "VGI",
+     "Virgin Atlantic International",
+     "VIR"
+    ]
+   ]
+  }
  ]
 }
