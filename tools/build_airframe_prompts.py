@@ -17,7 +17,9 @@ sys.path.insert(0, str(ROOT))
 import plane_illustrations as pi
 
 STYLE = ("Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. VERY FEW MARKS: the aircraft is 2-4 flat "
-         "colour zones with sharp boundaries, no rivets, no panel lines, no individual windows. Confident sumi-e ink linework, "
+         "colour zones with sharp boundaries, no rivets, no panel lines. "
+         "WINDOWS ARE REQUIRED: draw the cockpit windscreen and side windows, and a continuous row of small simple cabin "
+         "windows (a dark dashed band) along the fuselage, plus the passenger doors, exactly as the real type has them. Confident sumi-e ink linework, "
          "soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. "
          "Plain neutral livery: bare white and grey with one indigo stripe. No airline colours. "
          "The aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame. "

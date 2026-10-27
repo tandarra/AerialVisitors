@@ -45,8 +45,9 @@ PAINTABLE = set("LSAHGT")      # ICAO description class: Land, Sea, Amphibian, H
 PROMPT = (
     "Generate a {pose} {art} {name} (ICAO type {code}) in the style of an Edo-period Japanese woodblock print, "
     "painted as carefully as a kacho-e bird. "
-    "Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, "
-    "no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. "
+    "Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines. "
+    "WINDOWS ARE REQUIRED: the cockpit windscreen and a continuous row of small simple cabin windows (a dark dashed band) "
+    "along the fuselage, plus passenger doors, exactly as the real type has them. Confident sumi-e ink linework, soft watercolour washes. "
     "Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. "
     "{livery}\n\n"
     "The aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across "
