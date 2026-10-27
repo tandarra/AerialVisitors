@@ -87,9 +87,10 @@ h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bott
 
 <div class="wrap">
   <div class="mapbox"><div id="mapwrap"><div class="tip" id="tip"></div></div></div>
-  <div class="legend"><span>0%</span><span class="ramp"></span><span>100% of the register painted</span>
+  <div class="legend"><span>0%</span><span class="ramp"></span><span id="legtxt">100% of the register painted</span>
     <span style="margin-left:auto">Click a country to open its checklist</span></div>
 
+  <div class="ally" id="ally"></div>
   <div class="ctl">
     <label>Checklist covers the top</label>
     <select id="topn"><option>25</option><option selected>50</option><option>100</option><option>250</option><option value="0">all types</option></select>
@@ -109,11 +110,10 @@ h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bott
     <button data-f="part">Partial</button><button data-f="miss">Missing</button>
     <input id="q" placeholder="Search name or ICAO code&hellip;">
   </div>
-  <div class="ally" id="ally" hidden></div>
   <div class="grid" id="grid"></div>
 
   <div class="rank"><h3>Registers</h3>
-    <table><thead><tr><th>#</th><th>Country</th><th class="num">Airframes</th><th class="num">Painted</th><th class="barc"></th></tr></thead>
+    <table><thead id="rankhead"><tr><th>#</th><th>Country</th><th class="num">Airframes</th><th class="num">Painted</th><th class="barc"></th></tr></thead>
     <tbody id="rank"></tbody></table></div>
   <p class="note" id="note"></p>
 </div>
@@ -158,10 +158,26 @@ const badges = (code) => (ALLY_BY[code] || []).map((k) => `<span class="bdg ${k}
 const inAlly = (code) => ally === "all" ? true : ally === "none" ? !(ALLY_BY[code] || []).length : (ALLY_BY[code] || []).includes(ally);
 const icaoOf = (al) => (al.icao || al.key || "").toUpperCase();
 function drawAllyBar() {
-  const bar = $("ally"); bar.hidden = view !== "airlines";
-  if (view !== "airlines") return;
+  const bar = $("ally");
   bar.innerHTML = `<label>Alliance</label>` + [["all", "All"], ...ALL.alliances.map((a) => [a.key, a.name]), ["none", "Not aligned"]]
     .map(([k, n]) => `<button data-ally="${k}" class="${ally === k ? "on" : ""}">${esc(n)}</button>`).join("");
+}
+const ALLY_KEYS = () => (ALL ? ALL.alliances.map((a) => a.key) : []);
+const allyName = () => ally === "none" ? "Not aligned" : ally === "all" ? "" : ALL.alliances.find((a) => a.key === ally).name;
+const allyActive = () => ALLY_KEYS().includes(ally);
+// countries (by name) that have members of the chosen alliance, with how many of those airlines are fully painted
+function allyCountries() {
+  const a = ALL.alliances.find((x) => x.key === ally), by = {}, done = new Set();
+  Object.values(CAT.countries).forEach((c) => c.airlines.forEach((al) => { const sc = airlineScore(al); if (sc.n && sc.ok === sc.n) done.add(icaoOf(al)); }));
+  [...a.members, ...a.affiliates].forEach((m) => { const v = OPS[m[0]]; if (!v) return; const c = (by[v[1]] ||= {n: 0, ok: 0}); c.n++; if (done.has(m[0])) c.ok++; });
+  return by;
+}
+function allyRows() {      // aircraft types flown by the chosen alliance's airlines that have a fleet list (optionally one country)
+  const by = {};
+  Object.entries(CAT.countries).forEach(([cc, c]) => { if (sel && cc !== sel.code) return;
+    c.airlines.forEach((al) => { if (inAlly(icaoOf(al))) al.fleet.forEach((f) => (by[f.type] ||= new Set()).add(al.name)); }); });
+  return Object.entries(by).filter(([code]) => byCode[code]).map(([code, names]) => ({t: byCode[code], n: byCode[code][4] || 0, st: status(code), by: [...names]}))
+    .sort((a, b) => b.by.length - a.by.length || b.n - a.n);
 }
 const markSel = () => document.querySelectorAll("#land path").forEach((p) => p.classList.toggle("sel", sel && p.dataset.code === sel.code));
 const airlineScore = (al) => { const n = al.fleet.length * 2, ok = al.fleet.reduce((a, f) => a + f.files.length, 0); return {n, ok}; };
@@ -226,25 +242,33 @@ async function drawAirlines() {
 
 function drawGrid() {
   if (view === "airlines") return void drawAirlines();
-  $("ally").hidden = true;
   document.querySelectorAll("#filters button").forEach((b) => (b.hidden = false)); $("paintnext").hidden = false;
-  const rows = sel ? checklist(sel) : worldList(), s = score(rows);
+  const useAlly = ally !== "all" && CAT && ALL, rows = useAlly ? allyRows() : sel ? checklist(sel) : worldList(), s = score(rows);
   $("pick").hidden = false; $("filters").hidden = false;
   $("pname").textContent = sel ? sel.name : "World";
-  $("pmeta").textContent = `${s.ok} of ${s.n} complete · ${s.part} partial · top ${topN || "all"} ${airlinersOnly ? "airliners" : "types"}${sel ? ` on the ${sel.name} register` : " worldwide"}`;
+  $("pmeta").textContent = useAlly ? `${allyName()}: ${rows.length} aircraft types flown by catalogued airlines${sel ? " in " + sel.name : ""} · ${s.ok} complete · ${s.part} partial · more appear as fleet lists are added` : `${s.ok} of ${s.n} complete · ${s.part} partial · top ${topN || "all"} ${airlinersOnly ? "airliners" : "types"}${sel ? ` on the ${sel.name} register` : " worldwide"}`;
   $("pbdone").style.width = (s.n ? s.ok / s.n * 100 : 0) + "%";
   $("pbhalf").style.width = (s.n ? (s.ok + s.part) / s.n * 100 : 0) + "%";
   const q = query.toLowerCase();
   const shown = rows.filter((r) => (filter === "all" || r.st === filter) && (!q || (r.t[1] + " " + r.t[0]).toLowerCase().includes(q)));
   $("grid").innerHTML = shown.length ? shown.map((r) => { const [code, name] = r.t, p = painted[slug(code)] || [];
     return `<div class="c"><div class="imgs">${p.length ? p.map((f) => `<img src="planes/${f}" alt="">`).join("") : `<div class="ph">${esc(code)}</div>`}</div>
-      <div class="n">${esc(name)}</div><div class="s">${esc(code)} · ${r.n.toLocaleString()} airframe${r.n === 1 ? "" : "s"}</div>
+      <div class="n">${esc(name)}</div><div class="s">${esc(code)} · ${r.n.toLocaleString()} airframe${r.n === 1 ? "" : "s"}</div>${r.by ? `<div class="s">flown by ${esc(r.by.join(", "))}</div>` : ""}
       <div class="chips"><span class="${r.st}">${{ok: "complete", part: "partial", miss: "not painted"}[r.st]}</span></div></div>`; }).join("")
     : `<div class="err" style="grid-column:1/-1">Nothing matches.</div>`;
   document.querySelectorAll("#land path").forEach((p) => p.classList.toggle("sel", sel && p.dataset.code === sel.code));
 }
 
 function drawRank() {
+  if (allyActive() && CAT && OPS) {      // country index through an alliance: countries with members, by member count
+    const by = allyCountries();
+    const rows = W.countries.filter((c) => by[c.name]).map((c) => ({c, m: by[c.name]})).sort((a, b) => b.m.n - a.m.n || a.c.name.localeCompare(b.c.name));
+    $("rankhead").innerHTML = `<tr><th>#</th><th>Country</th><th class="num">${esc(allyName())} airlines</th><th class="num">Fully painted</th><th class="barc"></th></tr>`;
+    $("rank").innerHTML = rows.map(({c, m}, i) => `<tr data-code="${c.code}"><td>${i + 1}</td><td>${esc(c.name)}</td><td class="num">${m.n}</td><td class="num">${m.ok}/${m.n}</td>
+      <td class="barc"><div class="bar"><i style="width:${m.ok / m.n * 100}%"></i></div></td></tr>`).join("");
+    return;
+  }
+  $("rankhead").innerHTML = `<tr><th>#</th><th>Country</th><th class="num">Airframes</th><th class="num">Painted</th><th class="barc"></th></tr>`;
   const rows = W.countries.map((c) => ({c, s: score(checklist(c))})).sort((a, b) => b.c.airframes - a.c.airframes);
   $("rank").innerHTML = rows.map(({c, s}, i) => `<tr data-code="${c.code}"><td>${i + 1}</td><td>${esc(c.name)}</td>
     <td class="num">${c.airframes.toLocaleString()}</td><td class="num">${s.ok}/${s.n}</td>
@@ -252,10 +276,13 @@ function drawRank() {
 }
 
 function recolor() {
+  if ($("legtxt")) $("legtxt").textContent = allyActive() ? "airlines fully painted (pale = no member airlines)" : "100% of the register painted";
   const byCode2 = {};
   W.countries.forEach((c) => (byCode2[c.code] = score(checklist(c))));
-  document.querySelectorAll("#land path").forEach((p) => { const s = byCode2[p.dataset.code];
-    p.style.setProperty("--fill", s ? ramp(s.frac) : "var(--land)"); });
+  const act = allyActive() && CAT && OPS, by = act ? allyCountries() : null, nameOf = {};
+  W.countries.forEach((c) => (nameOf[c.code] = c.name));
+  document.querySelectorAll("#land path").forEach((p) => { const s = byCode2[p.dataset.code], m = act && by[nameOf[p.dataset.code]];
+    p.style.setProperty("--fill", act ? (m ? ramp(0.3 + 0.7 * m.ok / m.n) : "#f1ece0") : s ? ramp(s.frac) : "var(--land)"); });
   drawRank();
 }
 function choose(code) { sel = code ? W.countries.find((c) => c.code === code) : null; drawGrid(); $("pick").scrollIntoView({behavior: "smooth", block: "nearest"}); }
@@ -266,7 +293,7 @@ $("airl").onclick = (e) => { airlinersOnly = !airlinersOnly; e.target.classList.
 $("world").onclick = () => choose(null);
 const setView = (v) => { view = v; $("vtypes").classList.toggle("on", v === "types"); $("vair").classList.toggle("on", v === "airlines"); drawGrid(); };
 $("vtypes").onclick = () => setView("types"); $("vair").onclick = () => setView("airlines");
-$("ally").onclick = (e) => { const b = e.target.closest("[data-ally]"); if (b) { ally = b.dataset.ally; drawGrid(); } };
+$("ally").onclick = (e) => { const b = e.target.closest("[data-ally]"); if (b) { ally = b.dataset.ally; drawAllyBar(); recolor(); drawGrid(); } };
 $("grid").onclick = (e) => { const c = e.target.closest(".al[data-code]"); if (c) choose(c.dataset.code); };
 $("q").oninput = (e) => { query = e.target.value; drawGrid(); };
 document.querySelectorAll("#filters button").forEach((b) => b.onclick = () => {
@@ -284,6 +311,7 @@ $("paintnext").onclick = () => {
 (async () => {
   try {
     const [w, p, topo] = await Promise.all([getJSON("planes/world.json"), getJSON("planes/painted.json").catch(() => ({})), getJSON("planes/world-110m.json")]);
+    await Promise.all([loadAll(), loadCat(), loadOps()]); drawAllyBar();
     W = w; painted = p; W.types.forEach((t) => (byCode[t[0]] = t));
     W.countries.forEach((c) => { if (c.iso) byIso[+c.iso] = c; });
 
