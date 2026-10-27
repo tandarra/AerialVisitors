@@ -1,0 +1,454 @@
+{
+ "region": "NZ",
+ "checked": "2026-10-28",
+ "about": "New Zealand-based commercial airlines and the aircraft types they fly, for painting each airline's real livery on each type. Edit freely: add an airline or type and re-run tools/build_livery_prompts.py. 'key' becomes the file suffix (a320-anz.webp). Counts are approximate; sources are listed per airline.",
+ "style_ref_line": "Image 1 is the STYLE reference: match its style, line weight, palette, level of detail and cream ground exactly, but do NOT copy its aircraft type or livery.",
+ "not_included": "Fleets not verified, so left out: Parcelair (Freightways, 2 Boeing 737 freighters per Wikipedia, undated), Texel Air, Sunair, Golden Bay Air, Air Safaris, Glenorchy Air, Air Kaikoura, Air Napier, Salt Air and other small Cessna / GippsAero GA8 operators. International airlines flying into New Zealand are covered by 'plane_illustrations.py --sightings', which finds the airline and type of everything actually seen overhead.",
+ "airlines": [
+  {
+   "key": "anz",
+   "name": "Air New Zealand",
+   "kind": "Scheduled, domestic and international",
+   "base": "Auckland",
+   "source": "https://en.wikipedia.org/wiki/Air_New_Zealand_fleet (data as of Aug 2025)",
+   "fleet": [
+    {
+     "type": "A320",
+     "label": "Airbus A320-200",
+     "count": 17,
+     "note": "domestic A320ceo",
+     "slug": "a320-anz",
+     "files": {
+      "side": "a320-anz.png",
+      "below": "a320-anz-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of an Airbus A320-200 (ICAO type A320) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an Airbus A320-200: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of an Airbus A320-200 (ICAO type A320) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an Airbus A320-200: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "A20N",
+     "label": "Airbus A320neo",
+     "count": 6,
+     "note": "A320neo",
+     "slug": "a20n-anz",
+     "files": {
+      "side": "a20n-anz.png",
+      "below": "a20n-anz-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of an Airbus A320neo (ICAO type A20N) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an Airbus A320neo: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of an Airbus A320neo (ICAO type A20N) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an Airbus A320neo: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "A21N",
+     "label": "Airbus A321neo",
+     "count": 14,
+     "note": "A321neo, domestic and international",
+     "slug": "a21n-anz",
+     "files": {
+      "side": "a21n-anz.png",
+      "below": "a21n-anz-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of an Airbus A321neo (ICAO type A21N) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an Airbus A321neo: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of an Airbus A321neo (ICAO type A21N) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an Airbus A321neo: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "AT76",
+     "label": "ATR 72-600",
+     "count": 31,
+     "note": "ATR 72-600, regional (ex Mount Cook)",
+     "slug": "at76-anz",
+     "files": {
+      "side": "at76-anz.png",
+      "below": "at76-anz-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of an ATR 72-600 (ICAO type AT76) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an ATR 72-600: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of an ATR 72-600 (ICAO type AT76) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an ATR 72-600: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "DH8C",
+     "label": "De Havilland Canada Dash 8 Q300",
+     "count": 23,
+     "note": "Dash 8 Q300, regional (ex Air Nelson)",
+     "slug": "dh8c-anz",
+     "files": {
+      "side": "dh8c-anz.png",
+      "below": "dh8c-anz-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a De Havilland Canada Dash 8 Q300 (ICAO type DH8C) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a De Havilland Canada Dash 8 Q300: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a De Havilland Canada Dash 8 Q300 (ICAO type DH8C) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a De Havilland Canada Dash 8 Q300: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "B789",
+     "label": "Boeing 787-9 Dreamliner",
+     "count": 14,
+     "note": "787-9 Dreamliner",
+     "slug": "b789-anz",
+     "files": {
+      "side": "b789-anz.png",
+      "below": "b789-anz-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Boeing 787-9 Dreamliner (ICAO type B789) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 787-9 Dreamliner: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Boeing 787-9 Dreamliner (ICAO type B789) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 787-9 Dreamliner: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "B77W",
+     "label": "Boeing 777-300ER",
+     "count": 10,
+     "note": "777-300ER, includes 3 ex-Cathay Pacific dry leases; retiring in the 2030s",
+     "slug": "b77w-anz",
+     "files": {
+      "side": "b77w-anz.png",
+      "below": "b77w-anz-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Boeing 777-300ER (ICAO type B77W) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 777-300ER: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Boeing 777-300ER (ICAO type B77W) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 777-300ER: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    }
+   ],
+   "pending": [
+    {
+     "type": "B78X",
+     "label": "Boeing 787-10 Dreamliner",
+     "count": 5,
+     "note": "787-10 on order, not yet delivered",
+     "slug": "b78x-anz",
+     "files": {
+      "side": "b78x-anz.png",
+      "below": "b78x-anz-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Boeing 787-10 Dreamliner (ICAO type B78X) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 787-10 Dreamliner: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Boeing 787-10 Dreamliner (ICAO type B78X) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air New Zealand: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 787-10 Dreamliner: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    }
+   ]
+  },
+  {
+   "key": "cva",
+   "name": "Air Chathams",
+   "kind": "Scheduled, Chatham Islands and Auckland, Wellington, Christchurch",
+   "base": "Chatham Islands",
+   "source": "https://en.wikipedia.org/wiki/Air_Chathams (Convair 580 retired 2021, Metro III 2024, DC-3 2025)",
+   "fleet": [
+    {
+     "type": "AT75",
+     "label": "ATR 72-500",
+     "count": 2,
+     "note": "ATR 72-500",
+     "slug": "at75-cva",
+     "files": {
+      "side": "at75-cva.png",
+      "below": "at75-cva-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of an ATR 72-500 (ICAO type AT75) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air Chathams: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an ATR 72-500: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of an ATR 72-500 (ICAO type AT75) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air Chathams: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for an ATR 72-500: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "SF34",
+     "label": "Saab 340",
+     "count": 6,
+     "note": "Saab 340A and 340B",
+     "slug": "sf34-cva",
+     "files": {
+      "side": "sf34-cva.png",
+      "below": "sf34-cva-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Saab 340 (ICAO type SF34) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air Chathams: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Saab 340: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Saab 340 (ICAO type SF34) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air Chathams: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Saab 340: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "C206",
+     "label": "Cessna 206 Stationair",
+     "count": 1,
+     "note": "Chatham Island to Pitt Island",
+     "slug": "c206-cva",
+     "files": {
+      "side": "c206-cva.png",
+      "below": "c206-cva-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Cessna 206 Stationair (ICAO type C206) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air Chathams: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Cessna 206 Stationair: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Cessna 206 Stationair (ICAO type C206) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Air Chathams: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Cessna 206 Stationair: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    }
+   ]
+  },
+  {
+   "key": "originair",
+   "name": "Originair",
+   "kind": "Scheduled, Nelson and Wellington",
+   "base": "Nelson",
+   "source": "https://en.wikipedia.org/wiki/Originair; Flightradar24 turboprop article (2026)",
+   "fleet": [
+    {
+     "type": "JS31",
+     "label": "British Aerospace Jetstream 31",
+     "count": 1,
+     "note": "BAe Jetstream 31",
+     "slug": "js31-originair",
+     "files": {
+      "side": "js31-originair.png",
+      "below": "js31-originair-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a British Aerospace Jetstream 31 (ICAO type JS31) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Originair: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a British Aerospace Jetstream 31: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a British Aerospace Jetstream 31 (ICAO type JS31) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Originair: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a British Aerospace Jetstream 31: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "JS32",
+     "label": "British Aerospace Jetstream 32",
+     "count": 2,
+     "note": "BAe Jetstream 32",
+     "slug": "js32-originair",
+     "files": {
+      "side": "js32-originair.png",
+      "below": "js32-originair-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a British Aerospace Jetstream 32 (ICAO type JS32) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Originair: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a British Aerospace Jetstream 32: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a British Aerospace Jetstream 32 (ICAO type JS32) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Originair: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a British Aerospace Jetstream 32: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    }
+   ]
+  },
+  {
+   "key": "sounds",
+   "name": "Sounds Air",
+   "kind": "Scheduled, Marlborough Sounds, Wellington, Nelson, Taupo",
+   "base": "Picton",
+   "source": "https://en.wikipedia.org/wiki/Sounds_Air (as of Sept 2025)",
+   "fleet": [
+    {
+     "type": "C208",
+     "label": "Cessna 208 Caravan",
+     "count": 4,
+     "note": "Cessna 208 Caravan and stretched 208B Grand Caravan; PC-12s being sold (announced July 2025)",
+     "slug": "c208-sounds",
+     "files": {
+      "side": "c208-sounds.png",
+      "below": "c208-sounds-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Cessna 208 Caravan (ICAO type C208) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Sounds Air: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Cessna 208 Caravan: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Cessna 208 Caravan (ICAO type C208) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Sounds Air: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Cessna 208 Caravan: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    }
+   ]
+  },
+  {
+   "key": "barrier",
+   "name": "Barrier Air",
+   "kind": "Scheduled, Auckland, Great Barrier Island, Whangarei",
+   "base": "Auckland",
+   "source": "https://barrierair.kiwi/about-us/fleet",
+   "fleet": [
+    {
+     "type": "C208",
+     "label": "Cessna 208B Grand Caravan",
+     "count": null,
+     "note": "Cessna Grand Caravan; fleet count not published",
+     "slug": "c208-barrier",
+     "files": {
+      "side": "c208-barrier.png",
+      "below": "c208-barrier-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Cessna 208B Grand Caravan (ICAO type C208) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Barrier Air: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Cessna 208B Grand Caravan: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Cessna 208B Grand Caravan (ICAO type C208) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Barrier Air: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Cessna 208B Grand Caravan: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    }
+   ]
+  },
+  {
+   "key": "sif",
+   "name": "Stewart Island Flights",
+   "kind": "Scheduled, Invercargill and Stewart Island",
+   "base": "Invercargill",
+   "source": "https://en.wikipedia.org/wiki/Stewart_Island_Flights (as of Jan 2024)",
+   "fleet": [
+    {
+     "type": "BN2P",
+     "label": "Britten-Norman Islander",
+     "count": 2,
+     "note": "Britten-Norman Islander",
+     "slug": "bn2p-sif",
+     "files": {
+      "side": "bn2p-sif.png",
+      "below": "bn2p-sif-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Britten-Norman Islander (ICAO type BN2P) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Stewart Island Flights: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Britten-Norman Islander: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Britten-Norman Islander (ICAO type BN2P) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Stewart Island Flights: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Britten-Norman Islander: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "C185",
+     "label": "Cessna 185 Skywagon",
+     "count": 1,
+     "note": "Cessna 185 Skywagon",
+     "slug": "c185-sif",
+     "files": {
+      "side": "c185-sif.png",
+      "below": "c185-sif-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Cessna 185 Skywagon (ICAO type C185) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Stewart Island Flights: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Cessna 185 Skywagon: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Cessna 185 Skywagon (ICAO type C185) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Stewart Island Flights: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Cessna 185 Skywagon: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "PA32",
+     "label": "Piper PA-32 Cherokee Six",
+     "count": 1,
+     "note": "Piper Cherokee Six",
+     "slug": "pa32-sif",
+     "files": {
+      "side": "pa32-sif.png",
+      "below": "pa32-sif-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Piper PA-32 Cherokee Six (ICAO type PA32) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Stewart Island Flights: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Piper PA-32 Cherokee Six: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Piper PA-32 Cherokee Six (ICAO type PA32) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Stewart Island Flights: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Piper PA-32 Cherokee Six: the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    }
+   ]
+  },
+  {
+   "key": "awk",
+   "name": "Airwork",
+   "kind": "Freight, overnight parcels",
+   "base": "Auckland",
+   "source": "https://en.wikipedia.org/wiki/Airwork (Aug 2025; Airwork Holdings went into receivership July 2025, sale reported pending)",
+   "fleet": [
+    {
+     "type": "B733",
+     "label": "Boeing 737-300 freighter (no passenger windows)",
+     "count": 1,
+     "note": "737-300SF",
+     "slug": "b733-awk",
+     "files": {
+      "side": "b733-awk.png",
+      "below": "b733-awk-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Boeing 737-300 freighter (no passenger windows) (ICAO type B733) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Airwork: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 737-300 freighter (no passenger windows): the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Boeing 737-300 freighter (no passenger windows) (ICAO type B733) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Airwork: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 737-300 freighter (no passenger windows): the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    },
+    {
+     "type": "B734",
+     "label": "Boeing 737-400 freighter (no passenger windows)",
+     "count": 5,
+     "note": "737-400SF",
+     "slug": "b734-awk",
+     "files": {
+      "side": "b734-awk.png",
+      "below": "b734-awk-2.png"
+     },
+     "have": {
+      "side": false,
+      "below": false
+     },
+     "prompts": {
+      "side": "Generate a side-profile view of a Boeing 737-400 freighter (no passenger windows) (ICAO type B734) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Airwork: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 737-400 freighter (no passenger windows): the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Side profile, level flight, undercarriage retracted (skids or wheels tucked for a helicopter: show it in a steady hover). Nose to the right.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas.",
+      "below": "Generate a three-quarter front view from slightly below, banking and climbing, of a Boeing 737-400 freighter (no passenger windows) (ICAO type B734) in the style of an Edo-period Japanese woodblock print, painted as carefully as a kacho-e bird. Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. Painted in the real, current livery of Airwork: its actual colour scheme, tail design and fuselage markings, simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's name and logo where the real aircraft carries them, drawn in the same woodblock style. NO registration marks and no other lettering.\n\nThe aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; NO registration marks.\n\n- Correct anatomy for a Boeing 737-400 freighter (no passenger windows): the right number and position of engines, wings, tail surfaces and landing gear (or rotors and skids) as the real type has them.\n- Seen from below and ahead, climbing away over the viewer, one wing lower than the other, as you would see it passing overhead.\n\nProduce ONE new image of ONE aircraft on its own 1:1 canvas."
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -21,6 +21,8 @@ Typical runs:
     python plane_illustrations.py --country NZ --top 50 --style-ref planes/raw/a20n.png
     python plane_illustrations.py --list paint_next.txt                 # list exported from the atlas ("Paint next")
     python plane_illustrations.py --livery A320:ANZ --livery AT76:ANZ   # an operator's colours on a type
+    python plane_illustrations.py --fleet liveries/nz.json              # every NZ airline's real livery on each type it flies
+    python plane_illustrations.py --sighted-liveries                    # real liveries of every airline + type seen overhead
     python plane_illustrations.py --cutout-only                         # cut out images you made by hand
     python plane_illustrations.py --progress --country NZ --top 100     # master index for a country
 
@@ -41,26 +43,41 @@ PAINTABLE = set("LSAHGT")      # ICAO description class: Land, Sea, Amphibian, H
 
 # Prompt adapted from Avian Visitors by Teddy Warner (CC-BY-NC-SA-4.0), same house style as the birds.
 PROMPT = (
-    "Generate a {pose} {name} (ICAO type {code}) in the style of an Edo-period Japanese woodblock print, "
+    "Generate a {pose} {art} {name} (ICAO type {code}) in the style of an Edo-period Japanese woodblock print, "
     "painted as carefully as a kacho-e bird. "
     "Render with VERY FEW MARKS: the aircraft is 2-4 flat colour zones with sharp boundaries, no rivets, no panel lines, "
     "no windows drawn one by one. Confident sumi-e ink linework, soft watercolour washes. "
     "Earthy palette: burnt umber, ochre, indigo, vermillion, muted greens. "
     "{livery}\n\n"
     "The aircraft sits on a CONSISTENT WARM CREAM ground (aged mulberry paper), filling the frame, identical across "
-    "every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery, NO text, "
-    "NO lettering, NO logos, NO registration marks.\n\n"
-    "- Correct anatomy for a {name}: the right number and position of engines, wings, tail surfaces and landing gear "
+    "every print. This is the only background: NO sky, NO clouds, NO runway, NO ground, NO scenery. {marks}\n\n"
+    "- Correct anatomy for {art} {name}: the right number and position of engines, wings, tail surfaces and landing gear "
     "(or rotors and skids) as the real type has them.\n"
     "- {rule}"
 )
 LIVERY_GENERIC = "Plain neutral livery: bare white and grey with one indigo stripe. No airline colours."
 LIVERY_OPR = ("Painted in the colour scheme of {opr} as 2-3 simple flat colour blocks (fuselage, tail, engines). "
               "Colour only: NO logos, NO lettering, NO emblems.")
+LIVERY_REAL = ("Painted in the real, current livery of {opr}: its actual colour scheme, tail design and fuselage markings, "
+               "simplified into flat woodblock colour zones so the airline is instantly recognisable. Include the airline's "
+               "name and logo where the real aircraft carries them, drawn in the same woodblock style. "
+               "NO registration marks and no other lettering.")
+MARKS_PLAIN = "NO text, NO lettering, NO logos, NO registration marks anywhere in the image."
+MARKS_REAL = ("NO text or lettering anywhere in the image except the airline's own name and logo on the aircraft itself; "
+              "NO registration marks.")
+
+
+def make_prompt(code, name, pose_kw, livery):
+    """The full text prompt for one image: used by the generator and by tools/build_livery_prompts.py."""
+    art = "an" if name[:1].lower() in "aeiou" else "a"
+    marks = MARKS_REAL if livery.startswith("Painted in the real") else MARKS_PLAIN
+    return PROMPT.format(code=code, name=name, livery=livery, art=art, marks=marks, **pose_kw)
+
+
 POSES = {
-    "": dict(pose="side-profile view of a", rule="Side profile, level flight, undercarriage retracted (skids or wheels "
+    "": dict(pose="side-profile view of", rule="Side profile, level flight, undercarriage retracted (skids or wheels "
                                                   "tucked for a helicopter: show it in a steady hover). Nose to the right."),
-    "-2": dict(pose="three-quarter front view from slightly below, banking and climbing, of a",
+    "-2": dict(pose="three-quarter front view from slightly below, banking and climbing, of",
                rule="Seen from below and ahead, climbing away over the viewer, one wing lower than the other, "
                     "as you would see it passing overhead."),
 }
@@ -123,7 +140,7 @@ class OutOfCredit(Exception):
 
 def paint(gkey, model, code, name, pose_kw, livery, style_ref=None, photo_ref=None, tries=4):
     import requests
-    text = PROMPT.format(code=code, name=name, livery=livery, **pose_kw)
+    text = make_prompt(code, name, pose_kw, livery)
     parts, notes, n = [], "", 1
     if style_ref:
         parts.append(img_part(style_ref))
@@ -238,6 +255,11 @@ def main():
     ap.add_argument("--sightings", action="store_true", help="paint every type logged overhead in planes/sightings.json")
     ap.add_argument("--types", nargs="+", help="ICAO type codes to paint, e.g. A20N B789")
     ap.add_argument("--list", help="paint the types in this file ('Name (ICAO)' per line, e.g. paint_next.txt from the atlas)")
+    ap.add_argument("--fleet", help="liveries file (e.g. liveries/nz.json): paint every airline's real livery on each type it flies")
+    ap.add_argument("--sighted-liveries", action="store_true",
+                    help="real liveries for every airline + type combination logged overhead in planes/sightings.json")
+    ap.add_argument("--real-liveries", action="store_true",
+                    help="with --livery: the airline's real livery and logo (default is colour blocks only)")
     ap.add_argument("--livery", action="append", help="TYPE:OPR, an operator's colours on a type, e.g. A320:ANZ (repeatable)")
     ap.add_argument("--limit", type=int, help="stop after this many new paintings")
     ap.add_argument("--force", action="store_true", help="repaint even if a file exists")
@@ -301,9 +323,28 @@ def main():
         c, _, o = spec.upper().partition(":")
         if c not in types or o not in operators or o == "ZZZ":
             sys.exit(f"--livery {spec}: need a known ICAO type and a known ICAO airline code (e.g. A320:ANZ)")
-        jobs.append((f"{slug(c)}-{slug(o)}", c, types[c][0], LIVERY_OPR.format(opr=operators[o][0])))
+        jobs.append((f"{slug(c)}-{slug(o)}", c, types[c][0],
+                     (LIVERY_REAL if a.real_liveries else LIVERY_OPR).format(opr=operators[o][0])))
+    if a.fleet:
+        fp = Path(a.fleet) if Path(a.fleet).is_absolute() else ROOT / a.fleet
+        if not fp.exists():
+            sys.exit(f"{fp} not found")
+        for al in json.loads(fp.read_text(encoding="utf-8"))["airlines"]:
+            for f in al["fleet"]:
+                if f["type"] not in types:
+                    sys.exit(f"{al['name']}: unknown ICAO type {f['type']}")
+                jobs.append((f"{slug(f['type'])}-{slug(al['key'])}", f["type"], f.get("label") or types[f["type"]][0],
+                             LIVERY_REAL.format(opr=al["name"])))
+    if a.sighted_liveries:
+        sp = ROOT / "planes" / "sightings.json"
+        if not sp.exists():
+            sys.exit("planes/sightings.json is missing: run  python tools/log_sightings.py  first.")
+        for c, v in json.loads(sp.read_text(encoding="utf-8")).get("types", {}).items():
+            for o in v.get("operators", {}):
+                if c in types and o in operators and paintable(types[c]):
+                    jobs.append((f"{slug(c)}-{slug(o)}", c, types[c][0], LIVERY_REAL.format(opr=operators[o][0])))
     if not jobs:
-        sys.exit("Nothing to paint: give --country (with --top), --types, --list or --livery. See --help.")
+        sys.exit("Nothing to paint: give --country (with --top), --types, --list, --livery, --fleet or --sighted-liveries. See --help.")
     jobs.sort(key=lambda j: j[2])
     print(f"{len(jobs)} aircraft")
     if a.list_only:

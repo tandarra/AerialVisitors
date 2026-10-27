@@ -94,3 +94,11 @@ Then commit and push. To look at it locally: `python -m http.server`, then open 
 Illustrations and code are shared under
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), matching Avian Visitors, whose prompt template
 and style guidelines this project adapts. Non-commercial use only, with attribution. Images are generated with Google Gemini.
+
+## Airline liveries
+
+`liveries/nz.json` lists New Zealand's scheduled airlines and the types they fly (checked 2026-10-28, with sources).
+
+- `python tools/build_livery_prompts.py` writes `liveries/NZ_prompts.json`, `NZ_prompts.md`, `NZ_checklist.md` and an interactive `NZ_checklist.html`: every prompt (side profile and from below) to paste into the Gemini app, plus a self-ticking checklist. Save each image as the file name shown in `planes/raw/`, then run `python plane_illustrations.py --cutout-only`.
+- With an API key: `python plane_illustrations.py --fleet liveries/nz.json` paints the whole list; `--sighted-liveries` paints the airline and type pairs your own feed has logged (this covers international carriers).
+- `--real-liveries` asks for the airline's real colours, name and logo. Airline names and logos are trademarks: keep these images for personal, non-commercial use.
