@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overhead Now</title>
+<meta name="description" content="Aircraft flying over a home station, painted as Edo-period woodblock prints.">
+<meta name="theme-color" content="#efe6d2">
+<style>
+:root{
+  --paper:#efe6d2; --paper2:#f6f0e2; --ink:#141414; --mute:#6b6457; --line:#cfc4ac; --red:#b3261e; --blue:#2c4a7a;
+  --serif:Georgia,'Iowan Old Style','Times New Roman',serif; --mono:'Courier New',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif)}
+body{min-height:100vh;display:flex;flex-direction:column;
+  background-image:radial-gradient(rgba(107,90,60,.06) 1px,transparent 1px);background-size:3px 3px}
+a{color:inherit}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding:28px clamp(16px,4vw,56px) 14px;border-bottom:3px solid var(--ink)}
+.kicker{font:600 11px/1.2 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+h1{margin:6px 0 0;font-size:clamp(30px,5vw,54px);line-height:1;font-weight:700;letter-spacing:-.01em}
+.meta{text-align:right;font:12px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.meta b{color:var(--ink);font-weight:700}
+.summary{padding:12px clamp(16px,4vw,56px);font:12px var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  border-bottom:1px solid var(--line);display:flex;gap:18px;flex-wrap:wrap}
+.summary span::before{content:"";display:inline-block;width:22px;height:1px;background:var(--ink);vertical-align:middle;margin-right:10px}
+main{flex:1;padding:22px clamp(16px,4vw,56px) 10px}
+.state{padding:60px 12px;text-align:center;font:italic 20px var(--serif);color:var(--mute)}
+h2{margin:30px 0 6px;font-size:20px;border-bottom:2px solid var(--ink);padding-bottom:6px;
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 small{font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:400}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:14px}
+.card{border:1px solid var(--line);background:var(--paper2);padding:10px 12px 12px;display:flex;flex-direction:column;gap:5px;
+  cursor:pointer;position:relative;box-shadow:2px 2px 0 rgba(20,20,20,.08);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 rgba(20,20,20,.18)}
+.pic{height:120px;display:flex;align-items:center;justify-content:center}
+.pic img{max-width:100%;max-height:120px;object-fit:contain;mix-blend-mode:multiply}
+.pic .ph{width:100%;height:100%;border:1px dashed var(--line);display:grid;place-items:center;
+  font:700 26px var(--mono);letter-spacing:.08em;color:var(--line)}
+.card .n{font-weight:700;font-size:15px;line-height:1.15}
+.card .s{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.card .o{font-style:italic;font-size:13px;color:var(--ink)}
+.card .d{font:12px var(--mono);color:var(--mute);display:flex;gap:10px;flex-wrap:wrap}
+.card .d b{color:var(--ink);font-weight:700}
+.tag{position:absolute;top:8px;right:8px;font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);
+  border:1px solid currentColor;padding:1px 5px}
+.seen .card{cursor:default}
+footer{padding:18px clamp(16px,4vw,56px) 26px;font:12px var(--mono);letter-spacing:.06em;color:var(--mute);
+  border-top:1px dashed var(--ink);margin-top:26px;display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
+</style>
+</head>
+<body>
+<header>
+  <div><div class="kicker">Aerial Visitors &middot; a listening post for aircraft</div><h1>Overhead Now</h1></div>
+  <div class="meta"><div><b id="count">&hellip;</b> aircraft within <b id="radius">&ndash;</b> nm</div><div id="updated">connecting&hellip;</div></div>
+</header>
+<div class="summary" id="summary"></div>
+<main>
+  <div id="live"></div>
+  <div id="seenwrap" class="seen" hidden>
+    <h2>Seen here before <small id="seennote"></small></h2>
+    <div class="grid" id="seen"></div>
+  </div>
+</main>
+<footer>
+  <span>Woodblock paintings of every ICAO aircraft type: <a href="atlas.html">the Aerial Atlas</a></span>
+  <span>Live positions from the free <a href="https://adsb.lol">adsb.lol</a> network</span>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const slug = (c) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+let types = {}, operators = {}, painted = {}, liveRows = [];
+
+const getJSON = async (u) => { const r = await fetch(u, {cache: "no-cache"}); if (!r.ok) throw new Error(u + " " + r.status); return r.json(); };
+
+// Pick the painting: the airline's own colours if there is one, else the plain type.
+function pictures(code, opr) {
+  const s = slug(code), o = opr ? `${s}-${slug(opr)}` : null;
+  return painted[o] || painted[s] || [];
+}
+function operatorOf(call) {
+  const m = /^([A-Z]{3})\d/.exec((call || "").toUpperCase());
+  return m && operators[m[1]] && m[1] !== "ZZZ" ? m[1] : null;
+}
+function card(a) {
+  const info = types[a.type], name = info ? info[0] : a.type, opr = operatorOf(a.call);
+  const pics = pictures(a.type, opr);
+  const img = pics.length ? `<img src="planes/${pics[0]}" data-pics="${pics.join(",")}" alt="${esc(name)}">`
+                          : `<div class="ph">${esc(a.type)}</div>`;
+  const bits = [];
+  if (a.alt != null) bits.push(`<span><b>${Math.round(a.alt / 100) * 100}</b> ft</span>`);
+  if (a.gs != null) bits.push(`<span><b>${Math.round(a.gs)}</b> kt</span>`);
+  if (a.dist != null) bits.push(`<span><b>${a.dist.toFixed(1)}</b> nm</span>`);
+  return `<div class="card">${pics.length ? "" : '<span class="tag">not painted</span>'}
+    <div class="pic">${img}</div><div class="n">${esc(name)}</div>
+    <div class="s">${esc(a.call || a.reg || a.hex)}${a.reg && a.call ? " &middot; " + esc(a.reg) : ""}</div>
+    ${opr ? `<div class="o">${esc(operators[opr][0])}</div>` : ""}<div class="d">${bits.join("")}</div></div>`;
+}
+// click a card to flip between its two paintings (side / from below)
+document.addEventListener("click", (e) => {
+  const img = e.target.closest(".card")?.querySelector("img[data-pics]");
+  if (!img) return;
+  const pics = img.dataset.pics.split(",");
+  if (pics.length > 1) img.src = "planes/" + pics[(pics.indexOf(img.getAttribute("src").slice(7)) + 1) % pics.length];
+});
+
+function render(data) {
+  const ac = data.aircraft, kinds = new Set(ac.map((a) => a.type));
+  const done = [...kinds].filter((t) => pictures(t).length).length;
+  $("count").textContent = ac.length; $("radius").textContent = data.radius_nm;
+  $("updated").textContent = "updated " + new Date(data.updated).toLocaleTimeString();
+  $("summary").innerHTML = `<span>${kinds.size} type${kinds.size === 1 ? "" : "s"} overhead</span>` +
+    `<span>${done} of ${kinds.size} painted</span>`;
+  $("live").innerHTML = ac.length ? `<div class="grid">${ac.map(card).join("")}</div>`
+    : `<div class="state">The sky is quiet. Nothing in range right now.</div>`;
+}
+
+async function poll() {
+  try { render(await getJSON("api/overhead")); }
+  catch (e) {
+    $("updated").textContent = "live feed unavailable";
+    $("count").textContent = "0";
+    $("live").innerHTML = `<div class="state">No live feed here. It needs the Cloudflare Function at /api/overhead, so it won't run from a plain file or static host.</div>`;
+  }
+}
+
+(async () => {
+  const [t, o, p, s] = await Promise.allSettled([getJSON("planes/types.json"), getJSON("planes/operators.json"),
+    getJSON("planes/painted.json"), getJSON("planes/seen.json")]);
+  types = t.value || {}; operators = o.value || {}; painted = p.value || {};
+  if (s.value && s.value.types) {
+    const rows = Object.entries(s.value.types).sort((a, b) => b[1].n - a[1].n).slice(0, 24);
+    if (rows.length) {
+      $("seenwrap").hidden = false;
+      $("seennote").textContent = `${Object.keys(s.value.types).length} types logged`;
+      $("seen").innerHTML = rows.map(([code, v]) => {
+        return card({type: code, call: code, reg: "", hex: code, alt: null, gs: null, dist: null})
+          .replace('<div class="d"></div>', `<div class="d"><span><b>${v.n}</b> airframe${v.n === 1 ? "" : "s"}</span><span>last ${esc(v.last)}</span></div>`);
+      }).join("");
+    }
+  }
+  poll(); setInterval(poll, 15000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aerial Atlas</title>
+<meta name="description" content="Woodblock-style aircraft illustrations by country of registration. Pick a country to see its checklist and what's been painted.">
+<style>
+:root{--paper:#efebe1;--paper2:#f6f3ea;--land:#e2dac7;--ink:#141414;--ink2:#3a352c;--mute:#6b665c;--line:#d6d0c2;
+--ok:#2f6b3a;--part:#a8741a;--miss:#b3261e;--fill-lo:#e2dac7;--fill-hi:#4d7a56}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:3px solid var(--ink);padding:22px 0 14px}
+header.top h1{margin:0;font-size:34px;letter-spacing:.01em}
+.kicker,.sub{font:12px 'Courier New',monospace;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+.sub{margin-top:6px}
+.bar{height:10px;background:repeating-linear-gradient(90deg,rgba(0,0,0,.12) 0 2px,transparent 2px 4px);margin:10px 0 8px;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--ink)}.bar i.half{background:#a8a093}
+.mapbox{margin:18px 0 10px;border:1px solid var(--ink2);background:var(--paper2);padding:10px;position:relative}
+.mapbox::after{content:"";position:absolute;inset:4px;border:1px solid var(--line);pointer-events:none}
+#mapwrap{position:relative;width:100%;aspect-ratio:1000/509;overflow:hidden}
+#mapwrap svg{width:100%;height:100%;display:block}
+.sea{fill:none;stroke:var(--ink2);stroke-width:.8}
+.grat{fill:none;stroke:#b9b09c;stroke-width:.35;stroke-dasharray:2 3}
+#land path{fill:var(--fill,var(--land));stroke:var(--ink2);stroke-width:.35;stroke-linejoin:round;cursor:pointer;transition:stroke-width .15s}
+#land path.hov{stroke:var(--ink);stroke-width:1.5}
+#land path.sel{stroke:var(--ink);stroke-width:2}
+.tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .15s;background:var(--paper2);border:1px solid var(--ink);
+padding:4px 8px;font:11px 'Courier New',monospace;color:var(--mute);white-space:nowrap;z-index:2;box-shadow:2px 2px 0 rgba(20,20,20,.2)}
+.tip b{display:block;font:700 14px Georgia,serif;color:var(--ink)}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font:12px 'Courier New',monospace;color:var(--mute);align-items:center;margin:4px 0 22px}
+.legend .ramp{display:inline-block;width:160px;height:10px;border:1px solid var(--ink);background:linear-gradient(90deg,var(--fill-lo),var(--fill-hi))}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 18px}
+.ctl label{font:12px 'Courier New',monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+button,select,input{font:13px 'Courier New',monospace;border:1px solid var(--ink);background:transparent;padding:5px 10px;color:var(--ink)}
+button{cursor:pointer}button:hover{background:#fff8ec}button.on{background:var(--ink);color:var(--paper)}
+input{flex:1;min-width:180px;max-width:340px;font:15px Georgia,serif;background:var(--paper2);padding:6px 10px}
+.pick{border:1px solid var(--ink2);background:var(--paper2);padding:12px 14px;margin:0 0 18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.pick b{font-size:22px}.pick .m{font:12px 'Courier New',monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.pick .bar{flex:1 1 200px;margin:0}
+.pick .go{background:var(--ink);color:var(--paper)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:0 0 30px}
+.c{border:1px solid var(--line);background:var(--paper2);padding:10px;display:flex;flex-direction:column;gap:6px}
+.imgs{display:flex;gap:4px;height:84px;align-items:center;justify-content:center}
+.imgs img{max-height:84px;max-width:50%;object-fit:contain;mix-blend-mode:multiply}
+.ph{width:60px;height:60px;border:1px dashed var(--line);display:grid;place-items:center;font:700 13px 'Courier New',monospace;color:var(--line)}
+.n{font-weight:700;font-size:15px;line-height:1.15}.s{font:12px 'Courier New',monospace;color:var(--mute)}
+.chips{display:flex;gap:4px;flex-wrap:wrap}.chips span{font:10px 'Courier New',monospace;border:1px solid currentColor;padding:1px 5px;text-transform:uppercase}
+.ok{color:var(--ok)}.part{color:var(--part)}.miss{color:var(--miss)}
+.rank table{width:100%;border-collapse:collapse;margin:6px 0 24px;font-size:15px}
+.rank td,.rank th{padding:6px 6px;border-bottom:1px solid var(--line);text-align:left}
+.rank th{font:11px 'Courier New',monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;font-weight:400}
+.rank .num{text-align:right;font-family:'Courier New',monospace;font-size:13px;white-space:nowrap}
+.rank tbody tr{cursor:pointer}.rank tbody tr:hover{background:#fff8ec}
+.rank .barc{width:28%}.rank .barc .bar{margin:0}
+h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bottom:6px}
+.note{font:12px 'Courier New',monospace;color:var(--mute);margin:0 0 40px}
+.err{padding:40px;text-align:center;font:italic 18px Georgia,serif;color:var(--miss)}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="kicker">Aerial Visitors</div>
+  <h1>Aerial Atlas</h1>
+  <div class="sub" id="sub">loading&hellip;</div>
+  <div class="bar"><i class="half" id="bhalf" style="width:0"></i><i id="bdone" style="width:0"></i></div>
+</div></header>
+
+<div class="wrap">
+  <div class="mapbox"><div id="mapwrap"><div class="tip" id="tip"></div></div></div>
+  <div class="legend"><span>0%</span><span class="ramp"></span><span>100% of the register painted</span>
+    <span style="margin-left:auto">Click a country to open its checklist</span></div>
+
+  <div class="ctl">
+    <label>Checklist covers the top</label>
+    <select id="topn"><option>25</option><option selected>50</option><option>100</option><option>250</option><option value="0">all types</option></select>
+    <label>types by airframes on the register</label>
+    <button id="airl" title="Airliners, turboprops and bizjets only">Airliners only</button>
+  </div>
+
+  <div class="pick" id="pick" hidden>
+    <div><b id="pname"></b><div class="m" id="pmeta"></div></div>
+    <div class="bar"><i class="half" id="pbhalf"></i><i id="pbdone"></i></div>
+    <button class="go" id="paintnext" title="Download a list for plane_illustrations.py --list">Paint next &darr;</button>
+    <button id="world">World view</button>
+  </div>
+  <div class="ctl" id="filters" hidden>
+    <button class="on" data-f="all">All</button><button data-f="ok">Complete</button>
+    <button data-f="part">Partial</button><button data-f="miss">Missing</button>
+    <input id="q" placeholder="Search name or ICAO code&hellip;">
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <div class="rank"><h3>Registers</h3>
+    <table><thead><tr><th>#</th><th>Country</th><th class="num">Airframes</th><th class="num">Painted</th><th class="barc"></th></tr></thead>
+    <tbody id="rank"></tbody></table></div>
+  <p class="note" id="note"></p>
+</div>
+
+<script src="vendor/d3-array.min.js"></script>
+<script src="vendor/d3-geo.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const slug = (c) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+const getJSON = async (u) => { const r = await fetch(u, {cache: "no-cache"}); if (!r.ok) throw new Error(`${u}: ${r.status}`); return r.json(); };
+const PAINTABLE = "LSAHGT";
+let W, painted = {}, byCode = {}, byIso = {}, sel = null, filter = "all", query = "", topN = 50, airlinersOnly = false;
+
+const isAirliner = (t) => t[2].length === 3 && t[2][0] === "L" && "234".includes(t[2][1]) && "JT".includes(t[2][2]) && "MH".includes(t[3]);
+const status = (code) => { const p = painted[slug(code)] || [], a = p.includes(slug(code) + ".webp"), b = p.includes(slug(code) + "-2.webp");
+  return a && b ? "ok" : a || b ? "part" : "miss"; };
+
+// A country's checklist: its register's paintable types, most numerous first.
+function checklist(c) {
+  const rows = [];
+  c.sp.forEach((i, k) => { const t = W.types[i];
+    if (t[1] && PAINTABLE.includes(t[2][0]) && (!airlinersOnly || isAirliner(t))) rows.push({t, n: c.n[k], st: status(t[0])}); });
+  return topN ? rows.slice(0, topN) : rows;
+}
+const worldList = () => W.types.filter((t) => t[1] && PAINTABLE.includes(t[2][0]) && (!airlinersOnly || isAirliner(t)))
+  .sort((a, b) => b[4] - a[4]).slice(0, topN || 1e9).map((t) => ({t, n: t[4], st: status(t[0])}));
+const score = (rows) => { const ok = rows.filter((r) => r.st === "ok").length, part = rows.filter((r) => r.st === "part").length;
+  return {ok, part, n: rows.length, frac: rows.length ? (ok + part / 2) / rows.length : 0}; };
+
+const ramp = (f) => { const a = [226, 218, 199], b = [77, 122, 86]; // land -> green
+  return `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * Math.min(1, f))).join(",")})`; };
+
+function drawGrid() {
+  const rows = sel ? checklist(sel) : worldList(), s = score(rows);
+  $("pick").hidden = false; $("filters").hidden = false;
+  $("pname").textContent = sel ? sel.name : "World";
+  $("pmeta").textContent = `${s.ok} of ${s.n} complete · ${s.part} partial · top ${topN || "all"} ${airlinersOnly ? "airliners" : "types"}${sel ? ` on the ${sel.name} register` : " worldwide"}`;
+  $("pbdone").style.width = (s.n ? s.ok / s.n * 100 : 0) + "%";
+  $("pbhalf").style.width = (s.n ? (s.ok + s.part) / s.n * 100 : 0) + "%";
+  const q = query.toLowerCase();
+  const shown = rows.filter((r) => (filter === "all" || r.st === filter) && (!q || (r.t[1] + " " + r.t[0]).toLowerCase().includes(q)));
+  $("grid").innerHTML = shown.length ? shown.map((r) => { const [code, name] = r.t, p = painted[slug(code)] || [];
+    return `<div class="c"><div class="imgs">${p.length ? p.map((f) => `<img src="planes/${f}" alt="">`).join("") : `<div class="ph">${esc(code)}</div>`}</div>
+      <div class="n">${esc(name)}</div><div class="s">${esc(code)} · ${r.n.toLocaleString()} airframe${r.n === 1 ? "" : "s"}</div>
+      <div class="chips"><span class="${r.st}">${{ok: "complete", part: "partial", miss: "not painted"}[r.st]}</span></div></div>`; }).join("")
+    : `<div class="err" style="grid-column:1/-1">Nothing matches.</div>`;
+  document.querySelectorAll("#land path").forEach((p) => p.classList.toggle("sel", sel && p.dataset.code === sel.code));
+}
+
+function drawRank() {
+  const rows = W.countries.map((c) => ({c, s: score(checklist(c))})).sort((a, b) => b.c.airframes - a.c.airframes);
+  $("rank").innerHTML = rows.map(({c, s}, i) => `<tr data-code="${c.code}"><td>${i + 1}</td><td>${esc(c.name)}</td>
+    <td class="num">${c.airframes.toLocaleString()}</td><td class="num">${s.ok}/${s.n}</td>
+    <td class="barc"><div class="bar"><i class="half" style="width:${(s.ok + s.part) / Math.max(1, s.n) * 100}%"></i><i style="width:${s.ok / Math.max(1, s.n) * 100}%"></i></div></td></tr>`).join("");
+}
+
+function recolor() {
+  const byCode2 = {};
+  W.countries.forEach((c) => (byCode2[c.code] = score(checklist(c))));
+  document.querySelectorAll("#land path").forEach((p) => { const s = byCode2[p.dataset.code];
+    p.style.setProperty("--fill", s ? ramp(s.frac) : "var(--land)"); });
+  drawRank();
+}
+function choose(code) { sel = code ? W.countries.find((c) => c.code === code) : null; drawGrid(); $("pick").scrollIntoView({behavior: "smooth", block: "nearest"}); }
+function refresh() { recolor(); drawGrid(); }
+
+$("topn").onchange = (e) => { topN = +e.target.value; refresh(); };
+$("airl").onclick = (e) => { airlinersOnly = !airlinersOnly; e.target.classList.toggle("on", airlinersOnly); refresh(); };
+$("world").onclick = () => choose(null);
+$("q").oninput = (e) => { query = e.target.value; drawGrid(); };
+document.querySelectorAll("#filters button").forEach((b) => b.onclick = () => {
+  document.querySelectorAll("#filters button").forEach((x) => x.classList.remove("on")); b.classList.add("on"); filter = b.dataset.f; drawGrid(); });
+$("rank").onclick = (e) => { const tr = e.target.closest("tr"); if (tr) choose(tr.dataset.code); };
+$("paintnext").onclick = () => {
+  const rows = (sel ? checklist(sel) : worldList()).filter((r) => r.st !== "ok").slice(0, 50);
+  if (!rows.length) return alert("Everything in this view is already painted.");
+  const text = rows.map((r) => `${r.t[1]} (${r.t[0]})`).join("\n") + "\n";
+  const a = Object.assign(document.createElement("a"), {download: `paint_next_${sel ? sel.code : "world"}_${new Date().toISOString().slice(0, 10)}.txt`,
+    href: URL.createObjectURL(new Blob([text], {type: "text/plain"}))});
+  a.click(); URL.revokeObjectURL(a.href);
+};
+
+(async () => {
+  try {
+    const [w, p, topo] = await Promise.all([getJSON("planes/world.json"), getJSON("planes/painted.json").catch(() => ({})), getJSON("planes/world-110m.json")]);
+    W = w; painted = p; W.types.forEach((t) => (byCode[t[0]] = t));
+    W.countries.forEach((c) => { if (c.iso) byIso[+c.iso] = c; });
+
+    const feats = topojson.feature(topo, topo.objects.countries).features;
+    const box = $("mapwrap"), Wd = 1000, H = 509;
+    const proj = d3.geoEqualEarth().fitExtent([[8, 6], [Wd - 8, H - 6]], {type: "Sphere"}), path = d3.geoPath(proj);
+    const svg = `<svg viewBox="0 0 ${Wd} ${H}" preserveAspectRatio="xMidYMid meet"><g>
+      <path class="grat" d="${path(d3.geoGraticule().step([30, 30])())}"/><path class="sea" d="${path({type: "Sphere"})}"/>
+      <g id="land">${feats.map((f) => { const c = byIso[+f.id]; return `<path d="${path(f)}" data-name="${esc(f.properties?.name || "")}" ${c ? `data-code="${c.code}"` : ""}/>`; }).join("")}</g></g></svg>`;
+    box.insertAdjacentHTML("afterbegin", svg);
+    const tip = $("tip");
+    box.addEventListener("mousemove", (e) => { const p = e.target.closest("#land path");
+      document.querySelectorAll("#land path.hov").forEach((x) => x.classList.remove("hov"));
+      if (!p) { tip.style.opacity = 0; return; }
+      p.classList.add("hov"); const code = p.dataset.code, reg = code && W.countries.find((x) => x.code === code);
+      const s = reg ? score(checklist(reg)) : null, r = box.getBoundingClientRect();
+      tip.innerHTML = `<b>${esc(reg ? reg.name : p.dataset.name)}</b>${reg ? `${reg.airframes.toLocaleString()} airframes · ${s.ok}/${s.n} painted` : "no register data"}`;
+      tip.style.left = Math.min(e.clientX - r.left + 12, r.width - 200) + "px"; tip.style.top = (e.clientY - r.top + 14) + "px"; tip.style.opacity = 1; });
+    box.addEventListener("mouseleave", () => (tip.style.opacity = 0));
+    box.addEventListener("click", (e) => { const p = e.target.closest("#land path[data-code]"); if (p) choose(p.dataset.code); });
+
+    const all = W.types.filter((t) => t[1] && PAINTABLE.includes(t[2][0]));
+    const done = all.filter((t) => status(t[0]) === "ok").length, part = all.filter((t) => status(t[0]) === "part").length;
+    $("sub").textContent = `${done.toLocaleString()} of ${all.length.toLocaleString()} ICAO types painted · ${W.countries.length} country registers · ${Object.keys(painted).length} paintings`;
+    $("bdone").style.width = done / all.length * 100 + "%"; $("bhalf").style.width = (done + part) / all.length * 100 + "%";
+    $("note").textContent = `Registers from the Mictronics aircraft database via tar1090-db; country from ICAO 24-bit address blocks. Updated ${W.updated.slice(0, 10)}.`;
+    recolor();
+    const hash = location.hash.slice(1).toUpperCase();
+    choose(W.countries.some((c) => c.code === hash) ? hash : "NZ");
+    window.scrollTo(0, 0);
+  } catch (e) {
+    $("sub").textContent = "couldn't load the data";
+    $("mapwrap").innerHTML = `<div class="err">${esc(e.message)}<br>Serve this folder over http (python3 -m http.server) rather than opening the file directly, and run tools/build_reference.py first.</div>`;
+  }
+})();
+</script>
+</body>
+</html>

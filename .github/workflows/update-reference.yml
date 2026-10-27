@@ -1,0 +1,41 @@
+# Daily: refresh the aircraft type list, airline list and every country's register (tools/build_reference.py).
+# Commits only when something actually changed; Cloudflare redeploys the site on push.
+name: Update reference data
+
+on:
+  schedule:
+    - cron: "41 16 * * *"     # 16:41 UTC = about 5:41 am in New Zealand
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-reference
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build reference lists
+        run: python tools/build_reference.py
+
+      - name: Commit changes
+        run: |
+          git add planes/types.json planes/operators.json planes/world.json
+          if git diff --cached --quiet; then
+            echo "No changes today."
+          else
+            git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -m "Daily update: aircraft types, airlines, country registers"
+            git pull --rebase origin main
+            git push
+          fi

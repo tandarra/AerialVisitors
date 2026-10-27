@@ -1,0 +1,18 @@
+# Keys, never commit
+plane_keys.txt
+bird_keys.txt
+*.env
+.env
+
+# Reference photos and caches stay local
+planes/refs/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+.wrangler/
+
+# Full sightings log holds your home position and every airframe; planes/seen.json is the shareable summary
+planes/sightings.json

@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "aerialvisitors",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": ".", "binding": "ASSETS" },
+  // Add a route when you pick a domain, e.g.  "routes": [{ "pattern": "planes.tandarra.net", "custom_domain": true }],
+  "vars": {
+    "HOME_LAT": "-37.25",
+    "HOME_LNG": "175.02",
+    "RADIUS_NM": "25",
+    "ADSB_API": "https://api.adsb.lol"
+  }
+}
