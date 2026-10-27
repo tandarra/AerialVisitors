@@ -95,6 +95,36 @@ Illustrations and code are shared under
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), matching Avian Visitors, whose prompt template
 and style guidelines this project adapts. Non-commercial use only, with attribution. Images are generated with Google Gemini.
 
+## Run it: paint New Zealand end to end (Windows)
+
+One-time setup:
+
+```powershell
+git clone https://github.com/tandarra/AerialVisitors.git C:\Users\Kurt\Documents\AerialVisitors   # not inside Downloads\AerialVisitors
+cd C:\Users\Kurt\Documents\AerialVisitors
+pip install -r requirements.txt
+"GEMINI_API_KEY=paste-your-key" | Out-File -Encoding ascii plane_keys.txt     # key from aistudio.google.com/apikey, billing on
+gh auth login            # or any way you normally push to GitHub
+```
+
+Then:
+
+```powershell
+python tools\aerial_run.py --list-only      # what it will paint and the cost
+python tools\aerial_run.py                  # 72 images, about US$2.50
+```
+
+- Originals are saved to `C:\Users\Kurt\Downloads\AerialVisitors\_airframes\` and `...\New Zealand\<Airline>\`, with a `run.log`.
+- Each cut-out is added to `planes/` (generic airframes) or `planes/liveries/<country>/<airline>/` (liveries), `planes/catalogue.json` is rebuilt, and every 10 images it commits and pushes, so the atlas fills in as it goes.
+- Stop any time and run it again: finished images are skipped. `--stage airframes` paints and pushes only the plain airframes so you can review them before the liveries.
+- To run it hidden in the background: `Start-Process python -ArgumentList 'tools\aerial_run.py' -WindowStyle Hidden` and watch `run.log`.
+
+The atlas (`atlas.html`) has a world map, a checklist of aircraft types per country, and an **Airlines** tab per country: catalogued fleets with their liveries, plus every registered operator that has no fleet list yet. Add a country by writing `liveries/<cc>.json` like `liveries/nz.json`, then `python tools\aerial_run.py --fleet liveries/<cc>.json`.
+
+### Putting the atlas online
+
+GitHub Pages: repo **Settings, Pages, Deploy from a branch, main, / (root)**. It is then at `https://tandarra.github.io/AerialVisitors/atlas.html`. (Pages on a private repo needs a paid GitHub plan; Cloudflare Pages works from the same repo with no build command and output directory `/`.)
+
 ## Airline liveries
 
 `liveries/nz.json` lists New Zealand's scheduled airlines and the types they fly (checked 2026-10-28, with sources).

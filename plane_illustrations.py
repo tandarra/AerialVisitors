@@ -152,7 +152,13 @@ def paint(gkey, model, code, name, pose_kw, livery, style_ref=None, photo_ref=No
         notes += f"Image {n} is a photo of a real {name}: use it ONLY for the aircraft's shape and proportions. "
     if parts:
         text += STYLE_NOTE.format(notes=notes)
-    body = {"contents": [{"parts": [{"text": text}] + parts}],
+    return gemini_image(gkey, model, text, parts, tries)
+
+
+def gemini_image(gkey, model, text, parts=(), tries=4):
+    """One image from Gemini: prompt text plus optional inline image parts (see img_part). Returns PNG bytes or None."""
+    import requests
+    body = {"contents": [{"parts": [{"text": text}] + list(parts)}],
             "generationConfig": {"responseModalities": ["IMAGE"], "imageConfig": {"aspectRatio": "1:1"}}}
     for attempt in range(1, tries + 1):
         r = requests.post(GEMINI.format(model=model), headers={"x-goog-api-key": gkey}, json=body, timeout=120)

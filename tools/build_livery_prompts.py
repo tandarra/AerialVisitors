@@ -21,8 +21,12 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import plane_illustrations as pi            # same prompt text as the generator
 
-REPAINT_LINE = ("Image 1 is the APPROVED AIRFRAME for this aircraft type. Keep its shape, proportions, number of wings, "
-                "engines and tail surfaces, pose and woodblock line style EXACTLY as drawn. Change ONLY the paint scheme.")
+REPAINT_LINE = ("Image 1 is the APPROVED AIRFRAME for this aircraft. Keep its shape, proportions, number of wings, engines and "
+                "tail surfaces, pose, framing and woodblock line style EXACTLY as drawn. Change ONLY the paint scheme. Do NOT carry "
+                "over the brown or ochre washes from image 1 onto the belly, engines or tail cone: repaint them in the airline's real "
+                "colours. The airline name and logo go only where the real aircraft carries them (fuselage sides and tail), never as "
+                "title text on top of the fuselage or wings. Produce ONE image of ONE aircraft only, on the same cream ground: no "
+                "other views, no other aircraft, no sheet layout.")
 STYLE_REF_LINE = ("Image 1 is the STYLE reference: match its style, line weight, palette, level of detail and cream "
                   "ground exactly, but do NOT copy its aircraft type or livery.")
 

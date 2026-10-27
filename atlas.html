@@ -57,12 +57,23 @@ input{flex:1;min-width:180px;max-width:340px;font:15px Georgia,serif;background:
 .rank .barc{width:28%}.rank .barc .bar{margin:0}
 h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bottom:6px}
 .note{font:12px 'Courier New',monospace;color:var(--mute);margin:0 0 40px}
+.tabs{display:flex;gap:0}.tabs button+button{border-left:0}
+.al{grid-column:1/-1;border:1px solid var(--ink2);background:var(--paper2);padding:12px 14px}
+.al h4{margin:0;font-size:20px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.al h4 span{font:12px 'Courier New',monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;font-weight:400}
+.al .bar{margin:8px 0 4px}
+.fr{display:grid;grid-template-columns:minmax(150px,1fr) 2fr;gap:10px;align-items:center;border-top:1px solid var(--line);padding:8px 0}
+.fr .imgs{height:70px;justify-content:flex-start}.fr .imgs img{max-height:70px;max-width:150px}
+.ops{grid-column:1/-1;columns:3 240px;column-gap:24px;font-size:14px;line-height:1.5}
+.ops div{break-inside:avoid;border-bottom:1px dotted var(--line);padding:2px 0}.ops small{font:11px 'Courier New',monospace;color:var(--mute)}
+.h2{grid-column:1/-1;margin:8px 0 0;font:12px 'Courier New',monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.toplink{float:right;font:12px 'Courier New',monospace;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--ink)}
 .err{padding:40px;text-align:center;font:italic 18px Georgia,serif;color:var(--miss)}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <div class="kicker">Aerial Visitors</div>
+  <div class="kicker">Aerial Visitors <a class="toplink" href="index.html">Overhead now &rarr;</a></div>
   <h1>Aerial Atlas</h1>
   <div class="sub" id="sub">loading&hellip;</div>
   <div class="bar"><i class="half" id="bhalf" style="width:0"></i><i id="bdone" style="width:0"></i></div>
@@ -84,6 +95,7 @@ h3{margin:0 0 4px;font-size:20px;border-bottom:2px solid var(--ink);padding-bott
     <div><b id="pname"></b><div class="m" id="pmeta"></div></div>
     <div class="bar"><i class="half" id="pbhalf"></i><i id="pbdone"></i></div>
     <button class="go" id="paintnext" title="Download a list for plane_illustrations.py --list">Paint next &darr;</button>
+    <span class="tabs"><button id="vtypes" class="on">Aircraft types</button><button id="vair">Airlines</button></span>
     <button id="world">World view</button>
   </div>
   <div class="ctl" id="filters" hidden>
@@ -108,6 +120,7 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<"
 const slug = (c) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 const getJSON = async (u) => { const r = await fetch(u, {cache: "no-cache"}); if (!r.ok) throw new Error(`${u}: ${r.status}`); return r.json(); };
 const PAINTABLE = "LSAHGT";
+let view = "types", CAT = null, OPS = null, drawToken = 0;
 let W, painted = {}, byCode = {}, byIso = {}, sel = null, filter = "all", query = "", topN = 50, airlinersOnly = false;
 
 const isAirliner = (t) => t[2].length === 3 && t[2][0] === "L" && "234".includes(t[2][1]) && "JT".includes(t[2][2]) && "MH".includes(t[3]);
@@ -129,7 +142,53 @@ const score = (rows) => { const ok = rows.filter((r) => r.st === "ok").length, p
 const ramp = (f) => { const a = [226, 218, 199], b = [77, 122, 86]; // land -> green
   return `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * Math.min(1, f))).join(",")})`; };
 
+const loadCat = async () => (CAT ??= await getJSON("planes/catalogue.json").catch(() => ({countries: {}})));
+const loadOps = async () => (OPS ??= await getJSON("planes/operators.json").catch(() => ({})));
+const markSel = () => document.querySelectorAll("#land path").forEach((p) => p.classList.toggle("sel", sel && p.dataset.code === sel.code));
+const airlineScore = (al) => { const n = al.fleet.length * 2, ok = al.fleet.reduce((a, f) => a + f.files.length, 0); return {n, ok}; };
+
+// Airlines view: catalogued airlines (fleet known, with their liveries) then every registered operator of the country.
+async function drawAirlines() {
+  const token = ++drawToken, cat = await loadCat(), ops = await loadOps();
+  if (token !== drawToken) return;
+  $("pick").hidden = false; $("filters").hidden = false;
+  document.querySelectorAll("#filters button").forEach((b) => (b.hidden = true));
+  $("paintnext").hidden = true;
+  const q = query.toLowerCase();
+  if (!sel) {
+    const rows = Object.entries(cat.countries).map(([code, c]) => { const t = c.airlines.reduce((a, al) => { const s = airlineScore(al); return [a[0] + s.ok, a[1] + s.n]; }, [0, 0]);
+      return {code, c, ok: t[0], n: t[1]}; }).sort((a, b) => b.ok - a.ok);
+    $("pname").textContent = "World"; $("pmeta").textContent = `${rows.length} countries with catalogued airlines · pick a country`;
+    $("pbdone").style.width = "0"; $("pbhalf").style.width = "0";
+    $("grid").innerHTML = rows.length ? rows.map((r) => `<div class="al" style="cursor:pointer" data-code="${r.code}"><h4>${esc(r.c.name)}<span>${r.c.airlines.length} airlines · ${r.ok}/${r.n} livery images</span></h4></div>`).join("")
+      : `<div class="err" style="grid-column:1/-1">No airline liveries painted yet.</div>`;
+    markSel(); return;
+  }
+  const cc = cat.countries[sel.code], airlines = cc ? cc.airlines : [];
+  const tot = airlines.reduce((a, al) => { const s = airlineScore(al); return [a[0] + s.ok, a[1] + s.n]; }, [0, 0]);
+  const have = airlines.map((a) => a.name.toLowerCase());
+  const others = Object.entries(ops).filter(([, v]) => v[1] === sel.name && !have.some((h) => h.includes(v[0].toLowerCase()) || v[0].toLowerCase().includes(h)))
+    .filter(([k, v]) => !q || (v[0] + " " + k + " " + v[2]).toLowerCase().includes(q));
+  $("pname").textContent = sel.name;
+  $("pmeta").textContent = `${airlines.length} airlines catalogued · ${tot[0]}/${tot[1]} livery images · ${others.length.toLocaleString()} other registered operators`;
+  $("pbdone").style.width = (tot[1] ? tot[0] / tot[1] * 100 : 0) + "%"; $("pbhalf").style.width = (tot[1] ? tot[0] / tot[1] * 100 : 0) + "%";
+  const card = (al) => { const s = airlineScore(al);
+    return `<div class="al"><h4>${esc(al.name)}<span>${esc(al.kind || "")}${al.base ? " · " + esc(al.base) : ""} · ${s.ok}/${s.n} images</span></h4>
+      <div class="bar"><i style="width:${s.n ? s.ok / s.n * 100 : 0}%"></i></div>
+      ${al.fleet.filter((f) => !q || (f.label + " " + f.type + " " + al.name).toLowerCase().includes(q)).map((f) => `<div class="fr"><div><div class="n">${esc(f.label || f.type)}</div>
+        <div class="s">${esc(f.type)}${f.count ? " · " + f.count + " flying" : ""}${f.note ? " · " + esc(f.note) : ""}</div>
+        <div class="chips"><span class="${f.files.length === 2 ? "ok" : f.files.length ? "part" : "miss"}">${f.files.length === 2 ? "complete" : f.files.length ? "partial" : "not painted"}</span></div></div>
+        <div class="imgs">${f.files.length ? f.files.map((x) => `<img src="planes/liveries/${cc.slug}/${al.slug}/${x}" alt="">`).join("") : `<div class="ph">${esc(f.type)}</div>`}</div></div>`).join("")}</div>`; };
+  const shownAl = airlines.filter((al) => !q || (al.name + " " + al.fleet.map((f) => f.label + f.type).join(" ")).toLowerCase().includes(q));
+  $("grid").innerHTML = (shownAl.length ? shownAl.map(card).join("") : airlines.length ? "" : `<div class="h2">No airline fleets catalogued for ${esc(sel.name)} yet.</div>`)
+    + (others.length ? `<div class="h2">Other registered operators, no fleet list yet (${others.length.toLocaleString()})</div><div class="ops">${others.slice(0, 300).map(([k, v]) =>
+      `<div>${esc(v[0])} <small>${esc(k)}${v[2] ? " · " + esc(v[2]) : ""}</small></div>`).join("")}</div>${others.length > 300 ? `<div class="h2">Showing 300: search to narrow down.</div>` : ""}` : "");
+  markSel();
+}
+
 function drawGrid() {
+  if (view === "airlines") return void drawAirlines();
+  document.querySelectorAll("#filters button").forEach((b) => (b.hidden = false)); $("paintnext").hidden = false;
   const rows = sel ? checklist(sel) : worldList(), s = score(rows);
   $("pick").hidden = false; $("filters").hidden = false;
   $("pname").textContent = sel ? sel.name : "World";
@@ -166,6 +225,9 @@ function refresh() { recolor(); drawGrid(); }
 $("topn").onchange = (e) => { topN = +e.target.value; refresh(); };
 $("airl").onclick = (e) => { airlinersOnly = !airlinersOnly; e.target.classList.toggle("on", airlinersOnly); refresh(); };
 $("world").onclick = () => choose(null);
+const setView = (v) => { view = v; $("vtypes").classList.toggle("on", v === "types"); $("vair").classList.toggle("on", v === "airlines"); drawGrid(); };
+$("vtypes").onclick = () => setView("types"); $("vair").onclick = () => setView("airlines");
+$("grid").onclick = (e) => { const c = e.target.closest(".al[data-code]"); if (c) choose(c.dataset.code); };
 $("q").oninput = (e) => { query = e.target.value; drawGrid(); };
 document.querySelectorAll("#filters button").forEach((b) => b.onclick = () => {
   document.querySelectorAll("#filters button").forEach((x) => x.classList.remove("on")); b.classList.add("on"); filter = b.dataset.f; drawGrid(); });
@@ -209,6 +271,8 @@ $("paintnext").onclick = () => {
     $("bdone").style.width = done / all.length * 100 + "%"; $("bhalf").style.width = (done + part) / all.length * 100 + "%";
     $("note").textContent = `Registers from the Mictronics aircraft database via tar1090-db; country from ICAO 24-bit address blocks. Updated ${W.updated.slice(0, 10)}.`;
     recolor();
+    loadCat().then((cat) => { const n = Object.values(cat.countries).reduce((a, c) => a + c.airlines.reduce((b, al) => b + al.fleet.reduce((d, f) => d + f.files.length, 0), 0), 0);
+      if (n) $("sub").textContent += ` · ${n} airline livery paintings`; });
     const hash = location.hash.slice(1).toUpperCase();
     choose(W.countries.some((c) => c.code === hash) ? hash : "NZ");
     window.scrollTo(0, 0);

@@ -16,3 +16,5 @@ node_modules/
 
 # Full sightings log holds your home position and every airframe; planes/seen.json is the shareable summary
 planes/sightings.json
+planes/raw/*
+!planes/raw/.gitkeep
